@@ -53,13 +53,13 @@
                                 <span>검색어</span>
                                 <label class="sel">
                                     <select id="search_type">
-                                        <option value="">아이디</option>
-                                        <option value="">이름</option>
-                                        <option value="">등록자</option>
+                                        <option value="user_id">아이디</option>
+                                        <option value="user_nm">이름</option>
+                                        <option value="reg_id">등록자</option>
                                     </select>
                                 </label>
                                 <label class="text btnBox">
-                                    <input type="text" id="search_keyword" placeholder="검색어 입력">
+                                    <input type="text" id="search_keyword" name="search_keyword" placeholder="검색어 입력">
                                     <a href="#none" class="searchBtn" id="btn_Search">검색</a>
                                 </label>
                             </div>

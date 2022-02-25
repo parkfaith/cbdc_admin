@@ -5,5 +5,5 @@ import java.util.List;
 import com.cbdc.admin.systemMng.model.PersonManageModel;
 
 public interface PersonManageService {
-	public List<PersonManageModel> getPersonList() throws Exception;
+	public List<PersonManageModel> getPersonList(PersonManageModel pmm) throws Exception;
 }

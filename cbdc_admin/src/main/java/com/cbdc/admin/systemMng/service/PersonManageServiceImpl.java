@@ -15,7 +15,7 @@ public class PersonManageServiceImpl implements PersonManageService{
 	private PersonManageMapper personManageMapper;
 	
 	@Override
-	public List<PersonManageModel> getPersonList() throws Exception {
-		return personManageMapper.getPersonList();
+	public List<PersonManageModel> getPersonList(PersonManageModel pmm) throws Exception {
+		return personManageMapper.getPersonList(pmm);
 	}
 }

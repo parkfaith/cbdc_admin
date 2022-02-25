@@ -38,7 +38,7 @@ public class PersonManageController {
     public HashMap<String, Object> personManageListAjax(PersonManageModel pmm) throws Exception{
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		
-		List<PersonManageModel> personList = personManageService.getPersonList();
+		List<PersonManageModel> personList = personManageService.getPersonList(pmm);
 		result.put("personList", personList);
 		
         return result;

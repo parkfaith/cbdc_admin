@@ -1,30 +1,28 @@
+let param = new Object();
+param.search_sDate = '';
+param.search_eDate = '';
+param.search_type = '';
+param.search_keyword = '';
+
 $(document).ready(function() {
-	init();	
+	goSearch();
 	
 	$("#btn_Search").click(function() {
-		var param = new Object();
+		
 		param.search_sDate = $("#search_sDate").val();
 		param.search_eDate = $("#search_eDate").val();
 		param.search_type = $("#search_type").val();
 		param.search_keyword = $("#search_keyword").val();
 		
-	    $.ajax({
-	      url : '/systemMng/personManageListAjax.do',
-	      type : 'POST',
-	      data : param,
-	      success : function(obj) {
-	      console.log(obj);
-	      },
-	      error : function(e) {
-	      console.log(e);
-	      }
-	    });
+		goSearch();
 	});
 });
 
-function init(){
+
+function goSearch(){
 	$.ajax({
-        type:'POST',
+        type : 'POST',
+		data : param,
         url:'/systemMng/personManageListAjax.do',
         success:function(result)
         {
@@ -53,4 +51,4 @@ function init(){
             $('#person_list').html(res);
         }
       });
-}
+} 

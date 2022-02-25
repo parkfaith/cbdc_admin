@@ -10,5 +10,5 @@ import com.cbdc.admin.systemMng.model.PersonManageModel;
 @Repository
 @Mapper
 public interface PersonManageMapper {
-	List<PersonManageModel> getPersonList();
+	List<PersonManageModel> getPersonList(PersonManageModel pmm);
 }
