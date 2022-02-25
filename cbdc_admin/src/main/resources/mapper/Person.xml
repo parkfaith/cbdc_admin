@@ -28,5 +28,21 @@
 		</choose>
 		ORDER BY USER_SEQ DESC
 	</select>
+	
+	<select id="getPersonListTotal" parameterType="com.cbdc.admin.systemMng.model.PersonManageModel" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			TB_ADM_USER
+		WHERE 1=1
+		<choose>
+			<when test="search_type != null and search_type.equals('user_id')">
+				AND USER_ID LIKE CONCAT('%', #{search_keyword}, '%')
+			</when>
+			<when test="search_type != null and search_type.equals('reg_id')">
+				AND REG_ID LIKE CONCAT('%', #{search_keyword}, '%')
+			</when>
+		</choose>
+	</select>
 
 </mapper>
