@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+        $(window).ready(function(){
+
+        });
+
+        function copyAdd(elementId){
+            var aux = document.createElement("input");
+            aux.setAttribute("value", document.getElementById(elementId).innerText);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+            alert('Pub Key가 복사되었습니다.');
+        }        
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li class="on">
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>노드관리 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>노드관리</dd>
+                                    <dd>노드관리 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTbl">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td colspan="3">
+                                            <span class="flag active">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>기관</th>
+                                        <td>한국은행</td>
+                                        <th>이름</th>
+                                        <td>Node #1</td>
+                                    </tr>
+                                    <tr>
+                                        <th>IP</th>
+                                        <td colspan="3">
+                                            000.000.000.000
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pub Key</th>
+                                        <td colspan="3">
+                                            <div class="chkAccount">
+                                                <p id="walletAdd">uVslkdfjpoqwjcnqoi20-292pkjcwe</p>
+                                                <a href="#" class="button" onclick="copyAdd('walletAdd'); return false;">copy</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>유형</th>
+                                        <td>
+                                            <span class="node pn">PN</span>
+                                        </td>
+                                        <th>Prometheus Port</th>
+                                        <td>1002</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Port 1</th>
+                                        <td>1002</td>
+                                        <th>Port 2</th>
+                                        <td>1002</td>
+                                    </tr>
+                                    <tr>
+                                        <th>최종수정일시</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                        <th>처리자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="viewBtnArea">
+                            <a href="nodeMngList.html" class="button list">목록</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

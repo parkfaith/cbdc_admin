@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <!-- jquery-confirm 사용여부 미정 - 김영준 -->
+    <link rel="stylesheet" href="../js/jquery-confirm/jquery-confirm.css">
+    <script src="../js/jquery-confirm/jquery-confirm.js"></script>
+
+    <script>
+        $(window).ready(function(){
+             loading();
+             setTimeout(function(){
+                 hideLoading()
+             },1000);
+
+             $("#rejSave").click(function(){
+                var c = confirm("제조신청을 발려하시겠습니까?");
+                if(c){
+                    alert('제조신청이 반려되었습니다.');
+                    closeModal('rejModal');
+                }
+                return false;
+             });
+
+             $(".transBtn.up").click(function(){
+                $("#upTxFile").click();
+             });
+
+             $("input[id=upTxFile]").on("change", function () {
+                openModal('txModal');
+             });
+
+             $("#sendTx").click(function(){
+                var c = confirm("트랜젝션을 전송하시겠습니까?");
+                if(c){
+                    alert('트랜젝션이 전송되었습니다.');
+                    closeModal('txModal');
+                }
+                return false;
+             });
+
+             $(".transBtn.sd").click(function(){
+                openModal('txModal');
+             });
+
+             //당좌예금 조회 버튼 클릭 
+             $("#chkAccountBtn").click(function(){
+                var bankAmount = "10000000000"; //당좌예금 잔액
+                loading();
+                setTimeout(function(){
+                    hideLoading();
+                    $("#chkAccountBtn").hide();
+                    $(".viewAccount").show();
+                    $("#bankAmount").html('<b>'+comma(bankAmount) + '</b> 원');
+                    $("#bankAmountKor").html(_fmtNumberKor(bankAmount) + '원');
+                },1000);
+               
+                return false;
+             });
+        });
+
+     </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="main.html" class="cbdcLogo">
+                CBDC 관리시스템
+            </a>
+            <span class="userType bok">한국은행</span> <!-- 한국은행 담당자 -->
+            <span class="userType">카카오뱅크</span>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="baseList.html">공통 목록</a>
+                        </li>
+                        <li class="on">
+                            <a href="baseView.html">공통 상세</a> 
+                        </li>
+                        <li>
+                            <a href="baseReg.html">공통 등록</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <!-- 승인/반려 (수정/삭제) -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조현황 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조현황 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="viewArea pay">
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td>
+                                            <span class="flag app">승인</span>
+                                            <!-- <span class="process step2">
+                                                <b>승인A</b>
+                                                <b>승인B</b>
+                                                <b>승인C</b>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                                <div class="amountBox">
+                                    <div class="statusBox">
+                                        <h4>신청 금액</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+                            <!-- 승인권한자 (승인자) -->
+                            <a href="#" class="button app">승인</a>
+                            <a href="#" class="button rej" onclick="openModal('rejModal'); return false;">반려</a>
+
+                            <!-- 삭제권한자 (작성자) -->
+                            <a href="#" class="button app">수정</a>
+                            <a href="#" class="button rej">삭제</a>
+                        </div>
+                    </div>
+
+                    <!-- 발행 승인 - 기관 당좌예금 조회 -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조현황 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조현황 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="appProcess">
+                            <dl>
+                                <dd class="app">
+                                    <h2>
+                                        환수담당 A
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd class="rej">
+                                    <h2>
+                                        환수담당 B
+                                        <span class="flag rej">반려</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <h2>
+                                        환수담당 C
+                                        <!-- <span class="flag app">승인</span> -->
+                                    </h2>
+                                    <!-- <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div> -->
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="viewArea pay">
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td>
+                                            <span class="flag app">승인</span>
+                                            <!-- <span class="process step2">
+                                                <b>승인A</b>
+                                                <b>승인B</b>
+                                                <b>승인C</b>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>대상기관</th>
+                                        <td>
+                                            <div class="chkAccount">
+                                                <p>(00) 카카오뱅크</p>
+                                                <a href="#" class="button" id="chkAccountBtn">당좌예금조회</a>
+                                                <div class="viewAccount">
+                                                    <p id="bankAmount">100,000,000원</p>
+                                                    <p class="accKor" id="bankAmountKor">일억원</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                                <div class="amountBox">
+                                    <div class="statusBox">
+                                        <h4>신청 금액</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+                            <a href="#" class="button app">승인</a>
+                            <a href="#" class="button rej">반려</a>
+                        </div>
+                    </div>
+
+                    <!-- 미서명 거래 다운로드 -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조현황 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조현황 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="appProcess">
+                            <dl>
+                                <dd class="app">
+                                    <h2>
+                                        환수담당 A
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd class="rej">
+                                    <h2>
+                                        환수담당 B
+                                        <span class="flag rej">반려</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <h2>
+                                        환수담당 C
+                                        <!-- <span class="flag app">승인</span> -->
+                                    </h2>
+                                    <!-- <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div> -->
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="viewArea pay">
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td>
+                                            <span class="flag app">승인</span>
+                                            <!-- <span class="process step2">
+                                                <b>승인A</b>
+                                                <b>승인B</b>
+                                                <b>승인C</b>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>대상기관</th>
+                                        <td>(00) 카카오뱅크</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                                <div class="amountBox">
+                                    <div class="statusBox">
+                                        <h4>신청 금액</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>결재 내역</h2>
+                            </div>
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>반려사유</th>
+                                        <td>
+                                            내부결재 미승인된 거래로 판단됨.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="transArea">
+                            <ul>
+                                <li>
+                                    <!-- 완료시 app class 추가-->
+                                    <div class="transBox">
+                                        <h4>
+                                            Unsigned Transaction
+                                            <span>미서명 거래</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <a href="#" class="button transBtn dw">다운로드</a>
+                                    </div>
+                                </li>
+                                <li style="display:none;">
+                                    <div class="transBox">
+                                        <h4>
+                                            Signed Transaction
+                                            <span>서명 거래</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <a href="#" class="button transBtn up">업로드</a>
+                                    </div>
+                                </li>
+                                <li style="display:none;">
+                                    <div class="transBox">
+                                        <h4>
+                                            Transaction Transfer
+                                            <span>거래 전송</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <!-- <a href="#" class="button transBtn sd">전송</a> -->
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+                            <!-- <a href="#" class="button app">승인</a>
+                            <a href="#" class="button rej">반려</a> -->
+                        </div>
+                    </div>
+
+                    <!-- 서명 거래 업로드 -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조현황 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조현황 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="appProcess">
+                            <dl>
+                                <dd class="app">
+                                    <h2>
+                                        환수담당 A
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd class="rej">
+                                    <h2>
+                                        환수담당 B
+                                        <span class="flag rej">반려</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <h2>
+                                        환수담당 C
+                                        <!-- <span class="flag app">승인</span> -->
+                                    </h2>
+                                    <!-- <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div> -->
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="viewArea pay">
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td>
+                                            <span class="flag app">승인</span>
+                                            <!-- <span class="process step2">
+                                                <b>승인A</b>
+                                                <b>승인B</b>
+                                                <b>승인C</b>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>대상기관</th>
+                                        <td>(00) 카카오뱅크</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                                <div class="amountBox">
+                                    <div class="statusBox">
+                                        <h4>신청 금액</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>결재 내역</h2>
+                            </div>
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>반려사유</th>
+                                        <td>
+                                            내부결재 미승인된 거래로 판단됨.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="transArea">
+                            <ul>
+                                <li>
+                                    <!-- 완료시 app class 추가-->
+                                    <div class="transBox app">
+                                        <h4>
+                                            Unsigned Transaction
+                                            <span>미서명 거래</span>
+                                        </h4>
+                                        <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div>
+                                        <!-- <a href="#" class="button transBtn dw">다운로드</a> -->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="transBox">
+                                        <h4>
+                                            Signed Transaction
+                                            <span>서명 거래</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <input type="file" id="upTxFile" class="upTx">
+                                        <a href="#" class="button transBtn up">업로드</a>
+                                    </div>
+                                </li>
+                                <li style="display:none;">
+                                    <div class="transBox">
+                                        <h4>
+                                            Transaction Transfer
+                                            <span>거래 전송</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <!-- <a href="#" class="button transBtn sd">전송</a> -->
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+                            <!-- <a href="#" class="button app">승인</a>
+                            <a href="#" class="button rej">반려</a> -->
+                        </div>
+                    </div>
+
+                    <!-- 서명 거래 전송 -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조현황 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조현황 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="appProcess">
+                            <dl>
+                                <dd class="app">
+                                    <h2>
+                                        환수담당 A
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd class="rej">
+                                    <h2>
+                                        환수담당 B
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                                <dd>
+                                    <h2>
+                                        환수담당 C
+                                        <span class="flag app">승인</span>
+                                    </h2>
+                                    <div class="appInfo">
+                                        <p><b>홍길동</b> 님</p>
+                                        <p>2021-00-00 00:00:00</p>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="viewArea pay">
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td>
+                                            <span class="flag com">완료</span>
+                                            <!-- <span class="process step2">
+                                                <b>승인A</b>
+                                                <b>승인B</b>
+                                                <b>승인C</b>
+                                            </span> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>대상기관</th>
+                                        <td>(00) 카카오뱅크</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                                <div class="amountBox">
+                                    <div class="statusBox">
+                                        <h4>신청 금액</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>결재 내역</h2>
+                            </div>
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>신청자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>신청일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>반려사유</th>
+                                        <td>
+                                            내부결재 미승인된 거래로 판단됨.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="transArea">
+                            <ul>
+                                <li>
+                                    <!-- 완료시 app class 추가-->
+                                    <div class="transBox app">
+                                        <h4>
+                                            Unsigned Transaction
+                                            <span>미서명 거래</span>
+                                        </h4>
+                                        <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div>
+                                        <!-- <a href="#" class="button transBtn dw">다운로드</a> -->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="transBox app">
+                                        <h4>
+                                            Signed Transaction
+                                            <span>서명 거래</span>
+                                        </h4>
+                                        <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div>
+                                        <!-- <input type="file" id="upTxFile" class="upTx">
+                                        <a href="#" class="button transBtn up">업로드</a> -->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="transBox">
+                                        <h4>
+                                            Transaction Transfer
+                                            <span>거래 전송</span>
+                                        </h4>
+                                        <!-- <div class="transInfo">
+                                            <p><b>홍길동</b> 님</p>
+                                            <p>2021-00-00 00:00:00</p>
+                                        </div> -->
+                                        <a href="#" class="button transBtn sd">전송</a>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+                            <!-- <a href="#" class="button app">승인</a>
+                            <a href="#" class="button rej">반려</a> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 반려사유 입력 Modal-->
+    <div class="modal" id="rejModal">
+        <div class="modalInner">
+            <div class="modalTop">
+                <h2>반려사유 입력</h2>
+            </div>
+            <div class="modalBody">
+                <div class="modalBodyInner">
+                    <textarea placeholder="반려사유를 입력해주세요."></textarea>
+                </div>
+            </div>
+            <div class="modalBtnArea">
+                <a href="#" class="button app" id="rejSave">확인</a>
+                <a href="#" class="button close" onclick="closeModal('rejModal'); return false;">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 트랜젝션 확인 Modal-->
+    <div class="modal lg" id="txModal">
+        <div class="modalInner">
+            <div class="modalTop">
+                <h2>트랜젝션 확인</h2>
+            </div>
+            <div class="modalBody">
+                <div class="modalBodyInner">
+                    <div class="viewTbl">
+                        <table>
+                            <tr>
+                                <th>From Address</th>
+                                <td>0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B</td>
+                            </tr>
+                            <tr>
+                                <th>To Address</th>
+                                <td>0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B</td>
+                            </tr>
+                            <tr>
+                                <th>Value</th>
+                                <td>10,000,000,000</td>
+                            </tr>
+                            <tr>
+                                <th>서명</th>
+                                <td>
+                                    <span class="flag app">서명 1</span>
+                                    <span class="flag app">서명 2</span>
+                                    <span class="flag app">서명 3</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modalBtnArea">
+                <a href="#" class="button app" id="sendTx">전송</a>
+                <a href="#" class="button close" onclick="closeModal('txModal'); return false;">취소</a>
+            </div>
+        </div>
+    </div>    
+
+    <div class="mask"></div>
+</body>
+</html>

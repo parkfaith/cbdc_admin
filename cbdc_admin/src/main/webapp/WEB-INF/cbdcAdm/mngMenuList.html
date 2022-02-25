@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <!--treeMenu-->
+    <link rel="stylesheet" type="text/css" href="../css/jsLists.css">
+    <script type="text/javascript" src="../js/jsLists.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/jquery.treeview.css">
+    <script type="text/javascript" src="../js/jquery.treeview.js"></script>
+
+    <script>
+
+
+		$(window).ready(function(){
+            JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
+
+            $(document).on('click','a.menuItem',function(){
+                $(".menuMngTreeInner ul li a.menuItem").removeClass('selected');
+                $(this).addClass('selected');
+                return false;
+            });
+		});
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub on">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li class="on"><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>메뉴관리</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>시스템</dd>
+                                    <dd>메뉴관리</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        
+                        <div class="menuMngArea">
+                            <div class="menuList">
+                                <div class="menuInnerBox">
+                                    <div class="viewArea">
+                                        <div class="viewTop">
+                                            <h2>시스템 메뉴</h2>
+                                        </div>
+                                    </div>
+                                    <div class="menuTreeBox">
+                                        <ul id="menuTreeList">
+                                            <li>
+                                                <a href="#" class="menuItem depth1">CBDC Admin</a>
+                                                <ul>
+                                                    <li><a href="#" class="menuItem depth2">대시보드</a></li>
+                                                    <li><a href="#" class="menuItem depth2">모니터링</a>
+                                                        <ul>
+                                                            <li><a href="#" class="menuItem depth3">노드정보</a></li>
+                                                            <li><a href="#" class="menuItem depth3">블록정보</a></li>
+                                                            <li><a href="#" class="menuItem depth3">거래정보</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#" class="menuItem depth2">노드관리</a></li>
+                                                    <li><a href="#" class="menuItem depth2">스마트계약관리</a></li>
+                                                    <li><a href="#" class="menuItem depth2">시스템관리</a>
+                                                        <ul>
+                                                            <li><a href="#" class="menuItem depth3">공통코드관리</a></li>
+                                                            <li><a href="#" class="menuItem depth3">사용자관리</a></li>
+                                                            <li><a href="#" class="menuItem depth3">메뉴관리</a></li>
+                                                            <li><a href="#" class="menuItem depth3">프로그램관리</a></li>
+                                                            <li><a href="#" class="menuItem depth3">권한관리</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="viewBtnArea tal">
+                                        <a href="#" class="button app">하위메뉴 추가</a>
+                                        <a href="#" class="button up">위로</a>
+                                        <a href="#" class="button down">아래로</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menuList mod">
+                                <div class="menuInnerBox">
+                                    <div class="viewArea">
+                                        <div class="viewTop">
+                                            <h2>메뉴정보</h2>
+                                        </div>
+                                        <div class="viewTbl">
+                                            <table>
+                                                <colgroup>
+                                                    <col>
+                                                    <col width="36%">
+                                                    <col>
+                                                    <col width="36%">
+                                                </colgroup>
+                                                <tr>
+                                                    <th>메뉴명</th>
+                                                    <td colspan="3">
+                                                        <label class="w100per">
+                                                            <input type="text" class="w100per" placeholder="메뉴명">
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>상위메뉴</th>
+                                                    <td colspan="3">
+                                                        <label class="w100per">
+                                                            <select class="w100per mx-w800px">
+                                                                <option>모니터링</option>
+                                                            </select>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>메뉴경로</th>
+                                                    <td colspan="3">
+                                                        <label class="w100per">
+                                                            <input type="text" class="w100per" placeholder="URL">
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>메뉴설명</th>
+                                                    <td colspan="3">
+                                                        <label class="w100per">
+                                                            <textarea></textarea>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>등록자</th>
+                                                    <td>홍길동</td>
+                                                    <th>등록일</th>
+                                                    <td>2021-00-00 00:00:00</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>수정자</th>
+                                                    <td>홍길동</td>
+                                                    <th>수정일</th>
+                                                    <td>2021-00-00 00:00:00</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="viewArea menuAuth">
+                                        <div class="viewTop">
+                                            <h2>권한정보</h2>
+                                        </div>
+
+                                        <div class="listBox">
+                                            <div class="tblList">
+                                                <table id="authList">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                        <col>
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <label>
+                                                                    <input type="checkbox" class="chkAll">
+                                                                </label>
+                                                            </th>
+                                                            <th>권한코드</th>
+                                                            <th>권한명</th>
+                                                            <th>권한설명</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="num">
+                                                                <label>
+                                                                    <input type="checkbox" class="authChk">
+                                                                </label>
+                                                            </td>
+                                                            <td class="auth">authCode</td>
+                                                            <td class="auth">관리자조회</td>
+                                                            <td class="insti">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="num">
+                                                                <label>
+                                                                    <input type="checkbox" class="authChk">
+                                                                </label>
+                                                            </td>
+                                                            <td class="auth">authCode</td>
+                                                            <td class="auth">개발자</td>
+                                                            <td class="insti">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="num">
+                                                                <label>
+                                                                    <input type="checkbox" class="authChk">
+                                                                </label>
+                                                            </td>
+                                                            <td class="auth">authCode</td>
+                                                            <td class="auth">승인배포</td>
+                                                            <td class="insti">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="num">
+                                                                <label>
+                                                                    <input type="checkbox" class="authChk">
+                                                                </label>
+                                                            </td>
+                                                            <td class="auth">authCode</td>
+                                                            <td class="auth">시스템관리</td>
+                                                            <td class="insti">&nbsp;</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="viewBtnArea">
+                                        <a href="#" class="button app">수정</a>
+                                        <a href="#" class="button rej">삭제</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

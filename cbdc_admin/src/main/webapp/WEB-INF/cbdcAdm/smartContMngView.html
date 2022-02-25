@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+        $(window).ready(function(){
+
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li class="on">
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>스마트계약관리 상세</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>스마트계약관리</dd>
+                                    <dd>스마트계약관리 상세</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTbl">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td colspan="3">
+                                            <span class="flag">등록</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>계약명</th>
+                                        <td colspan="3">
+                                            제조컨트랙트
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>계약설명</th>
+                                        <td colspan="3">
+                                            발권을 위한 제조키 서명 컨트랙트
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>배포자 주소</th>
+                                        <td colspan="3">
+                                            <div class="chkAccount">
+                                                <p id="walletAdd">uVslkdfjpoqwjcnqoi20-292pkjcwe</p>
+                                                <a href="#" class="button" onclick="copyAdd('walletAdd'); return false;">copy</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>버전</th>
+                                        <td>1.0</td>
+                                        <th>계약 ID</th>
+                                        <td>Anfdslkfjwpojefsld12</td>
+                                    </tr>
+                                    <tr>
+                                        <th>생성일시</th>
+                                        <td>2022-00-00 00:00:00</td>
+                                        <th>최종변경일시</th>
+                                        <td>2022-00-00 00:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>처리자</th>
+                                        <td colspan="3">홍길동</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>소스코드</h2>
+                            </div>
+                            <div class="codeEditor">
+<pre class="codeEditorArea" id="editor1">
+
+pragma solidity ^0.6.0;
+
+contract HotelBook {
+    enum Status { Vacant,Occupied }
+    Status currentStatus;
+    address payable public owner;
+    
+    event Occupy(address _occupant, uint _value);
+    
+    constructor() public {
+        owner = msg.sender;
+        currentStatus = Status.Vacant;
+    }
+    
+    modifier onlyWhileVacant{
+        require(currentStatus == Status.Vacant, "Book available");
+        _;
+    }
+    modifier cost(uint _amount){
+        require(msg.value >= _amount, "Not enough Ether");
+        _;
+    }
+    
+    receive() external payable onlyWhileVacant cost(2 ether) {
+        currentStatus = Status.Occupied;
+        owner.transfer(msg.value);
+        emit Occupy(msg.sender, msg.value);
+    }
+    
+}
+
+</pre>
+                            </div>
+                        </div>
+
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>ABI</h2>
+                            </div>
+                            <div class="codeEditor">
+<pre class="codeEditorArea" id="editor2">
+
+contract Foo {
+    function bar(real[2] xy) {}
+    function baz(uint32 x, bool y) returns (bool r) { r = x > 32 || y; }
+    function sam(bytes name, bool z, uint[] data) {}
+}
+
+</pre>
+                            </div>
+                        </div>
+
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>Byte Code</h2>
+                            </div>
+                            <div class="codeEditor">
+<pre class="codeEditorArea" id="editor3">0xcdcd77c0: the Method ID. This is derived as the first 4 bytes of the Keccak-256 hash of the ASCII form of the signature baz(uint32,bool). 0x0000000000000000000000000000000000000000000000000000000000000045: the first parameter, a uint32 value 69 padded to 32 bytes 0x0000000000000000000000000000000000000000000000000000000000000001: the second parameter - boolean true, padded to 32 bytes</pre>
+                            </div>
+                        </div>
+
+                        <div class="viewBtnArea">
+                            <a href="smartContMngList.html" class="button list">목록</a>
+                            
+                            <a href="smartContMngReg.html" class="button">수정</a>
+                            <a href="#" class="button rej">삭제</a>
+
+                            <a href="#" class="button app" id="codeChk">코드점검</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        $(window).ready(function(){
+            $("#codeChk").click(function(){
+                var c = confirm('코드 검증을 실행하시겠습니까?');
+                if(c){
+                    loading();
+                    setTimeout(function(){
+                        hideLoading();
+                        location.href='smartContMngDeploy.html';
+                    },1000);
+                }
+            });
+
+            callEditor("editor1","python");
+            callEditor("editor2","python");
+            callEditor("editor3","text");
+        });
+
+        function callEditor(id,mode){
+            var editor = ace.edit(id);
+            editor.setTheme("ace/theme/chrome");
+            editor.getSession().setMode("ace/mode/"+mode);
+            editor.setOptions({ wrap: true });
+            editor.setOptions({ fontSize: "14pt" });
+            editor.setShowPrintMargin(false);
+            editor.setReadOnly(true);
+        }
+
+        function copyAdd(elementId){
+            var aux = document.createElement("input");
+            aux.setAttribute("value", document.getElementById(elementId).innerText);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+            alert('지갑주소가 복사되었습니다.');
+        }
+    </script>
+
+</body>
+</html>

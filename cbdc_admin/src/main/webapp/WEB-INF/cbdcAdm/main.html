@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBDC ADMIN</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+       $(window).ready(function(){
+            loading();
+            setTimeout(function(){
+                hideLoading()
+            },1000);
+       })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <!--<span class="userType bok">한국은행</span>한국은행 담당자-->
+            <!-- <span class="userType">카카오뱅크</span> -->
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li class="on">
+                            <a href="#">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="#">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>대시보드</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>통계관리</dd>
+                                    <dd>통계현황</dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="statusArea userPdt">
+                            <p>2021-00-00 00:00:00 기준</p>
+                            <ul class="act">
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>전체 제조량</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>발행준비 지갑</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>환수 지갑</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <p>2021-00-00 ~ 2021-00-00 기준</p>
+                            <ul>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>전체 발행량</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>전체 환수량</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>전체 폐기량</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>최근 이벤트</h2>
+                            </div>
+                            <div class="eventList">
+                                <ul>
+                                    <!--
+                                        제조 : eventBox create
+                                        발행 : eventBox transfer
+                                        환수 : eventBox refund
+                                        폐기 : eventBox discard
+                                    -->
+                                    <li>
+                                        <div class="eventBox create">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">&nbsp;</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">제조</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox transfer">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">#카카오뱅크</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">발행</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox refund">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">#카카오뱅크</span>
+                                            <p class="wallet">환수지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">환수</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox discard">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">&nbsp;</span>
+                                            <p class="wallet">환수지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">폐기</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox create">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">&nbsp;</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">제조</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox transfer">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">#카카오뱅크</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">발행</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox refund">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">#카카오뱅크</span>
+                                            <p class="wallet">환수지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">환수</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox discard">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">&nbsp;</span>
+                                            <p class="wallet">환수지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">폐기</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox create">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">&nbsp;</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">제조</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="eventBox transfer">
+                                            <p>2021-00-00 00:00:00</p>
+                                            <span class="memo">#카카오뱅크</span>
+                                            <p class="wallet">발행준비 지갑</p>
+                                            <div class="eventItem">
+                                                <span class="eventType">발행</span>
+                                                <div class="eventVal">
+                                                    <p><b>1,000,000,000</b>원</p>
+                                                    <span>일십억원</span>
+                                                </div>
+                                                <div class="totalAmount">
+                                                    <p><b>3,000,000,000</b>원</p>
+                                                    <span>삼십억원</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

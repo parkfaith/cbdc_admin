@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+       
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub on">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li class="on"><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>노드정보 목록</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>모니터링</dd>
+                                    <dd>노드정보 목록</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="searchArea">
+                            <div class="searchBox">
+                                <span>상태</span>
+                                <label class="sel">
+                                    <select>
+                                        <option value="">전체</option>
+                                        <option value="">Active</option>
+                                        <option value="">Inactive</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="searchBox">
+                                <span>유형</span>
+                                <label class="sel">
+                                    <select>
+                                        <option value="">전체</option>
+                                        <option value="">PN</option>
+                                        <option value="">CN</option>
+                                        <option value="">LN</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="searchBox">
+                                <span>검색어</span>
+                                <label class="text btnBox">
+                                    <input type="text" placeholder="노드이름 입력">
+                                    <a href="#" class="searchBtn">검색</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="listBox">
+                            <div class="listTop">
+                                <div class="listCnt">
+                                    전체 <span>00</span> 건
+                                </div>
+                                <div class="listCntSel">
+                                    <label>
+                                        <select>
+                                            <option value="10">10개씩</option>
+                                            <option value="20">20개씩</option>
+                                            <option value="30">30개씩</option>
+                                            <option value="50">50개씩</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tblList">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col style="width:220px">
+                                        <col>
+                                        <col style="width:220px">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <a href="#" class="sort">No.</a>
+                                            </th>
+                                            <th>상태</th>
+                                            <th>이름</th>
+                                            <th>
+                                                <a href="#" class="sort">생성일시</a>
+                                            </th>
+                                            <th>유형</th>
+                                            <th>
+                                                <a href="#" class="sort">최신불록생성시간</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td colspan="8" class="empty">결과가 없습니다.</td>
+                                        </tr> -->
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag active">Active</span>
+                                            </td>
+                                            <td>
+                                                <a href="mnNodeView.html">Node #1</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td class="sts">
+                                                <span class="node pn">PN</span>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag inactive">Inactive</span>
+                                            </td>
+                                            <td>
+                                                <a href="mnNodeView.html">Node #2</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td class="sts">
+                                                <span class="node cn">CN</span>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag active">Active</span>
+                                            </td>
+                                            <td>
+                                                <a href="mnNodeView.html">Node #3</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td class="sts">
+                                                <span class="node ln">LN</span>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                            <td class="sts">&nbsp;</td>
+                                            <td class="date">&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="paging">
+                                <a href="#" class="fst">처음</a>
+                                <a href="#" class="prv">이전</a>
+
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+
+                                <a href="#" class="nxt">다음</a>
+                                <a href="#" class="end">맨끝</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

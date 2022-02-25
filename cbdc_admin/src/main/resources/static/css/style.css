@@ -1,0 +1,2617 @@
+@charset "utf-8";
+/* login */
+.loginBox{
+    width:400px;
+    height:auto;
+    overflow:hidden;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.loginBox .loginTop{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.loginBox .loginTop span.bokLogo{
+    display: inline-block;
+    float: left;
+    height:28px;
+    width:100px;
+    background-image: url('../img/svg/bok_ci_c.svg');
+    background-repeat: no-repeat;
+    background-size: auto 28px;
+}
+
+.loginBox .loginTop h2{
+    display:inline-block;
+    font-size:20px;
+    line-height: 28px;
+    font-weight: 500;
+    color:#005596;
+    float: right;
+}
+
+.loginBox .loginTop h2 b{
+    color:#262a2d;
+    font-weight: 700;
+}
+
+.loginBox .loginBody{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    padding:38px;
+    text-align: center;
+    margin-top:28px;
+    border:1px solid #d9dbdd;
+}
+
+.loginBox .loginBody ul{
+    width:260px;
+    height:auto;
+    overflow:hidden;
+    margin:0 auto;
+}
+
+.loginBox .loginBody ul li{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.loginBox .loginBody ul li input[type='text'],
+.loginBox .loginBody ul li input[type='password']{
+    width:100%;
+    height:50px;
+    box-sizing: border-box;
+    padding:0 20px;
+    border:1px solid #efefef;
+    background:#f8f8f8;
+    font-size:13px;
+    color:#2e313a;
+}
+
+.loginBox .loginBody ul li a.loginBtn{
+    display:inline-block;
+    width:80px;
+    height:40px;
+    line-height:40px;
+    text-align: center;
+    font-size:13px;
+    color: #fff;
+    background-color: #005596;
+    border-radius: 4px;
+}
+
+.loginBox .loginBody p{
+    font-size:12px;
+    line-height:20px;
+    margin-top:15px;
+}
+
+.loginBox .loginBody p.sub{
+    color:#b2b2b2;
+}
+
+.loginFt{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    bottom:0px;
+    box-sizing: border-box;
+    padding:30px;
+}
+
+.loginFt span{
+    display:inline-block;
+    line-height:24px;
+    float:left;
+}
+
+.loginFt span.loginBtmLogo img{
+    height:24px;
+}
+
+.loginFt span.loginBtmCp{
+    color:#b2b2b2;
+    font-size:12px;
+    float:right;
+}
+
+/* login */
+
+/* dashboard */
+
+.wrap{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+header{
+    width:100%;
+    height:60px;
+    /* background-image: url('../img/common/cbdc_mng_top_bg.jpg');
+    background-repeat: no-repeat;
+    background-position: left top; */
+    background-color:#2d2f31;
+    position: relative;
+    box-sizing: border-box;
+}
+
+header.paymentHeader{
+    background-image: url('../img/common/cbdc_pay_mng_top_bg.jpg');
+    background-color: #383c3f;
+}
+
+header a.dashMenu{
+    display:none;
+}
+
+.wrap.mainDash header a.dashMenu{
+    width:30px;
+    height:auto;
+    overflow: hidden;
+    position:absolute;
+    left: 260px;
+    top:50%;
+    transform:translateY(-50%);
+    display: block;
+}
+
+header a.dashMenu span.dashMenuInner:not(.navBar){
+    display:block;
+    width:100%;
+    height:22px;
+    position: relative;
+}
+
+header a.dashMenu span.dashMenuInner > span.navBar{
+    width:100%;
+    height:3px;
+    background-color:#fff;
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+    text-indent: -9999px;
+    transition: all 0.5s ease;
+}
+
+header a.dashMenu span.dashMenuInner > span.navBar:nth-child(1){ top:0px;}
+header a.dashMenu span.dashMenuInner > span.navBar:nth-child(2){ top:50%; transform:translateX(-50%) translateY(-50%); }
+header a.dashMenu span.dashMenuInner > span.navBar:nth-child(3){ bottom:0px;}
+
+header a.dashMenu.show span.dashMenuInner > span.navBar:nth-child(1){ top:10px; transform:translateX(-50%) rotate(-45deg);}
+header a.dashMenu.show span.dashMenuInner > span.navBar:nth-child(2){ display:none; }
+header a.dashMenu.show span.dashMenuInner > span.navBar:nth-child(3){ bottom:10px; transform:translateX(-50%) rotate(45deg);}
+
+header a.cbdcLogo{
+    float:left;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    color:#ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 16px;
+    margin-left: 20px;
+    padding-left: 105px;
+    position: relative;
+}
+
+header a.cbdcLogo:before{
+    content:'';
+    width:100px;
+    height:28px;
+    position: absolute;
+    left:0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background:url('../img/svg/bok_ci_w.svg') no-repeat left center ;
+}
+
+header span.userType{
+    display:inline-block;
+    float:left;
+    margin-left: 20px;
+    margin-top:12px;
+    line-height: 32px;
+    border:2px solid #fff;
+    border-radius: 8px;
+    color:#fff;
+    padding:0 15px;
+}
+
+header span.userType.bok{
+    background: #fff;
+    color: #3f4448;
+    font-weight: 500;
+}
+
+header .userInfo{
+    float:right;
+    box-sizing: border-box;
+    padding:16px 0;
+}
+
+header .userInfo p{
+    display:inline-block;
+    line-height:28px;
+    font-size:13px;
+    color:#fff;
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+header a.userBox{
+    display:inline-block;
+    line-height:28px;
+    position: relative;
+    padding:0 60px 0 80px;
+    font-size:14px;
+    font-weight: 400;
+    color:#fff;
+}
+
+header a.userBox b{
+    font-weight: 500;
+}
+
+header a.userBox::before{
+    content: '';
+    width:30px;
+    height:30px;
+    background-color:#fff;
+    border-radius: 30px;
+    position: absolute;
+    left:30px;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+header a.userBox.bok::before{
+    background-image: url('../img/svg/bok_logo.svg');
+    background-size: 26px 26px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+header a.userBox.kab::before{
+    content: 'B';
+    text-align: center;
+    line-height: 30px;
+    font-weight:700;
+    font-size: 18px;
+    background-color:#ffe100;
+    color:#222;
+}
+
+header a.userBox::after{
+    content: '';
+    width:20px;
+    height:20px;
+    position: absolute;
+    background-image: url('../img/svg/icon_arr_wt_down.svg');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    right:20px;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+header a.userBox.on::after{
+    transform: translateY(-50%) rotate(180deg);
+}
+
+header .userList{
+    width:180px;
+    height:auto;
+    overflow:hidden;
+    background-color: #2e313a;
+    box-sizing: border-box;
+    padding:10px 0;
+    position: absolute;
+    top:60px;
+    right:0px;
+    display:none;
+    z-index:10;
+}
+
+header .userList.on{
+    display:block;
+}
+
+header .userList ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+header .userList ul li{
+    display:block;
+    width:100%;
+}
+
+header .userList ul li a{
+    display:block;
+    width:100%;
+    line-height:40px;
+    font-size:13px;
+    color:#fff;
+    box-sizing: border-box;
+    padding:0 20px;
+    opacity: 0.7;
+}
+
+header .userList ul li a:hover{
+    opacity: 1;
+    background-color: #4a4b50;
+}
+
+.content{
+    display: flex;
+    flex: 1 1 0%;
+    min-height: 0px;
+}
+
+.content .leftMenu{
+    flex: 0 0 auto;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.wrap.mainDash .content .leftMenu{
+    margin-left: -240px;
+    transition: all 0.5s ease;
+}
+
+.wrap.mainDash .content .leftMenu.show{
+    margin-left: 0px;
+    transition: all 0.5s ease;
+}
+
+.wrap.mainDash .content .mainContent .innerCont .contArea{
+    max-width: 100%;
+}
+
+.mainDashboard .nodeIcon{
+    display:block;
+    width:100px;
+    height:100px;
+    overflow: hidden;
+    border-radius: 50%;
+    border:10px solid #1dce76;
+    position: relative;
+}
+
+.mainDashboard .nodeIcon img{
+    height:100px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mainDashboard .nodeIcon.war{
+    border-color:#ce4f1d;
+}
+
+.mainDashboard .searchArea .searchBox span{
+    color:#fff;
+    opacity: 0.5;
+}
+
+.mainDashboard .searchArea .searchBox label select,
+.mainDashboard .searchArea .searchBox label input[type='text']{
+    border-color: #6a6b6c;
+    background-color: #4c4d4f;
+    color:#fff;
+    width:250px;
+    max-width: 250px;
+}
+
+.mainDashboard .searchArea a.dashReset{
+    padding: 0 42px 0 0px;
+    border:none;
+    color: #a9a9aa;
+    background-color:transparent;
+    position: relative;
+}
+
+.mainDashboard .searchArea a.dashReset:after{
+    content:'';
+    width:34px;
+    height:34px;
+    top:50%;
+    right:0px;
+    transform: translateY(-50%);
+    border:1px solid #6a6b6c;
+    background-color: #4c4d4f;
+    border-radius: 4px;
+    position: absolute;
+    background-image: url('../img/svg/dash_reset.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 22px 22px;
+}
+
+.mainDashboard .searchArea a.grafana{
+    border-color:#2b2c2e;
+    background-color: #2b2c2e;
+    text-indent: -9999px;
+    width:150px;
+    background-image: url('../img/grp_btn.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.mainDashboard .dashboardArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:40px;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    padding:3px 0;    
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop span{
+    line-height: 34px;
+    font-size:14px;
+    color:#fff;
+    float: left;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop span.title{
+    font-size:16px;
+    font-weight: 600;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList{
+    float: right;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li{
+    float: left;
+    margin-left:10px;
+    line-height: 34px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeSts{
+    width:87px;
+    text-align: center;
+    line-height: 34px;
+    background-color: #222;
+    color:#fff;
+    border-radius: 4px;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeSts.nor{
+    background: linear-gradient( to right, #31ff28, #24bc1c );
+    color: #1b1c20;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeSts.war{
+    background: linear-gradient( to right, #fff700, #fcd40d );
+    color: #1b1c20;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeSts.fat{
+    background: linear-gradient( to right, #ff8e02, #fd4762 );
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeTpye{
+    padding-left: 25px;
+    position: relative;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeTpye.cn{
+    color:#a2f2fc;
+    margin-left: 30px;
+}
+
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeTpye.pn{
+    color:#fc8404;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li .nodeStausBox .nodeInfo p.nodeTpye::before,
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeTpye::before{
+    content: '';
+    width:15px;
+    height:17px;
+    background-image: url('../img/nodeType.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: absolute;
+    left:0px;
+    top:7px;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li .nodeStausBox .nodeInfo p.nodeTpye.pn::before,
+.mainDashboard .dashboardArea .dashboardAreaTop .statusList ul li.nodeTpye.pn::before{
+    background-position: center top -17px;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li .nodeStausBox .nodeInfo p.nodeTpye::before{
+    top:2px;
+}
+
+.mainDashboard .dashboardArea .txGrp,
+.mainDashboard .dashboardArea .nodeStausList{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    background-color: #2b2c2e;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox{
+    margin-top:30px;
+    margin-left:30px;
+    background-color: #323335;
+    width:210px;
+    border: 1px solid #323335;
+    transition: all 0.5s ease;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox .nodeStausBox{
+    width:100%;
+    box-sizing: border-box;
+    padding-top: 127px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox .nodeStausBox .nodeInfo{
+    width:100%;
+    box-sizing: border-box;
+    padding:0 20px;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox .nodeStausBox .nodeInfo p{
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    padding-left: 25px;
+    position: relative;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox .nodeStausBox .nodeInfo p.blHeight{
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    opacity: 0.7;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox .nodeStausBox::before{
+    content: '';
+    width:100px;
+    height:100px;
+    background-position: center top;
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top:10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox.fat{
+    border-color:#fe5255;
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox.nor .nodeStausBox::before{
+    background-image: url('../img/node_icon_normal.gif');
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox.war .nodeStausBox::before{
+    background-image: url('../img/node_icon_warn.gif');
+}
+
+.mainDashboard .dashboardArea .nodeStausList ul li.nodeStausListBox.fat .nodeStausBox::before{
+    background-image: url('../img/node_icon_fatal.png');
+}
+
+.mainDashboard .dashboardArea .txGrp{
+    min-height: 400px;
+    padding:30px;
+}
+
+.mainDashboard .dashboardArea .txGrp .txGrpBox{
+    
+}
+
+.mainDashboard .dashboardArea .sysMonitoring{
+    width:calc(100% + 30px);
+    margin-left: -15px;
+    height:auto;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul li{
+    background-color: #2b2c2e;
+    box-sizing: border-box;
+    padding:20px;
+    width:calc(20% - 30px);
+    margin:15px;
+    transition: all 0.5s ease;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring.chain ul li{
+    background-color: #2b3039;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul li span{
+    display:block;
+    line-height: 34px;
+    color:#fff;
+    font-weight: 600;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul li .setValue{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 40px;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul li .setValue p.viewValue{
+    flex-grow: 8;
+    text-align: right;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding-right: 5px;
+}
+
+.mainDashboard .dashboardArea .sysMonitoring ul li .setValue p.unit{
+    flex-grow: 2;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    align-self: flex-end;
+}
+
+#overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem;
+    margin: 0.75rem;
+    color: #fff;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.content .leftMenu nav{
+    overflow-y: auto;
+    position: relative;
+    width: 233px;
+    height: 100%;
+    padding: 30px 0px 40px 16px;
+    border-right: 1px solid #e6ecf1;
+    background-color:#fbfcfd;
+    box-sizing: border-box;
+}
+
+.content .leftMenu nav ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.content .leftMenu nav ul li{
+    padding:10px 0;
+    display:block;
+    width:100%;
+    box-sizing: border-box;
+}
+
+.content .leftMenu nav ul li a{
+    color:#3b454e;
+    line-height:50px;
+    box-sizing: border-box;
+    padding:0 35px 0 25px;
+    font-size:16px;
+    display:block;
+    width:100%;
+    position: relative;
+}
+
+.content .leftMenu nav ul li a:hover{
+    background-color:#eff3f6;
+}
+
+.content .leftMenu nav ul li.on a{
+    background:#fff;
+    color:#3c84fc;
+    font-weight: 500;
+    border: 1px solid #e6ecf1;
+    border-right: none;
+}
+
+.content .leftMenu nav ul li.sub a:after{
+    content:'';
+    width:20px;
+    height:20px;
+    background-image: url('../img/svg/icon_arr_dgy_right.svg');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right:15px;
+    top:15px;
+}
+
+.content .leftMenu nav ul li.sub.on a:after{
+    transform: rotate(90deg);
+}
+
+.content .leftMenu nav ul li.sub ul.subMenu{
+    display:none;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu{
+    display:block;
+    box-sizing: border-box;
+    padding:10px 0;
+    background-color:#eff3f6;
+    border-left: 1px solid #e6ecf1;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu li{
+    padding:5px 0 5px 10px;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu li a{
+    background:none;
+    border:none;
+    line-height:30px;
+    font-size:15px;
+    color:#3b454e;
+    opacity: 0.7;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu li a:hover{
+    opacity: 1;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu li.on a{
+    color:#3c84fc;
+    opacity: 1;
+}
+
+.content .leftMenu nav ul li.sub.on ul.subMenu li a::after{
+    display:none;
+}
+
+.content .mainContent{
+    min-width: 0px;
+    min-height: 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex: 1 1 0%;
+}
+
+.content .mainContent .innerCont{
+    min-height: 0px;
+    flex: 0 0 auto;
+}
+
+.content .mainContent .innerCont .contArea{
+    margin: 0px auto;
+    padding: 40px 48px 80px 48px;
+    min-width: 1100px;
+    max-width: 1600px;
+}
+
+.content .mainContent .innerCont .contArea .contTop{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    padding-bottom: 40px;
+    margin-bottom:20px;
+    border-bottom: 1px solid #e6ecf1;
+}
+
+/*
+.content .mainContent .innerCont .contArea .contTop.usetab{
+    border-color:#393a3b;
+    box-sizing: border-box;
+    padding-bottom: 0px;
+}
+*/
+
+.content .mainContent .innerCont .contArea .contTop h2,
+.content .mainContent .innerCont .contArea .contTop a{
+    display:inline-block;
+    font-size:22px;
+    font-weight: 500;
+    color:#2e313a;
+    line-height: 22px;
+    float: left;
+}
+
+.content .mainContent .innerCont .contArea .contTop a{
+    margin-right:40px;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .contTop a.on:after{
+    content: '';
+    width:100%;
+    height:2px;
+    background:#2e313a;
+    position: absolute;
+    left:0px;
+    bottom: -40px;
+}
+
+.content .mainContent .innerCont .contArea .contTop a:not(.on){
+    opacity: 0.5;
+}
+
+.content .mainContent .innerCont .contArea .contTop a:hover{
+    opacity: 1;
+}
+
+/*
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab{
+    display:inline-block;
+}
+
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab ul li{
+    display: inline-block;
+    position: relative;
+    height:60px;
+    overflow: hidden;
+}
+
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab ul li a{
+    display:inline-block;
+    padding:0 25px;
+    line-height: 60px;
+    font-size:20px;
+    opacity: 0.5;
+    background-color: #fff;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab ul li a::after{
+    content: '';
+    width:100%;
+    height: 3px;
+    background:#fff;
+    position: absolute;
+    left:0px;
+    bottom: 0px;
+    z-index: 10;
+}
+
+.content .mainContent .innerCont .contArea .contTop.usetab .contTab ul li.on a{
+    opacity: 1;
+    border-top:1px solid #393a3b;
+    border-right:1px solid #393a3b;
+    border-left:1px solid #393a3b;
+}
+*/
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum{
+    float: right;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd{
+    display:inline-block;
+    float: left;
+    line-height: 22px;
+    padding-left: 22px;
+    font-size:13px;
+    color:#b2b2b2;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd:first-child{
+    padding-left: 0px;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd:last-child{
+    color:#3b454e;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd:first-child a{
+    display: block;
+    width:22px;
+    height:22px;
+    text-indent: -9999px;
+    background-image: url('../img/svg/icon_home.svg');
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: center center;
+    margin:0;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd::before{
+    content: '';
+    width:18px;
+    height: 18px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    background-image: url('../img/svg/icon_arr_gry_right.svg');
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: center center;
+}
+
+.content .mainContent .innerCont .contArea .contTop .breadcrum dl dd:first-child:before{
+    display:none;
+}
+
+.content .mainContent .innerCont .contArea .statusArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+}
+
+.content .mainContent .innerCont .contArea .statusArea p{
+    font-size:13px;
+    line-height: 40px;
+    color:#7a7a7a;
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul li{
+    display:inline-block;
+    width: 33.3333%;
+    float: left;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.bay2 ul li{
+    width: 50%;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.user ul li{
+    width: 25%;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox{
+    width:93%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    background:#f8f8f8;
+    padding:0px 30px 20px 30px;
+    margin:0 auto;
+    border-left: 1px solid #3b454e;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.userPdt ul li .statusBox{
+    padding:20px 30px;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.bay2 ul li .statusBox{
+    width:95%;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul li:nth-child(1) .statusBox{
+    float:left;
+    background:#f5f8fa;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.bay2 ul li:nth-child(2) .statusBox,
+.content .mainContent .innerCont .contArea .statusArea:not(.user) ul li:nth-child(3) .statusBox{
+    float:right;
+    background:#f5f8fa;
+}
+
+.content .mainContent .innerCont .contArea .statusArea:not(.user) ul li:nth-child(4) .statusBox{
+    float:right;
+}
+
+.content .mainContent .innerCont .contArea .statusArea.bay2 ul li:nth-child(2) .statusBox{
+    background:#f8f8f8;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul.act .statusBox{
+    background:#fff !important;
+    border-top:1px solid #dddddd;
+    border-right:1px solid #dddddd;
+    border-bottom:1px solid #dddddd;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox h4,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox h4{
+    display:block;
+    font-size: 14px;
+    line-height: 30px;
+    color:#3b454e;
+    font-weight: 500;
+}
+
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox h4 p{
+    display:inline-block;
+    margin-left:10px;
+    opacity: 0.8;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox .amount,
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox .amountKor,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amount,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amountKor{
+    display:block;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    text-align: right;
+    font-size: 13px;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox .amount,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amount{
+    color:#2e313a;
+    font-weight: 500;
+    line-height: 50px;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox .amount span.coin,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amount span.coin{
+    font-size: 35px;
+    margin-right:5px;
+    font-weight: 700;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTbl .amountBox .amountKor,
+.content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amountKor{
+    opacity: 0.5;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.wrap.mainDash .content .mainContent{
+    background-color: #1b1c20;
+}
+
+.searchArea{
+    width:100%;
+    height:auto;
+    margin-top: 40px;
+}
+
+.searchArea .searchBox{
+    display: inline-block;
+    padding-top:20px;
+    margin-right:10px;
+    position: relative;
+}
+
+.searchArea .searchBox span{
+    display: inline-block;
+    font-size:13px;
+    color:#3b454e;
+    position: absolute;
+    left:5px;
+    top:0px;
+}
+
+label,
+.searchArea .searchBox label{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 5px;
+    line-height: 34px;
+    font-size: 14px;
+    color:#3b454e;
+    position: relative;
+    float: left;
+}
+
+th label,
+td label{
+    padding-left:0px;
+}
+
+label.chk,
+.searchArea .searchBox label.chk{
+    padding-left:22px;
+    margin-left: 5px;
+}
+
+label.chk input[type="radio"],
+label.chk input[type="checkbox"],
+.searchArea .searchBox label.chk input[type="radio"],
+.searchArea .searchBox label.chk input[type="checkbox"]{
+    position: absolute;
+    width:16px;
+    height:16px;
+    left:0px;
+    top:13px;
+}
+
+label input[type="text"],
+label input[type="password"],
+label input[type="date"],
+label input[type="datetime-local"],
+label select,
+.searchArea .searchBox label input[type="text"],
+.searchArea .searchBox label input[type="password"],
+.searchArea .searchBox label input[type="date"],
+.searchArea .searchBox label select{
+    height:34px;
+    border-radius: 4px;
+    border:1px solid #e1e1e1;
+    background-color:#f5f8fa;
+    color:#3b454e;
+    font-size:14px;
+    box-sizing: border-box;
+    padding:0 10px;
+}
+
+label input[type="text"].timeSel{
+    width: 80px;
+    min-width: 40px !important;
+    position: relative;
+    background-image: url('../img/svg/icon_time.svg');
+    background-position: right 5px center;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+.ui-menu .ui-menu-item a{
+    text-align: left;
+}
+
+label input[type="date"],
+.searchArea .searchBox label input[type="date"]{
+    width:150px;
+}
+
+label input[type="text"],
+label input[type="password"],
+.searchArea .searchBox label input[type="text"]{
+    min-width: 150px;
+}
+
+label input[type="text"].code{
+    min-width: 60px;
+}
+
+label select,
+.searchArea .searchBox label select{
+    max-width: 150px;
+}
+
+label.text.btnBox,
+.searchArea .searchBox label.text.btnBox{
+    padding-right: 70px;
+}
+
+label.text.btnBox.idChk{
+    padding-right: 100px;
+}
+
+label.text.btnBox a.searchBtn,
+.searchArea .searchBox label.text.btnBox a.searchBtn{
+    display: inline-block;
+    width:60px;
+    line-height: 34px;
+    background-color: #3b454e;
+    font-size: 14px;
+    color:#fff;
+    text-align: center;
+    border-radius: 4px;
+    position:absolute;
+    bottom: 5px;
+    right:0px;
+}
+
+label.text.btnBox a.searchBtn.idChk{
+    width:90px;
+}
+
+.searchArea .searchBox.listCnt{
+    margin-left:0px;
+}
+
+.searchArea .searchBox.listCnt label select{
+    background:#fff;
+    border-color:#3b454e;
+}
+
+.searchArea .btnArea{
+    float: right;
+    padding-top: 25px;
+}
+
+
+.listBox{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.listBox .listTop{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.listBox .listTop .listCnt{
+    display: inline-block;
+    line-height: 34px;
+    font-size: 14px;
+    color:#7a7a7a;
+}
+
+.listBox .listTop .listCnt span{
+    font-weight: 700;
+    color:#3b454e;
+    padding:0 5px;
+}
+
+.listBox .listTop .listCntSel{
+    float:right;
+}
+
+.listBox .listTop .listCntSel select{
+    height:34px;
+    border-radius: 4px;
+    border:1px solid #3b454e;
+    background:#fff;
+    color:#3b454e;
+    font-size:14px;
+    box-sizing: border-box;
+    padding:0 10px;
+}
+
+.listBox .tblList{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.listBox .tblList.resTbl{
+	height: 325px;
+    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.listBox .tblList table{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.listBox .tblList table thead th{
+    background:#f5f6f6;
+    height:60px;
+    text-align: left;
+    box-sizing: border-box;
+    padding:10px;
+    border-bottom: 1px solid #3b454e;
+    font-size: 14px;
+    color:#3b454e;
+    font-weight: 700;
+}
+
+.listBox .tblList table thead th a.sort{
+    display: inline-block;
+    padding-right: 20px;
+    line-height: 20px;
+    position: relative;
+}
+
+.listBox .tblList table thead th a.sort::after{
+    content: '';
+    width:20px;
+    height: 20px;
+    position: absolute;
+    top:-1px;
+    right:0px;
+    background-image: url('../img/svg/icon_th_sort.svg');
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: center right;
+}
+
+.listBox .tblList table thead th a.sort.asc::after{
+    background-image: url('../img/svg/icon_th_sort_asc.svg');
+}
+
+.listBox .tblList table thead th a.sort.desc::after{
+    background-image: url('../img/svg/icon_th_sort_desc.svg');
+}
+
+.listBox .tblList table tbody td{
+    height:60px;
+    text-align: left;
+    box-sizing: border-box;
+    padding:10px;
+    font-size: 14px;
+    color:#3b454e;
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.listBox .tblList table tbody tr:hover td{
+    background:#fbfbfb;
+}
+
+.listBox .tblList table tbody td.num,
+.listBox .tblList table tbody td.writer{
+    width:80px;
+}
+
+.listBox .tblList table tbody td.cnt,
+.listBox .tblList table tbody td.sts{
+    width:150px;
+}
+
+.listBox .tblList table:not(.payment) tbody td.date{
+    width:120px;
+}
+
+.listBox .tblList table tbody td.insti{
+    width:200px;
+}
+
+
+.listBox .tblList table tbody td.num,
+.listBox .tblList table tbody td.cnt,
+.listBox .tblList table tbody td.date,
+.listBox .tblList table tbody td.writer,
+.listBox .tblList table tbody td.insti,
+.listBox .tblList table tbody td.code{
+    color:#7a7a7a;
+    font-weight: 400;
+}
+
+.listBox .tblList table tbody td.amount{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.listBox .tblList table tbody td.amount a{
+    font-size:18px;
+}
+
+.listBox .tblList table tbody td a:hover,
+.listBox .tblList table tbody td.amount a:hover{
+    color:#3389d6;
+    text-decoration: underline;
+}
+
+.listBox .tblList table tbody tr:last-child td{
+    border-bottom: 1px solid #3b454e;
+}
+
+.listBox .tblList table tbody td.empty{
+    height:200px;
+    padding-top: 50px;
+    background:#fbfbfb;
+    text-align:center;
+    color:#7a7a7a;
+    font-size:15px;
+    font-weight: 400;
+    position: relative;
+}
+
+.listBox .tblList table tbody td.empty::before{
+    content:'!';
+    font-size: 25px;
+    font-weight: 700;
+    border:1px solid #ccc;
+    color:#ccc;
+    width:40px;
+    height:40px;
+    text-align:center;
+    line-height: 40px;
+    position: absolute;
+    border-radius: 50%;
+    left: 50%;
+    top:50px;
+    transform: translateX(-50%);
+}
+
+.content .mainContent .innerCont .contArea .eventList{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .eventList.useSearch{
+    position: relative;
+    padding-left:300px;
+    box-sizing: border-box;
+    min-height:600px;
+}
+
+.eventSearchArea{
+    width:270px;
+    background:#fff;
+    height:auto;
+    overflow:hidden;
+    min-height:400px;
+    position: absolute;
+    left:0px;
+    top:0px;
+    border:1px solid #e2e4e5;
+    box-sizing: border-box;
+}
+
+.eventSearchArea.posFixed{
+    position: fixed;
+    top:100px;
+}
+
+.eventSearchArea .eventSearchInner{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    padding:20px;
+}
+
+.eventSearchArea .eventSearchInner h2{
+    font-size: 13px;
+    color:#7a7a7a;
+}
+
+.eventSearchArea .eventSearchInner ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.eventSearchArea .eventSearchInner ul li{
+    display:block;
+    width:100%;
+}
+
+.eventSearchArea .eventSearchInner ul li:first-child h3{
+    padding-top:20px;
+}
+
+.eventSearchArea .eventSearchInner ul li h3{
+    display:block;
+    padding:30px 0 0 0;
+    width:100%;
+    line-height: 40px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox label{
+    padding:5px 0;
+    line-height: 40px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.chkType label{
+    position: relative;
+    display: inline-block;
+    position: relative;
+    padding-left:20px;
+    box-sizing: border-box;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.chkType label{
+    float:left;
+    width:33.3333%;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.chkType label input[type='checkbox'],
+.eventSearchArea .eventSearchInner ul li .filterBox.chkType label input[type='radio']{
+    width:16px;
+    height:16px;
+    position: absolute;
+    left:0px;
+    top:16px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.selType label{
+    width:100%;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.selType label select{
+    width:100%;
+    max-width:100%;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd{
+    width:25%;
+    float:left;
+    border:1px solid #e1e1e1;
+    border-right:none;
+    box-sizing: border-box;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd:first-child{
+    border-radius: 4px 0 0 4px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd:last-child{
+    border-radius: 0 4px 4px 0;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd a{
+    display:block;
+    width:100%;
+    line-height:30px;
+    text-align: center;
+    background:#f7f7f7;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd a.on{
+    background-color: #2e313a;
+    color:#fff;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType dl dd:last-child{
+    border-right:1px solid #e1e1e1;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType label{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType label input[type='date']{
+    width:100%;
+    float:left;
+    margin-bottom: 5px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.dateType label span{
+    display:inline-block;
+    width:4%;
+    float:left;
+    text-align: center;
+    line-height: 40px;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.btnType label{
+    padding-right:70px;
+    box-sizing: border-box;
+    width:100%;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.btnType label input[type='text']{
+    min-width:100%;
+    width:100%;
+}
+
+.eventSearchArea .eventSearchInner ul li .filterBox.btnType label a.searchBtn{
+    display: inline-block;
+    width: 60px;
+    line-height: 34px;
+    background-color: #3b454e;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    position: absolute;
+    top: 8px;
+    right: 0px;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li{
+    display:block;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li:hover .eventBox{
+    background-color:rgba(0,0,0,0.01);
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li:first-child .eventBox{
+    border-top:1px solid #e2e4e5;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    background-color:#fff;
+    box-sizing: border-box;
+    padding:30px;
+    border-bottom:1px solid #e2e4e5;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox p{
+    display:inline-block;
+    line-height: 20px;
+    float:left;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox p.wallet{
+    float:right;
+    padding-right:10px;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .memo{
+    display:inline-block;
+    font-size:18px;
+    color: #3b454e;
+    position: absolute;
+    width:37%;
+    top:65px;
+    left:18%;
+    text-align: right;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding-left:18%;
+    margin-top:10px;
+    float: left;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventType{
+    display:inline-block;
+    position: absolute;
+    width:110px;
+    height:110px;
+    background:#666;
+    border-radius: 50%;
+    left:0px;
+    top:50%;
+    transform: translateY(-50%);
+    color:#fff;
+    text-align: center;
+    line-height: 110px;
+    font-size:20px;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.create .eventItem .eventType{ background-color:#3b454e; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.transfer .eventItem .eventType{ background-color:#3389d6; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.refund .eventItem .eventType{ background-color:#89bf60; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.discard .eventItem .eventType{ background-color:#eb6464; }
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.create .eventItem .eventVal p b{ color:#3b454e; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.transfer .eventItem .eventVal p b{ color:#3389d6; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.refund .eventItem .eventVal p b{ color:#89bf60; }
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.discard .eventItem .eventVal p b{ color:#eb6464; }
+
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventVal,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .totalAmount{
+    float:left;
+    width:50%;
+    box-sizing: border-box;
+    padding:20px;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventVal{
+    width:48%;
+    margin-right:2%;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.create .eventItem .totalAmount,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.transfer .eventItem .totalAmount{
+    background-color:#f7f7f7;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.refund .eventItem .totalAmount,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox.discard .eventItem .totalAmount{
+    background-color:#f5f8fa;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li:hover .eventBox .eventItem .totalAmount{
+    background-color:#fff;
+    transition: all 0.5s ease;
+    -webkit-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.18);
+    -moz-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.18);
+    box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.18);
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventVal p,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .totalAmount p{
+    display:block;
+    text-align: right;
+    width: 100%;
+    line-height: 50px;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventVal p b,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .totalAmount p b{
+    font-size:25px;
+    padding:0 5px;
+    color: #3b454e;
+}
+
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .eventVal span,
+.content .mainContent .innerCont .contArea .eventList ul li .eventBox .eventItem .totalAmount span{
+    display:block;
+    text-align: right;
+    width: 100%;
+    opacity: 0.5;
+    font-weight: 400;
+    line-height: 30px;
+    color: #444444;
+}
+
+
+span.node,
+span.flag{
+    display:inline-block;
+    line-height: 24px;
+    padding:0 15px;
+    box-sizing: border-box;
+    border:1px solid #dee0e1;
+    color:#bbc0c2;
+    border-radius: 14px;
+    font-weight: 400;
+    font-size:13px;
+    background-color: #fff;
+}
+
+span.node{
+    padding:0 0 0 25px;
+    border:none;
+    color:#222;
+    background-color:transparent;
+    font-weight: 600;
+    position: relative;
+}
+
+span.node.cn{
+    color:#30a6b5;
+}
+
+span.node.pn{
+    color:#fc8404;
+}
+
+span.node.ln{
+    color:#14c03f;
+}
+
+span.node::before{
+    content: '';
+    width:15px;
+    height:17px;
+    background-image: url('../img/nodeType.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: absolute;
+    left:0px;
+    top:3px;
+}
+
+span.node.pn::before{
+    background-position: center top -17px;
+}
+
+span.node.ln::before{
+    background-position: center top -34px;
+}
+
+span.flag.app,
+span.flag.insti,
+span.flag.auth,
+span.flag.account{
+    border-color:#3b454e;
+    color:#3b454e;
+}
+
+span.flag.inactive,
+span.flag.rej{
+    border-color:#eb6464;
+    color:#eb6464;
+}
+
+span.flag.com,
+span.flag.active,
+span.flag.bok,
+span.flag.wallet{
+    border-color:#3389d6;
+    color:#3389d6;
+}
+
+span.flag.signed{
+    border-color:#89bf60;
+    color:#89bf60;
+}
+
+span.flag.law{
+    border-color:#2d365f;
+    background-color:#f3f3f3;
+    color:#2d365f;
+}
+
+span.process{
+    display:inline-block;
+    padding:0 5px;
+    box-sizing: border-box;
+}
+
+span.process b{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border:1px solid #bbc0c2;
+    border-radius: 50%;
+    text-indent: -9999px;
+    margin-right: 2px;
+}
+
+span.process.step1 b:nth-child(1){
+    border-color:#3b454e;
+    background-color:#3b454e;
+}
+
+span.process.step2 b:nth-child(1),
+span.process.step2 b:nth-child(2){
+    border-color:#3b454e;
+    background-color:#3b454e;
+}
+
+span.moneyConv{
+    display:block;
+    opacity: 0.5;
+    font-size: 13px;
+    font-weight: 400;
+    padding:5px 0;
+}
+
+.content .mainContent .innerCont .contArea .appProcess{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl{
+    float:right;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd{
+    float:left;
+    margin-left:20px;
+    box-sizing: border-box;
+    padding:10px 20px 0px 20px;
+    border:1px solid #bbc0c2;
+    opacity: 0.5;
+    width:203px;
+    height:120px;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd.app{
+    opacity: 1;
+    border:1px solid #3b454e;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd.rej{
+    opacity: 1;
+    border:1px solid #eb6464;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd:first-child{
+    margin-left:0px;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd h2{
+    display: block;
+    line-height: 34px;
+    width:100%;
+    font-size:16px;
+    font-weight: 500;
+    color:#3b454e;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd h2 span.flag{
+    float:right;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd .appInfo{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+    text-align: right;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd .appInfo p{
+    display: block;
+    font-size:13px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding:0 10px;
+    color: #7a7a7a;
+}
+
+.content .mainContent .innerCont .contArea .appProcess dl dd .appInfo p b{
+    font-weight: 500;
+}
+
+.content .mainContent .innerCont .contArea .viewArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.viewTbl{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    position: relative;
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .viewArea.pay .viewTbl{
+    padding-right:50%;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .codePre{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    padding:20px;
+    background-color: #f8f8f8;
+    border:1px solid #eee;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .codePre pre{
+    width:100%;
+    min-height:200px;
+}
+
+.viewTbl table th{
+    background: #f5f6f6;
+    height: 52px;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-top:1px solid #e2e4e5;
+    border-left: 1px solid #3b454e;
+    font-size: 14px;
+    color: #3b454e;
+    font-weight: 700;
+    width:200px;
+}
+
+.viewTbl table td{
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-top:1px solid #e2e4e5;
+    border-right:1px solid #e2e4e5;
+    color: #3b454e;
+}
+
+.viewTbl table tr:last-child th,
+.viewTbl table tr:last-child td{
+    border-bottom:1px solid #e2e4e5;
+}
+
+.viewTbl .amountBox{
+    width:45%;
+    height:auto;
+    overflow:hidden;
+    position: absolute;
+    top:0px;
+    right:0px;
+    box-sizing: border-box;
+    background:#f8f8f8;
+    padding:20px 30px;
+    margin:0 auto;
+    border-left: 1px solid #3b454e;
+}
+
+.content .mainContent .innerCont .contArea .viewArea.menuAuth{
+    margin-top:40px !important;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTop{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .viewArea .viewTop h2{
+    display:inline-block;
+    line-height:40px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #3b454e;
+}
+
+.content .mainContent .innerCont .contArea .transArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:40px;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li{
+    float:left;
+    width:33.3333%;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox{
+    width:93%;
+    margin:0 auto;
+    background:#f8f8f8;
+    box-sizing: border-box;
+    padding:20px;
+    min-height: 173px;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li:first-child .transBox{
+    float: left !important;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li:last-child .transBox{
+    float: right;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox h4{
+    display:block;
+    font-size:20px;
+    font-weight: 400;
+    color: #2e313a;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox h4 span{
+    font-size:14px;
+    font-weight: 400;
+    color: #7a7a7a;
+    display: block;
+    line-height: 30px;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox .transInfo{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    text-align: right;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox .transInfo p{
+    display: block;
+    font-size: 13px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    color: #7a7a7a;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox .transInfo p b{
+    font-weight: 500;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox a.transBtn{
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox .upTx{
+    display: none;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox.app{
+    background-color:#2e313a;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox.app h4{
+    color:#fff;
+}
+
+.content .mainContent .innerCont .contArea .transArea ul li .transBox.app .transInfo p{
+    color:#fff;
+}
+
+.content .mainContent .innerCont .contArea .viewBtnArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    margin-top:40px;
+    text-align: right;
+}
+
+.content .mainContent .innerCont .contArea .viewBtnArea a.list{
+    float: left;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList{
+    width:30%;
+    height:auto;
+    overflow:hidden;
+    float:left;
+    box-sizing: border-box;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList.mod{
+    width:70%;
+    padding-left:30px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox{
+    box-sizing: border-box;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    min-height: 400px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox{
+    box-sizing: border-box;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    border:1px solid #ebebeb;
+    padding:20px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewArea,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewArea .viewTop{
+    margin-top:0;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox{
+    width:100%;
+    heighT:auto;
+    overflow:hidden;
+    box-sizing: border-box;
+    padding:20px;
+    margin-top: 20px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul{
+    padding:4px 0;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li{
+    padding:10px 0;
+    position:relative;
+    width:100%;
+    box-sizing: border-box;
+    padding-left:32px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li.true::before{
+    content: '';
+    width: 8px;
+    height: 1px;
+    background: #e2e2e2;
+    position: absolute;
+    left: 15px;
+    top: 25px;
+    z-index: 9;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li.false::before{
+    content: '';
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    background: #fff;
+    left: 10px;
+    top: 6px;
+    z-index: 9;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li.false::after,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li.true::after{
+    content: '';
+    width: 1px;
+    height: 100%;
+    background: #e2e2e2;
+    position: absolute;
+    left: 15px;
+    top: 0px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li:last-child.false::after,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li:last-child.true::after{
+    height: 26px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li .jsl-list-closed{
+    position: absolute;
+    left:10px;
+    top:2px;
+    z-index: 10;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li .jsl-list-closed::before{
+    content: "+";
+    font-size: 17px;
+    color: #eb6464;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #eb6464;
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    text-align: center;
+    line-height: 16px;    
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li .jsl-list-closed.jsl-list-open::before{
+    content: "-";
+    font-size: 30px;
+    color: #3c84fc;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #3c84fc;
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    text-align: center;
+    line-height: 16px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem{
+    display:inline-block;
+    line-height:24px;
+    position: relative;
+    border-radius: 4px;
+    color:#6A6A6A;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.selected{
+    color:#3c84fc;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem:not(.selected):hover{
+    text-decoration: underline;
+    text-underline-position: under;
+    color:#181818;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.blank{
+    padding-right:30px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.blank::before{
+    content: "\f35d";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: -2px;
+    right: 10px;
+    font-size: 11px;
+    color: #0052bb;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.depth1{
+    font-size:17px;
+    font-weight: 600;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.depth2{
+    font-size:17px;
+    font-weight: 400;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.depth3,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .menuTreeBox ul li a.menuItem.depth4{
+    font-size:16px;
+    font-weight: 400;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea{
+    margin-top:20px;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea a.up,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea a.down{
+    text-indent: -9999px;
+    width: 34px;
+    padding: 0;
+    position: relative;
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea a.up::before,
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea a.down::before{
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/svg/icon_arr_dgy_up.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.content .mainContent .innerCont .contArea .menuMngArea .menuList .menuInnerBox .viewBtnArea a.down::before{
+    background-image: url(../img/svg/icon_arr_dgy_down.svg);
+}
+
+.addAmount{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    padding:20px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.addAmount .reqAmount {
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 27px;
+}
+
+.addAmount .reqAmount input[type='text']{
+    width:100%;
+    height:50px;
+    margin-right:10px;
+    box-sizing: border-box;
+    padding:0 20px;
+    font-size: 20px;
+    text-align: right;
+    border-radius: 4px;
+    border: 1px solid #e1e1e1;
+    background-color: #f5f8fa;
+    color: #3b454e;
+}
+
+.addAmount .reqAmount span.unit{
+    font-size: 16px;
+    color: #3b454e;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.addAmount span.transKor{
+    display: block;
+    width:100%;
+    padding:5px 27px;
+    box-sizing: border-box;
+    color: #2e313a;
+    opacity: 0.5;
+    height: 40px;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.addAmount dl.addAmountBtn{
+    margin-top:10px;
+    float: right;
+    margin-right:28px;
+}
+
+.addAmount dl.addAmountBtn dd{
+    float: left;
+    background:#f5f6f6;
+    border:1px solid #dbdbdb;
+    border-right:none;
+}
+
+.addAmount dl.addAmountBtn dd:last-child{
+    border-right:1px solid #dbdbdb;
+}
+
+.addAmount dl.addAmountBtn dd a{
+    display: block;
+    line-height: 32px;
+    font-size: 13px;
+    padding:0 15px;
+    color:#2e313a;
+    opacity: 1;
+}
+
+.addAmount dl.addAmountBtn dd a:hover{
+    background:#ebebeb;
+}
+
+.addAmount dl.addAmountBtn dd a:active{
+    opacity: 0.8;
+}
+
+.chkAccount p{
+    float: left;
+    display: inline-block;
+    line-height: 35px;
+    padding-right: 20px;
+}
+
+.chkAccount p a.button{
+    float: left;
+}
+
+.chkAccount .viewAccount{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    background:#f8f8f8;
+    max-width: 360px;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    text-align: right;
+    margin-top:10px;
+    display: none;
+}
+
+.chkAccount .viewAccount p{
+    width:100%;
+    display: block;
+    line-height: 30px;
+    font-size: 16px;
+}
+
+.chkAccount .viewAccount p.accKor{
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+.keyUp{
+    display:inline-block;
+    position: relative;
+    padding-left:85px;
+    min-height: 50px;
+}
+
+.keyUp a.button{
+    position: absolute;
+    left: 0px;
+    top: 10px;
+}
+
+.keyUp input[type='file']{
+    display: none;
+}
+
+.keyUp.on p.keyInfo{
+    display: inline-block;
+}
+
+.keyUp p.keyInfo{
+    line-height: 50px;
+    display: none;
+}
+
+.keyUp p.keyInfo b{
+    margin-right: 10px;
+}
+
+.keyUp p.keyInfo span{
+    opacity: 0.5;
+}
+
+footer{
+    font-size: 12px;
+    color: rgba(188,188,188,1);
+    padding: 32px 48px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0 0 auto;
+    position: relative;
+    min-width: 1100px;
+    max-width: 1600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wrap.mainDash footer{
+    color: rgba(188,188,188,0.5);
+    max-width: 100%;
+}
+
+.codeEditor{
+    width:100%;
+    height:auto;
+    overflow:hidden;
+}
+
+.codeEditor .codeEditorArea{
+    width:100%;
+    height:500px;
+    box-sizing: border-box;
+    border:1px solid #ebebeb;
+}
+
+.ace_editor div{
+    color:#414347;
+}

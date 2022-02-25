@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+       
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub on">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li class="on"><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>권한 목록</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>시스템</dd>
+                                    <dd>권한관리</dd>
+                                    <dd>권한 목록</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="searchArea">
+                            <div class="searchBox">
+                                <span>권한명</span>
+                                <label class="text btnBox">
+                                    <input type="text" placeholder="권한명 입력">
+                                    <a href="#" class="searchBtn">검색</a>
+                                </label>
+                            </div>
+                            <div class="btnArea">
+                                <a href="mngAuthReg.html" class="button app">권한등록</a>
+                            </div>
+                        </div>
+                        <div class="listBox">
+                            <div class="listTop">
+                                <div class="listCnt">
+                                    전체 <span>00</span> 건
+                                </div>
+                                <div class="listCntSel">
+                                    <label>
+                                        <select>
+                                            <option value="10">10개씩</option>
+                                            <option value="20">20개씩</option>
+                                            <option value="30">30개씩</option>
+                                            <option value="50">50개씩</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="tblList">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col width="20%">
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <a href="#" class="sort">No.</a>
+                                            </th>
+                                            <th>
+                                                <a href="#" class="sort">권한코드</a>
+                                            </th>
+                                            <th>
+                                                <a href="#" class="sort">권한명</a>
+                                            </th>
+                                            <th>권한설명</th>
+                                            <th>권한사용자</th>
+                                            <th>정렬순서</th>
+                                            <th>수정자</th>
+                                            <th>
+                                                <a href="#" class="sort">수정일</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td colspan="5" class="empty">결과가 없습니다.</td>
+                                        </tr> -->
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="code">authCode</td>
+                                            <td class="auth">
+                                                <a href="mngAuthView.html">관리자조회</a>
+                                            </td>
+                                            <td class="code">시스템의 조회기능만 부여</td>
+                                            <td class="cnt">00</td>
+                                            <td class="cnt">1</td>
+                                            <td class="writer">홍길동</td>
+                                            <td class="date">2021-00-00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="code">authCode</td>
+                                            <td class="auth">
+                                                <a href="mngAuthView.html">개발자</a>
+                                            </td>
+                                            <td class="code">소스코드 배포 / 노드추가</td>
+                                            <td class="cnt">00</td>
+                                            <td class="cnt">2</td>
+                                            <td class="writer">홍길동</td>
+                                            <td class="date">2021-00-00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="code">authCode</td>
+                                            <td class="auth">
+                                                <a href="mngAuthView.html">승인/배포</a>
+                                            </td>
+                                            <td class="code">관리자조회기능을 가지며, 개발자가 추가한 코드에 대한 승인 및 배포권한</td>
+                                            <td class="cnt">00</td>
+                                            <td class="cnt">3</td>
+                                            <td class="writer">홍길동</td>
+                                            <td class="date">2021-00-00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="code">authCode</td>
+                                            <td class="auth">
+                                                <a href="mngAuthView.html">시스템관리</a>
+                                            </td>
+                                            <td class="code">전체 권한을 가지는 Super Admin</td>
+                                            <td class="cnt">00</td>
+                                            <td class="cnt">4</td>
+                                            <td class="writer">홍길동</td>
+                                            <td class="date">2021-00-00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="paging">
+                                <a href="#" class="fst">처음</a>
+                                <a href="#" class="prv">이전</a>
+
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+
+                                <a href="#" class="nxt">다음</a>
+                                <a href="#" class="end">맨끝</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+
+        // 전화번호 유효성 검사 ( - ) 포함 체크
+        function telValidator(args) {
+            if (/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/.test(args)) {
+                return true;
+            }
+            return false;
+        }
+
+        $(window).ready(function(){
+            // 유효성 검사
+            var getCheck= RegExp(/^[a-zA-Z0-9]{4,12}$/); 
+            var getName= RegExp(/^[가-힣]+$/); 
+            var fmt = RegExp(/^\d{6}[1234]\d{6}$/); //형식 설정
+
+            // 아이디 중복체크
+            var idChk = false;
+
+            //사용자 등록
+            $("#saveAccount").click(function(){
+                
+                if( !idChk ){
+                    alert("아이디 유효성 검사를 해주세요."); 
+                    $("#idVal").focus();
+                }else if( !$("#userNm").val() ){
+                    alert("이름을 입력해주세요."); 
+                    $("#userNm").focus();
+                }else if(!getName.test($("#userNm").val())){
+                    alert("형식에 맞게 입력해주세요."); 
+                    $("#userNm").focus();
+                }else{
+                    var c = confirm('사용자정보를 등록하시겠습니까?');
+                    if(c){
+                        alert('사용자 정보가 등록되었습니다. ');
+                        location.href='mngUserView.html';
+                    }
+                }
+                return false;
+            });
+
+            // 아이디 중복체크
+            $("a.idChk").click(function(){
+                if( !$("#idVal").val() ){
+                    alert("아이디를 입력해주세요."); 
+                    $("#idVal").val();
+                }else if(!getCheck.test($("#idVal").val())){ 
+                    alert("형식에 맞게 입력해주세요."); 
+                    $("#idVal").focus(); 
+                    return false; 
+                }else{
+                    alert("사용할 수 있는 아이디입니다."); 
+                    idChk = true;
+                }
+                return false;
+            });
+        });
+     </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub on">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li class="on"><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>사용자 등록</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>시스템</dd>
+                                    <dd>사용자관리</dd>
+                                    <dd>사용자 등록</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTbl">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th class="req">아이디</th>
+                                        <td>
+                                            <label class="text btnBox idChk">
+                                                <input type="text" id="idVal" placeholder="아이디 입력">
+                                                <a href="#" class="searchBtn idChk">중복확인</a>
+                                            </label>
+                                        </td>
+                                        <th class="req">이름</th>
+                                        <td>
+                                            <label>
+                                                <input type="text" id="userNm" placeholder="실명 입력">
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>권한</th>
+                                        <td colspan="3">*권한은 사용자 등록 후 권한관리에서 등록/수정 할 수 있습니다.</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="viewBtnArea">
+                            <a href="mngUserList.html" class="button list">목록</a>
+
+                            <a href="#" class="button app" id="saveAccount">등록</a>
+                            <a href="mngUserList.html" class="button close">취소</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

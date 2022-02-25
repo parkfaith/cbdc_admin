@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <!-- jquery-confirm 사용여부 미정 - 김영준 -->
+    <link rel="stylesheet" href="../js/jquery-confirm/jquery-confirm.css">
+    <script src="../js/jquery-confirm/jquery-confirm.js"></script>
+
+    <script>
+        $(window).ready(function(){
+            $("#createSave").click(function(){
+                if(!$("#reqAmount").val()){
+                    alert('신청금액을 입력해주세요.');
+                }else{
+                    var c = confirm("입력하신 금액으로 CBDC제조 신청을 하시겠습니까?");
+                    if(c){
+                        alert('CBDC 제조가 신청되었습니다.');
+                        location.href="baseView.html";
+                    }
+                }
+                return false;
+            });
+
+            $("dl.addAmountBtn dd a.addCash").click(function(){
+                var reqAmount = $("#reqAmount").val().replace(/,/g,'');
+                var btnAmount = $(this).data('amount');
+                if( !reqAmount ){ 
+                    $("#reqAmount").val(btnAmount) 
+                }else{
+                    var total = parseInt(reqAmount) + parseInt(btnAmount);
+                    $("#reqAmount").val(total);
+                }
+                setAmount();
+                return false;
+            });
+
+            $("dl.addAmountBtn dd a.cashReset").click(function(){
+                $(".transKor").html('');
+                $("#reqAmount").val('');
+            })
+        });
+
+        function setAmount(){
+            var reqAmount = $("#reqAmount").val();
+            $(".transKor").html( _fmtNumberKor(reqAmount.replace(/,/g,'')) + '원' );
+            $("#reqAmount").val(comma(reqAmount));
+        }
+
+     </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="main.html" class="cbdcLogo">
+                CBDC 관리시스템
+            </a>
+            <span class="userType bok">한국은행</span> <!--한국은행 담당자-->
+            <span class="userType">카카오뱅크</span>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="baseList.html">공통 목록</a>
+                        </li>
+                        <li>
+                            <a href="baseView.html">공통 상세</a> 
+                        </li>
+                        <li class="on">
+                            <a href="baseReg.html">공통 등록</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <!-- 승인/반려 (수정/삭제) -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>제조신청</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>제조관리</dd>
+                                    <dd>제조신청</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="statusArea bay2">
+                            <p>2021-00-00 00:00:00 기준</p>
+                            <ul>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>전체 제조량</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="statusBox">
+                                        <h4>발행준비 지갑</h4>
+                                        <div class="amount">
+                                            <span class="coin">10,000,000,000</span>
+                                            원
+                                        </div>
+                                        <div class="amountKor">
+                                            일십억 원
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>CBDC 제조신청</h2>
+                            </div>
+                            <div class="viewTbl">
+                                <table>
+                                    <tr>
+                                        <th>신청금액</th>
+                                        <td>
+                                            <div class="addAmount">
+                                                <span class="transKor">&nbsp;</span>
+                                                <div class="reqAmount">
+                                                    <input type="text" id="reqAmount" inputmode="numeric" onKeyup="setAmount()" placeholder="금액을 숫자로만 입력해주세요.">
+                                                    <span class="unit">원</span>
+                                                </div>
+
+                                                <dl class="addAmountBtn">
+                                                    <dd>
+                                                        <a href="#" class="addCash" data-amount="10000000000">100억원</a>
+                                                    </dd>
+                                                    <dd>
+                                                        <a href="#" class="addCash" data-amount="1000000000">10억원</a>
+                                                    </dd>
+                                                    <dd>
+                                                        <a href="#" class="addCash" data-amount="100000000">1억원</a>
+                                                    </dd>
+                                                    <dd>
+                                                        <a href="#" class="addCash" data-amount="10000000">1,000만원</a>
+                                                    </dd>
+                                                    <dd>
+                                                        <a href="#" class="addCash" data-amount="1000000">100만원</a>
+                                                    </dd>
+                                                    <dd>
+                                                        <a href="#" class="cashReset" >초기화</a>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="viewBtnArea">
+                            <a href="baseList.html" class="button list">목록</a>
+
+                            <a href="#" class="button app" id="createSave">신청</a>
+                            <a href="baseList.html" class="button close">취소</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

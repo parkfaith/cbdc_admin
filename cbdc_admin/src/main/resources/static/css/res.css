@@ -1,0 +1,68 @@
+@charset "utf-8"; 
+
+@media screen and (max-width:1780px) { 
+    .content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amount span.coin{
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width:1620px) { 
+    .content .mainContent .innerCont .contArea .statusArea ul li .statusBox .amount span.coin{
+        font-size: 25px;
+    }
+    .mainDashboard .dashboardArea .sysMonitoring ul li{
+        width:calc(25% - 30px);
+    }
+}
+
+@media screen and (max-width:1480px) { 
+    .content .mainContent .innerCont .contArea .statusArea ul li .statusBox,
+    .content .mainContent .innerCont .contArea .statusArea.bay2 ul li .statusBox{
+        width:100%;
+    }
+}
+
+@media screen and (max-width:1400px) { 
+}
+
+@media screen and (max-width:1320px) {
+    .mainDashboard .dashboardArea .sysMonitoring ul li{
+        width:calc(33.3333% - 30px);
+    }
+}
+
+@media screen and (max-width:1180px) {
+}
+
+@media screen and (max-width:1080px) {
+}
+
+@media screen and (max-width:980px) {
+}
+
+@media screen and (max-width:860px) {
+}
+
+@media screen and (max-width:785px) {
+}
+
+@media screen and (max-width:700px) {
+}
+
+@media screen and (max-width:680px) {
+}
+
+@media screen and (max-width:650px) {
+}
+
+@media screen and (max-width:600px) { 
+}
+
+@media screen and (max-width:500px) { 
+}
+
+@media screen and (max-width:470px) { 
+}
+
+@media screen and (max-width:380px) {
+}

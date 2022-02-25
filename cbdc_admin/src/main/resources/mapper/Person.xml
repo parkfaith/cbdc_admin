@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.systemMng.dao.PersonManageMapper">
+
+	<select id="getPersonList" resultType="com.cbdc.admin.systemMng.model.PersonManageModel">
+		SELECT
+			USER_SEQ,
+			USER_ID,
+			USER_PWD,
+			USER_NM,
+			AUTH_CODE,
+			REG_ID,
+			DATE_FORMAT(REG_DATE, '%Y-%m-%d') as REG_DATE,
+			UPD_ID,
+			UPD_DATE
+		FROM
+			TB_ADM_USER
+		ORDER BY USER_SEQ DESC
+	</select>
+
+</mapper>

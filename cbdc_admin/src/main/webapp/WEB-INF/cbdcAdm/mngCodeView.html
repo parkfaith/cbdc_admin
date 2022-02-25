@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국은행 | CBDC 관리시스템</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/res.css">
+
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/common.js"></script>
+
+    <script>
+        
+     </script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <a href="dashboard.html" class="cbdcLogo">
+                CBDC ADMIN
+            </a>
+            <div class="userInfo">
+                <p>
+                    IP : <span>10.123.123.123</span>    최근접속 : <span>2021-00-00 00:00:00</span>
+                </p>
+                <a href="#" class="userBox bok">
+                    <b>홍길동</b> 님
+                </a>
+                <div class="userList">
+                    <ul>
+                        <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                        <li><a href="login.html">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="leftMenu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">대시보드</a>
+                        </li>
+                        <li class="sub">
+                            <a href="#">모니터링</a>
+                            <ul class="subMenu">
+                                <li><a href="mnNodeList.html">노드정보</a></li>
+                                <li><a href="mnBlockList.html">블록정보</a></li>
+                                <li><a href="mnTxList.html">거래정보</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="nodeMngList.html">노드관리</a>
+                        </li>
+                        <li>
+                            <a href="smartContMngList.html">스마트계약관리</a>
+                        </li>
+                        <li class="sub on">
+                            <a href="#">시스템</a>
+                            <ul class="subMenu">
+                                <li class="on"><a href="mngCodeList.html">공통코드관리</a></li>
+                                <li><a href="mngUserList.html">사용자관리</a></li>
+                                <li><a href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a href="#">프로그램관리</a></li>
+                                <li><a href="mngAuthList.html">권한관리</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mainContent">
+                <div class="innerCont">
+                    <!-- 공통코드 상세 -->
+                    <div class="contArea">
+                        <div class="contTop">
+                            <h2>공통코드 정보</h2>
+                            <div class="breadcrum">
+                                <dl>
+                                    <dd><a href="#">home</a></dd>
+                                    <dd>시스템</dd>
+                                    <dd>공통코드관리</dd>
+                                    <dd>공통코드 정보</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="viewArea">
+                            <div class="viewTbl">
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>코드분류</th>
+                                        <td colspan="3">
+                                            <label class="w100per">
+                                                <input type="text" class="w100per" placeholder="코드분류">
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>코드분류명</th>
+                                        <td colspan="3">
+                                            <label class="w100per">
+                                                <input type="text" class="w100per" placeholder="코드분류명">
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>코드설명</th>
+                                        <td colspan="3">
+                                            <label class="w100per">
+                                                <textarea></textarea>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>등록자</th>
+                                        <td>홍길동</td>
+                                        <th>등록일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>수정자</th>
+                                        <td>홍길동</td>
+                                        <th>수정일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="viewArea">
+                            <div class="viewTop">
+                                <h2>코드상세</h2>
+                            </div>
+                        </div>
+
+                        <div class="searchArea mgt-0">
+                            <div class="btnArea pdt-0">
+                                <a href="#" class="button app" id="addAuth">추가</a>
+                                <a href="#" class="button rej" id="delAuth">삭제</a>
+                            </div>
+                        </div>
+
+                        <div class="listBox">
+                            <div class="tblList">
+                                <table id="authList">
+                                    <colgroup>
+                                        <col width="60px;">
+                                        <col width="15%">
+                                        <col>
+                                        <col width="120px;">
+                                        <col width="100px;">
+                                        <col width="100px;">
+                                        <col width="100px;">
+                                        <col width="100px;">
+                                        <col width="100px;">
+                                        <col width="100px;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label>
+                                                    <input type="checkbox" class="chkAll">
+                                                </label>
+                                            </th>
+                                            <th>코드</th>
+                                            <th>코드값</th>
+                                            <th>사용여부</th>
+                                            <th>정렬번호</th>
+                                            <th>속성1</th>
+                                            <th>속성2</th>
+                                            <th>속성3</th>
+                                            <th>속성4</th>
+                                            <th>속성5</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <tr>
+                                            <td colspan="10" class="empty">결과가 없습니다.</td>
+                                        </tr> -->
+                                        <tr>
+                                            <td class="num">
+                                                <label>
+                                                    <input type="checkbox" class="codeChk">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="w100per" placeholder="코드">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="w100per" placeholder="코드값">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label>
+                                                    <input type="checkbox" class="useChk">
+                                                    사용여부
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="정렬번호">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="속성1">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="속성2">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="속성3">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="속성4">
+                                                </label>
+                                            </td>
+                                            <td class="code">
+                                                <label class="w100per">
+                                                    <input type="text" class="code w100per" placeholder="속성5">
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="viewBtnArea">
+                            <a href="mngCodeList.html" class="button list">목록</a>
+
+                            <a href="#" class="button app">저장</a>
+                            <a href="#" class="button rej">삭제</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
