@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -132,10 +133,103 @@ public class SystemController {
 
     	return resultMap;
 	}
-	
+	/**
+	 * 사용자 관리 입력 폼
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/systemMng/userInputPage.do")
     public String userInputPage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 		
         return "systemMng/user/userInputPage";
     }
+	/**
+	 * 사용자 관리 > 등록, 수정, 삭제
+	 * @param param
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/systemMng/cudUserInfoAjax.json")
+	public Map<String,Object> cudUserInfoAjax(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		String resultCode ="";
+		
+		try {
+			int insertInt = systemService.cudUserInfo(param);
+			int insertUserSeq = 0;
+			
+			String saveType = param.get("saveType").toString();
+			if("C".equals(saveType)) {
+				insertUserSeq = systemService.selectUserSeq(param);
+			}else if("U".equals(saveType)) {
+				insertUserSeq = Integer.parseInt(param.get("userSeq").toString());
+			}else if("D".equals(saveType)) {
+				insertUserSeq = Integer.parseInt(param.get("userSeq").toString());
+			}else {
+				throw new ServletException("userseq null exception");
+			}
+			resultCode = "200";
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+			resultCode = "500";
+		}
+		
+		LOG.debug("resultCode :: " + resultCode);
+		resultMap.put("resultCode", resultCode);
+		return resultMap;
+	}
+	/**
+	 * 사용자 등록 시 사용자 아이디 중복여부 확인
+	 * @param paramMap
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/systemMng/selectUserIdChk.json", method = RequestMethod.POST)
+	public Map<String, Object> selectUserIdChk(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		LOG.debug("paramMap :: " + paramMap.toString());
+
+		int result = 0;
+
+		try {
+			result = systemService.checkUserId(paramMap);
+
+		} catch (Exception e) {
+			LOG.warn(e.getMessage(), e);
+		}
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("resultCode", result);
+
+		return resultMap;
+	}
+	/**
+	 * 사용자 상세 화면 페이지
+	 * @param paramMap
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value={"/systemMng/userDetailPage.do"})
+	public String userDetailPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String returnJsp = "";
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		detailMap = systemService.selectUserInfo(paramMap);
+		
+		model.addAttribute("detailMap", detailMap);
+		
+		returnJsp = "systemMng/user/userDetailPage";
+		return returnJsp;
+	}
 }

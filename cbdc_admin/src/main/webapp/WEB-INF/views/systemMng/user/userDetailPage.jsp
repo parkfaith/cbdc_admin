@@ -26,13 +26,12 @@
                                     <dd><a href="#">home</a></dd>
                                     <dd>시스템</dd>
                                     <dd>사용자관리</dd>
-                                    <dd>사용자 등록</dd>
+                                    <dd>사용자 상세</dd>
                                 </dl>
                             </div>
                         </div>
                         <div class="viewArea">
                             <div class="viewTbl">
-                            	<form name="userForm" id="userForm">
                                 <table>
                                     <colgroup>
                                         <col>
@@ -41,34 +40,41 @@
                                         <col width="36%">
                                     </colgroup>
                                     <tr>
-                                        <th class="req">아이디</th>
-                                        <td>
-                                            <label class="text btnBox idChk">
-                                                <input type="text" id="userId" placeholder="아이디 입력">
-                                                <a href="#" class="searchBtn idChk" id="idChkBtn">중복확인</a>
-                                            </label>
-                                        </td>
-                                        <th class="req">이름</th>
-                                        <td>
-                                            <label>
-                                                <input type="text" id="userNm" placeholder="실명 입력">
-                                            </label>
-                                        </td>
+                                        <th>아이디</th>
+                                        <td>${detailMap.USER_ID }</td>
+                                        <th>이름</th>
+                                        <td>${detailMap.USER_NM }</td>
                                     </tr>
                                     <tr>
                                         <th>권한</th>
-                                        <td colspan="3">*권한은 사용자 등록 후 권한관리에서 등록/수정 할 수 있습니다.</td>
+                                        <td colspan="3">
+                                            <span class="flag auth">관리자조회</span>
+                                            <span class="flag auth">개발자</span>
+                                            <span class="flag auth">승인/배포</span>
+                                            <span class="flag auth">시스템관리</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>등록자</th>
+                                        <td>${detailMap.REG_NM }</td>
+                                        <th>등록일</th>
+                                        <td>${detailMap.REG_DATE }</td>
+                                    </tr>
+                                    <tr>
+                                        <th>수정자</th>
+                                        <td>${detailMap.UPD_NM }</td>
+                                        <th>수정일</th>
+                                        <td>${detailMap.UPD_DATE }</td>
                                     </tr>
                                 </table>
-                                </form>
                             </div>
                         </div>
                         
                         <div class="viewBtnArea">
                             <a href="userMngPage.do" class="button list">목록</a>
 
-                            <a href="#" class="button app" id="userInsert">등록</a>
-                            <a href="userMngPage.do" class="button close">취소</a>
+                            <a href="#" class="button app">수정</a>
+                            <a href="#" class="button rej">삭제</a>
                         </div>
                         
                     </div>

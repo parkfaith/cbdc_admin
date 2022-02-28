@@ -129,6 +129,6 @@
 </body>
 <script src="/cbdc_js/systemMng/userManage.js"></script>
 <form name="userForm" id="userForm">
-
+	<input type="hidden" name="userSeq" id="userSeq">
 </form>
 </html>

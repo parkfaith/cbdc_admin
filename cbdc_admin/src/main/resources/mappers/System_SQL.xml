@@ -19,10 +19,8 @@
 			 , t.AUTH_CODE
 			 , t.REG_ID
 			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
-			 <!-- , DATE_FORMAT(t.REG_DT,'%Y-%m-%d %H:%i:%s') as REG_DT -->
 			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d') as REG_DATE
 			 , t.UPD_ID
-			 <!-- , DATE_FORMAT(t.UPD_DT,'%Y-%m-%d %H:%i:%s') as UPD_DT -->
 			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d') as UPD_DATE
 			 , DATEDIFF(NOW(),REG_DATE ) AS DDIFF
 		  FROM TB_ADM_USER t,
@@ -74,5 +72,79 @@
 		 	AND t.REG_DATE BETWEEN CONCAT(#{searchSdate},' 00:00:00') and CONCAT(#{searchEdate},' 23:59:59')
 		 </if>
 	</select>
+	
+	<insert id="insertUserInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml insertUserInfo 
+     		 * 사용자 입력 
+     		 */
+     	]]>
+     	
+     	<![CDATA[
+	    	INSERT INTO TB_ADM_USER (
+	    		USER_ID
+				 , USER_PWD
+				 , USER_NM
+				 , AUTH_CODE
+				 , REG_ID
+				 , REG_DATE
+				 , UPD_ID
+				 , UPD_DATE
+				 , DEL_YN
+	    	) VALUES (
+	    		 #{userId}
+	    		 , #{userPwd}
+	    		 , #{userNm}
+				 , #{authCode}
+				 , #{logUserLid}
+				 , NOW()
+				 , #{logUserLid}
+				 , NOW()
+				 , 'N'
+	    	)
+    	]]>
+    </insert>
+    
+    <select id="selectUserSeq" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    <![CDATA[
+  		/* System_SQL.xml selectUserSeq 
+   		 * 사용자 최대 Seq 가지고 오기 
+   		 */
+   	]]>
+        SELECT MAX(USER_SEQ)
+		  FROM TB_ADM_USER
+    </select>
+    
+    <select id="checkUserId" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    <![CDATA[
+  		/* System_SQL.xml checkUserId 
+   		 * 사용자 아이디 중복여부 검사 
+   		 */
+   	]]>
+        SELECT COUNT(USER_SEQ)
+		  FROM TB_ADM_USER
+		  WHERE USER_ID = #{user_id}
+    </select>
+    
+    <select id="selectUserInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    <![CDATA[
+  		/* Board_SQL.xml selectUserInfo 
+   		 * 사용자 조회 
+   		 */
+   	]]>
+        SELECT t.USER_SEQ
+			 , t.USER_ID
+			 , t.USER_PWD
+			 , t.USER_NM
+			 , t.AUTH_CODE
+			 , t.REG_ID
+			 , t.UPD_ID
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d %H:%i:%s') as REG_DATE
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.UPD_ID ) as UPD_NM
+			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d %H:%i:%s') as UPD_DATE
+		  FROM TB_ADM_USER t
+		  WHERE t.USER_SEQ = #{userSeq}	 
+    </select>
 
 </mapper>
