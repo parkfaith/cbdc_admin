@@ -2603,6 +2603,8 @@ footer{
     width:100%;
     height:auto;
     overflow:hidden;
+    border:1px solid #ebebeb;
+    box-sizing: border-box;
 }
 
 .codeEditor .codeEditorArea{
@@ -2613,5 +2615,5 @@ footer{
 }
 
 .ace_editor div{
-    color:#414347;
+    color:#ebebeb;
 }

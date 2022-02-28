@@ -1,5 +1,8 @@
 //js
 $(window).ready(function() {
+    //메뉴설정
+    setMenu();
+    
     $("a.dashMenu").click(function(){
         if( $(this).hasClass('show') ){
             $(this).removeClass('show');
@@ -154,4 +157,13 @@ function openModal(moId){
 function closeModal(moId){
     $(".mask").fadeOut();
     $("#"+moId).hide();
+}
+
+//메뉴설정
+function setMenu(){
+    var getMenuCode = $(".mainContent").attr('class').split('mainContent ')[1];
+    if(getMenuCode){
+        $('#'+getMenuCode).closest('.sub').addClass('on');
+        $('#'+getMenuCode).parent().addClass('on');
+    }
 }

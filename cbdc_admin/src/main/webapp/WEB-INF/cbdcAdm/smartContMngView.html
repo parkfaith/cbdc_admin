@@ -44,36 +44,34 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="dashboard.html">대시보드</a>
+                            <a id="nav-dash" href="dashboard.html">대시보드</a>
                         </li>
                         <li class="sub">
                             <a href="#">모니터링</a>
                             <ul class="subMenu">
-                                <li><a href="mnNodeList.html">노드정보</a></li>
-                                <li><a href="mnBlockList.html">블록정보</a></li>
-                                <li><a href="mnTxList.html">거래정보</a></li>
+                                <li><a id="nav-mnt-node" href="mnNodeList.html">노드정보</a></li>
+                                <li><a id="nav-mnt-block" href="mnBlockList.html">블록정보</a></li>
+                                <li><a id="nav-mnt-tx" href="mnTxList.html">거래정보</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="nodeMngList.html">노드관리</a>
+                            <a id="nav-node-mng" href="nodeMngList.html">노드관리</a>
                         </li>
-                        <li class="on">
-                            <a href="smartContMngList.html">스마트계약관리</a>
+                        <li>
+                            <a id="nav-smt-cnrt" href="smartContMngList.html">스마트계약관리</a>
                         </li>
                         <li class="sub">
                             <a href="#">시스템</a>
                             <ul class="subMenu">
-                                <li><a href="mngCodeList.html">공통코드관리</a></li>
-                                <li><a href="mngUserList.html">사용자관리</a></li>
-                                <li><a href="mngMenuList.html">메뉴관리</a></li>
-                                <li><a href="#">프로그램관리</a></li>
-                                <li><a href="mngAuthList.html">권한관리</a></li>
+                                <li><a id="nav-mng-user" href="mngUserList.html">사용자관리</a></li>
+                                <li><a id="nav-mng-menu" href="mngMenuList.html">메뉴관리</a></li>
+                                <li><a id="nav-mng-auth" href="mngAuthList.html">권한관리</a></li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
             </div>
-            <div class="mainContent">
+            <div class="mainContent nav-smt-cnrt">
                 <div class="innerCont">
                     <div class="contArea">
                         <div class="contTop">
@@ -147,7 +145,7 @@
                                 <h2>소스코드</h2>
                             </div>
                             <div class="codeEditor">
-<pre class="codeEditorArea" id="editor1">
+                                <textarea class="codeEditorArea" id="editor1" ame="editor1">
 
 pragma solidity ^0.6.0;
 
@@ -180,7 +178,7 @@ contract HotelBook {
     
 }
 
-</pre>
+                                </textarea>
                             </div>
                         </div>
 
@@ -189,7 +187,7 @@ contract HotelBook {
                                 <h2>ABI</h2>
                             </div>
                             <div class="codeEditor">
-<pre class="codeEditorArea" id="editor2">
+                                <textarea class="codeEditorArea" id="editor2" ame="editor2">
 
 contract Foo {
     function bar(real[2] xy) {}
@@ -197,7 +195,7 @@ contract Foo {
     function sam(bytes name, bool z, uint[] data) {}
 }
 
-</pre>
+                                </textarea>
                             </div>
                         </div>
 
@@ -206,7 +204,9 @@ contract Foo {
                                 <h2>Byte Code</h2>
                             </div>
                             <div class="codeEditor">
-<pre class="codeEditorArea" id="editor3">0xcdcd77c0: the Method ID. This is derived as the first 4 bytes of the Keccak-256 hash of the ASCII form of the signature baz(uint32,bool). 0x0000000000000000000000000000000000000000000000000000000000000045: the first parameter, a uint32 value 69 padded to 32 bytes 0x0000000000000000000000000000000000000000000000000000000000000001: the second parameter - boolean true, padded to 32 bytes</pre>
+                                <textarea class="codeEditorArea" id="editor3" ame="editor3">
+0xcdcd77c0: the Method ID. This is derived as the first 4 bytes of the Keccak-256 hash of the ASCII form of the signature baz(uint32,bool). 0x0000000000000000000000000000000000000000000000000000000000000045: the first parameter, a uint32 value 69 padded to 32 bytes 0x0000000000000000000000000000000000000000000000000000000000000001: the second parameter - boolean true, padded to 32 bytes
+                                </textarea>
                             </div>
                         </div>
 
@@ -224,7 +224,11 @@ contract Foo {
         </div>
     </div>
 
-    <script src="../js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="../css/codemirror.css">
+    
+    <script src="../js/codemirror/codemirror.js"></script>
+    <script src="../js/codemirror/matchbrackets.js"></script>
+    <script src="../js/codemirror/python.js"></script>
 
     <script>
         $(window).ready(function(){
@@ -238,21 +242,37 @@ contract Foo {
                     },1000);
                 }
             });
-
-            callEditor("editor1","python");
-            callEditor("editor2","python");
-            callEditor("editor3","text");
         });
 
-        function callEditor(id,mode){
-            var editor = ace.edit(id);
-            editor.setTheme("ace/theme/chrome");
-            editor.getSession().setMode("ace/mode/"+mode);
-            editor.setOptions({ wrap: true });
-            editor.setOptions({ fontSize: "14pt" });
-            editor.setShowPrintMargin(false);
-            editor.setReadOnly(true);
-        }
+        var editor1 = CodeMirror.fromTextArea(document.getElementById("editor1"), {
+            mode: {name: "python",
+                version: 3,
+                singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true,
+            readOnly: true
+        });
+
+        var editor2 = CodeMirror.fromTextArea(document.getElementById("editor2"), {
+            mode: {name: "python",
+                version: 3,
+                singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true,
+            readOnly: true
+        });
+
+        var editor3 = CodeMirror.fromTextArea(document.getElementById("editor3"), {
+            mode: {name: "text",
+                version: 3,
+                singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true,
+            readOnly: true
+        });
 
         function copyAdd(elementId){
             var aux = document.createElement("input");

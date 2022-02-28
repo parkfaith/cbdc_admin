@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.service.impl.SystemDAO">
+
+	<select id="selectUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectUserList 
+	   		 * 시스템관리 > 사용자 목록 
+	   		 */
+	   	]]>
+		SELECT 
+			@i:=@i+1 AS RN
+        	 , t.USER_SEQ
+			 , t.USER_ID
+			 , t.USER_PWD
+			 , t.USER_NM
+			 , t.AUTH_CODE
+			 , t.REG_ID
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			 <!-- , DATE_FORMAT(t.REG_DT,'%Y-%m-%d %H:%i:%s') as REG_DT -->
+			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d') as REG_DATE
+			 , t.UPD_ID
+			 <!-- , DATE_FORMAT(t.UPD_DT,'%Y-%m-%d %H:%i:%s') as UPD_DT -->
+			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d') as UPD_DATE
+			 , DATEDIFF(NOW(),REG_DATE ) AS DDIFF
+		  FROM TB_ADM_USER t,
+		  (SELECT @i:=#{paginCnt}) AS foo
+		 WHERE t.DEL_YN = 'N'
+		 <if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "USERID"'>
+		 		AND (t.USER_ID LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "USERNM"'>
+		 		AND t.USER_NM LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "REGID"'>
+		 		AND t.REG_ID LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+		 <if test='searchSdate != null and searchSdate !=""'>
+		 	AND t.REG_DATE BETWEEN CONCAT(#{searchSdate},' 00:00:00') and CONCAT(#{searchEdate},' 23:59:59')
+		 </if>
+		 <![CDATA[
+			ORDER BY t.USER_SEQ DESC
+			   LIMIT #{viewPageCnt} OFFSET #{paginCnt}   
+		]]>
+	</select>
+	
+	<select id="selectUserTotalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+	  		/* System_SQL.xml selectUserList 
+	   		 * 시스템관리 > 사용자 목록(총 건수)
+	   		 */
+	   	]]>
+	   	SELECT
+			COUNT(USER_SEQ) AS USER_TOTCNT
+		FROM
+			TB_ADM_USER t
+		WHERE t.DEL_YN = 'N'
+		<if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "USERID"'>
+		 		AND (t.USER_ID LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "USERNM"'>
+		 		AND t.USER_NM LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "REGID"'>
+		 		AND t.REG_ID LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+		 <if test='startSdate != null and startSdate !=""'>
+		 	AND t.REG_DATE BETWEEN CONCAT(#{searchSdate},' 00:00:00') and CONCAT(#{searchEdate},' 23:59:59')
+		 </if>
+	</select>
+
+</mapper>
