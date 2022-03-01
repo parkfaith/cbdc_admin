@@ -146,5 +146,19 @@
 		  FROM TB_ADM_USER t
 		  WHERE t.USER_SEQ = #{userSeq}	 
     </select>
+    
+    <update id="deleteUserInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml deleteUserInfo 
+     		 * 사용자 삭제 
+     		 */
+     	]]>
+     	
+     	<![CDATA[
+	    	UPDATE TB_ADM_USER SET
+	    	DEL_YN = 'Y'
+	    	WHERE USER_SEQ = #{userSeq}	 
+    	]]>
+    </update>
 
 </mapper>
