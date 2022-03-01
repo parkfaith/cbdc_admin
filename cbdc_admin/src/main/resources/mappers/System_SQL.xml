@@ -150,7 +150,7 @@
     <update id="deleteUserInfo" parameterType="java.util.HashMap">
     	<![CDATA[
     		/* System_SQL.xml deleteUserInfo 
-     		 * 사용자 삭제 
+     		 * 사용자 삭제(del yn 컬럼 업데이트)
      		 */
      	]]>
      	
