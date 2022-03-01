@@ -16,5 +16,7 @@ public interface SystemDAO {
 	public int checkUserId(HashMap<String, Object> paramMap);
 	
 	public HashMap<String, Object> selectUserInfo(HashMap<String, Object> paramMap);
+	
+	public int deleteUserInfo(HashMap<String, Object> paramMap);
 
 }

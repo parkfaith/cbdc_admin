@@ -74,7 +74,7 @@
                             <a href="userMngPage.do" class="button list">목록</a>
 
                             <a href="#" class="button app">수정</a>
-                            <a href="#" class="button rej">삭제</a>
+                            <a href="#" id="userDeleteBtn" class="button rej">삭제</a>
                         </div>
                         
                     </div>
@@ -86,5 +86,6 @@
 <script src="/cbdc_js/systemMng/userManage.js"></script>
 <form name="userForm" id="userForm">
 	<input type="hidden" name="saveType" id="saveType">
+	<input type="hidden" name="userSeq" id="userSeq" value="${detailMap.USER_SEQ }">
 </form>
 </html>

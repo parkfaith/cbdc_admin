@@ -48,7 +48,7 @@ public class SystemServiceImpl implements SystemService{
 		}else if("U".equals(saveType)) {//수정일 때
 			
 		}else if("D".equals(saveType)) {//삭제 일 때
-			
+			returnInt = systemDAO.deleteUserInfo(paramMap);
 		}else {
 			returnInt = 500;
 		}

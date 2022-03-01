@@ -35,6 +35,14 @@ $(document).ready(function() {
 	    userIdCheck();
 	});
 	
+	$("#userDeleteBtn").click(function(){
+		var c = confirm('사용자를 삭제하시겠습니까?');
+        if(c){
+        	userDelete();
+        }
+        return false;
+    });
+	
 	userSearch(1);
 });
 
@@ -167,6 +175,26 @@ function goDetailPage(userSeq){
 	form.action = "/systemMng/userDetailPage.do";
 	form.method = "post";
 	form.submit();
+}
+
+function userDelete(){
+	
+	var obj = new Object();
+	obj.userSeq =$.trim($('#userSeq').val());
+	obj.saveType = "D";
+	 
+	cmm.callAjax('/systemMng/cudUserInfoAjax.json', 'POST', obj, function(data){
+		var resultCode = data.resultCode;
+		
+		if("200" == resultCode) {
+			alert("사용자가 삭제되었습니다.");
+			var goUrl = "/systemMng/userMngPage.do";
+	    	$(location).attr('href',goUrl);
+		} else {
+			alert("사용자 삭제에 에러가 발생했습니다.");
+			return false;
+		}
+	});
 }
         
 function fnGoPaging(no) {
