@@ -226,10 +226,158 @@ public class SystemController {
 		
 		HashMap<String, Object> detailMap = new HashMap<>();
 		detailMap = systemService.selectUserInfo(paramMap);
+		if(detailMap != null) {
+			//권한상세 데이터 받기
+		}
 		
 		model.addAttribute("detailMap", detailMap);
+		if(paramMap.get("detailType")==null||"".equals(paramMap.get("detailType").toString())) {
+			returnJsp = "systemMng/user/userDetailPage";
+		}else {
+			returnJsp = "systemMng/user/userDetailUpdatePage";
+		}
 		
-		returnJsp = "systemMng/user/userDetailPage";
+		return returnJsp;
+	}
+	/**
+	 * 권한 관리 목록
+	 * @param paramMap
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value={"/systemMng/authMngPage.do"})
+    public String authMngPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String searchWord = "";
+		if(paramMap.get("searchWord") != null) {
+	    	searchWord = paramMap.get("searchWord").toString();
+		}
+		
+		String returnJsp = "";
+		model.addAttribute("searchWord", searchWord);
+		returnJsp = "systemMng/auth/authMngPage";
+		return returnJsp;
+    }
+	
+	@ResponseBody
+    @RequestMapping(value="/systemMng/selectAuthList.json", method=RequestMethod.POST)
+	public Map<String,Object> selectAuthList(@RequestParam HashMap<String,Object> paramMap) throws Exception {
+		LOG.debug("paramMap :: " + paramMap.toString());
+		
+		String searchWord = "";
+		if(paramMap.get("searchWord") != null && !paramMap.get("searchWord").equals((""))){
+			searchWord = paramMap.get("searchWord").toString(); 
+		}
+		
+		int viewPageCnt = Integer.parseInt(String.valueOf(paramMap.get("viewPageCnt")));
+    	int currentPageCnt = Integer.parseInt(String.valueOf(paramMap.get("currentPageNum")));
+    	int totalCnt =0;
+    	int paginCnt = 0;
+
+    	if(currentPageCnt > 1) {
+    		paginCnt =( viewPageCnt * currentPageCnt ) - viewPageCnt;
+    	}
+
+    	paramMap.put("viewPageCnt", Integer.parseInt(String.valueOf(viewPageCnt)));
+    	paramMap.put("paginCnt", Integer.parseInt(String.valueOf(paginCnt)));
+    	
+    	List<HashMap<String,Object>> authList = null;
+    	
+    	try {
+    		authList = systemService.selectAuthList(paramMap);
+        	totalCnt = systemService.selectAuthTotalCount(paramMap);	
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	
+    	PagingUtil paging = new PagingUtil(10, viewPageCnt, Long.valueOf(String.valueOf(totalCnt)));
+    	
+    	Map<String,Object> resultMap = new HashMap<String,Object>();
+    	resultMap.put("authList", authList);
+    	resultMap.put("totalCnt", totalCnt);
+    	resultMap.put("searchWord", searchWord);
+    	resultMap.put("pagingView", paging.getFixedBlock(currentPageCnt));
+
+    	return resultMap;
+	}
+	/**
+	 * 권한등록 폼
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/systemMng/authInputPage.do")
+    public String authInputPage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		
+        return "systemMng/auth/authInputPage";
+    }
+	/**
+	 * 권한등록 / 수정 / 삭제 / 사용자 추가
+	 * @param param
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/systemMng/cudAuthInfoAjax.json")
+	public Map<String,Object> cudAuthInfoAjax(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		String resultCode ="";
+		
+		try {
+			int insertInt = systemService.cudAuthInfo(param);
+			int insertAuthSeq = 0;
+			
+			String saveType = param.get("saveType").toString();
+			if("C".equals(saveType)) {
+				insertAuthSeq = systemService.selectAuthSeq(param);
+			}else if("U".equals(saveType)) {
+				insertAuthSeq = Integer.parseInt(param.get("authSeq").toString());
+			}else if("D".equals(saveType)) {
+				insertAuthSeq = Integer.parseInt(param.get("authSeq").toString());
+			}else {
+				throw new ServletException("authSeq null exception");
+			}
+			resultCode = "200";
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+			resultCode = "500";
+		}
+		
+		LOG.debug("resultCode :: " + resultCode);
+		resultMap.put("resultCode", resultCode);
+		return resultMap;
+	}
+	/**
+	 * 권한 상세페이지
+	 * @param paramMap
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value={"/systemMng/authDetailPage.do"})
+	public String authDetailPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String returnJsp = "";
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		detailMap = systemService.selectAuthInfo(paramMap);
+		
+		model.addAttribute("detailMap", detailMap);
+		if(paramMap.get("detailType")==null||"".equals(paramMap.get("detailType").toString())) {
+			returnJsp = "systemMng/auth/authDetailPage";
+		}else {
+			returnJsp = "systemMng/auth/authDetailUpdatePage";
+		}
+		
 		return returnJsp;
 	}
 }

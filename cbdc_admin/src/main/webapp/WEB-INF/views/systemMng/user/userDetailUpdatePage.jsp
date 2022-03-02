@@ -32,6 +32,10 @@
                         </div>
                         <div class="viewArea">
                             <div class="viewTbl">
+                            	<form name="userForm" id="userForm">
+                            		<input type="hidden" name="saveType" id="saveType">
+                            		<input type="hidden" name="detailType" id="detailType">
+									<input type="hidden" name="userSeq" id="userSeq" value="${detailMap.USER_SEQ }">
                                 <table>
                                     <colgroup>
                                         <col>
@@ -43,7 +47,7 @@
                                         <th>아이디</th>
                                         <td>${detailMap.USER_ID }</td>
                                         <th>이름</th>
-                                        <td>${detailMap.USER_NM }</td>
+                                        <td><label><input type="text" id="userNm" value="${detailMap.USER_NM }"></label></td>
                                     </tr>
                                     <tr>
                                         <th>권한</th>
@@ -67,14 +71,15 @@
                                         <td>${detailMap.UPD_DATE }</td>
                                     </tr>
                                 </table>
+                                </form>
                             </div>
                         </div>
                         
                         <div class="viewBtnArea">
                             <a href="userMngPage.do" class="button list">목록</a>
 
-                            <a href="#" id="userUpdatePageBtn" class="button app">수정</a>
-                            <a href="#" id="userDeleteBtn" class="button rej">삭제</a>
+                            <a href="#" id="userUpdateBtn" class="button app">수정</a>
+                            <a href="#" id="userCancelBtn" class="button rej">취소</a>
                         </div>
                         
                     </div>
@@ -84,9 +89,5 @@
     </div>
 </body>
 <script src="/cbdc_js/systemMng/userManage.js"></script>
-<form name="userForm" id="userForm">
-	<input type="hidden" name="saveType" id="saveType">
-	<input type="hidden" name="detailType" id="detailType">
-	<input type="hidden" name="userSeq" id="userSeq" value="${detailMap.USER_SEQ }">
-</form>
+	
 </html>

@@ -23,9 +23,9 @@
             <li class="sub">
                 <a href="#">시스템</a>
                 <ul class="subMenu">
-                    <li><a id="nav-mng-user" href="mngUserList.html">사용자관리</a></li>
-                    <li><a id="nav-mng-menu" href="mngMenuList.html">메뉴관리</a></li>
-                    <li><a id="nav-mng-auth" href="mngAuthList.html">권한관리</a></li>
+                    <li><a id="nav-mng-user" href="/systemMng/userMngPage.do">사용자관리</a></li>
+                    <li><a id="nav-mng-menu" href="/systemMng/menuMngPage.do">메뉴관리</a></li>
+                    <li><a id="nav-mng-auth" href="/systemMng/authMngPage.do">권한관리</a></li>
                 </ul>
             </li>
         </ul>
