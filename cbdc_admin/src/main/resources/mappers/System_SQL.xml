@@ -187,7 +187,7 @@
 			 , t.AUTH_DESC
 			 , t.AUTH_ORDERNO
 			 , t.REG_ID
-			 , ( SELECT COUNT(USER_SEQ) FROM TB_ADM_USER dui WHERE dui.AUTH_CODE LIKE CONCAT('%',t.AUTH_CODE,'%')  ) as AUTH_USERCNT
+			 , ( SELECT COUNT(USER_SEQ) FROM TB_ADM_USER dui WHERE dui.AUTH_CODE LIKE CONCAT('%',t.AUTH_CODE,'%') AND DEL_YN='N' ) as AUTH_USERCNT
 			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
 			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d') as REG_DATE
 			 , t.UPD_ID
@@ -265,7 +265,7 @@
     <select id="selectAuthInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
     <![CDATA[
   		/* System_SQL.xml selectAuthInfo 
-   		 * 사용자 조회 
+   		 * 권한 상세 조회 
    		 */
    	]]>
         SELECT t.AUTH_SEQ
@@ -279,10 +279,67 @@
 			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d %H:%i:%s') as REG_DATE
 			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.UPD_ID ) as UPD_NM
 			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d %H:%i:%s') as UPD_DATE
-			 , ( SELECT COUNT(USER_SEQ) FROM TB_ADM_USER dui WHERE dui.AUTH_CODE LIKE CONCAT('%',t.AUTH_CODE,'%')  ) as AUTH_USERCNT
+			 , ( SELECT COUNT(USER_SEQ) FROM TB_ADM_USER dui WHERE dui.AUTH_CODE LIKE CONCAT('%',t.AUTH_CODE,'%') AND DEL_YN = 'N' ) as AUTH_USERCNT
 		  FROM TB_ADM_AUTH t
 		  WHERE t.AUTH_SEQ = #{authSeq}	 
     </select>
+    
+    <select id="selectAuthUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectAuthUserList 
+	   		 * 권한상세조회 > 권한사용자목록
+	   		 */
+	   	]]>
+		SELECT 
+			@i:=@i+1 AS RN
+        	 , t.USER_SEQ
+			 , t.USER_ID
+			 , t.USER_PWD
+			 , t.USER_NM
+			 , t.AUTH_CODE
+			 , t.REG_ID
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d') as REG_DATE
+			 , t.UPD_ID
+			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d') as UPD_DATE
+		  FROM TB_ADM_USER t,
+		  (SELECT @i:=#{paginCnt}) AS foo
+		 WHERE t.DEL_YN = 'N'
+		 AND t.AUTH_CODE LIKE CONCAT('%',#{authCode},'%')
+		 <if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "USERID"'>
+		 		AND (t.USER_ID LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "USERNM"'>
+		 		AND t.USER_NM LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+		 <![CDATA[
+			ORDER BY t.USER_SEQ DESC
+			   LIMIT #{viewPageCnt} OFFSET #{paginCnt}   
+		]]>
+	</select>
+	
+	<select id="selectAuthUserTotalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+	  		/* System_SQL.xml selectAuthUserTotalCount 
+	   		 * 권한상세조회 > 권한사용자목록 총계
+	   		 */
+	   	]]>
+		SELECT 
+			COUNT(t.USER_SEQ) AS AUTHUSER_TOT
+		FROM TB_ADM_USER t
+		WHERE t.DEL_YN = 'N'
+		AND t.AUTH_CODE LIKE CONCAT('%',#{authCode},'%')
+		 <if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "USERID"'>
+		 		AND (t.USER_ID LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "USERNM"'>
+		 		AND t.USER_NM LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+	</select>
     
     <update id="deleteAuthInfo" parameterType="java.util.HashMap">
     	<![CDATA[
@@ -309,6 +366,32 @@
 	    	, UPD_ID = #{logUserId}
 	    	, UPD_DATE = NOW()
 	    	WHERE AUTH_SEQ = #{authSeq}	 
+    </update>
+    
+    <update id="insertUserAuthInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml insertUserAuthInfo 
+     		 * 사용자 권한등록
+     		 */
+     	]]>
+	    	UPDATE TB_ADM_USER SET
+	    	AUTH_CODE = CONCAT(AUTH_CODE,',',#{authCode})
+	    	, UPD_ID = #{logUserId}
+	    	, UPD_DATE = NOW()
+	    	WHERE USER_SEQ = #{authUserVal}	 
+    </update>
+    
+    <update id="deleteUserAuthInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml deleteUserAuthInfo 
+     		 * 사용자 권한삭제
+     		 */
+     	]]>
+	    	UPDATE TB_ADM_USER SET
+	    	AUTH_CODE = REPLACE(AUTH_CODE, #{authCode},'')
+	    	, UPD_ID = #{logUserId}
+	    	, UPD_DATE = NOW()
+	    	WHERE USER_SEQ = #{authUserVal}	 
     </update>
 
 </mapper>

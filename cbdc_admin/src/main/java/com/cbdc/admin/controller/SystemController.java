@@ -380,4 +380,74 @@ public class SystemController {
 		
 		return returnJsp;
 	}
+	//권한사용자 목록
+	@ResponseBody
+    @RequestMapping(value="/systemMng/selectAuthUserList.json", method=RequestMethod.POST)
+	public Map<String,Object> selectAuthUserList(@RequestParam HashMap<String,Object> paramMap) throws Exception {
+		LOG.debug("paramMap :: " + paramMap.toString());
+		
+		String searchType = "";
+		if(paramMap.get("searchType") != null && !paramMap.get("searchType").equals((""))){
+			searchType = paramMap.get("searchType").toString(); 
+		}
+		
+		String searchWord = "";
+		if(paramMap.get("searchWord") != null && !paramMap.get("searchWord").equals((""))){
+			searchWord = paramMap.get("searchWord").toString(); 
+		}
+		
+		int viewPageCnt = Integer.parseInt(String.valueOf(paramMap.get("viewPageCnt")));
+    	int currentPageCnt = Integer.parseInt(String.valueOf(paramMap.get("currentPageNum")));
+    	int authUserListTot =0;
+    	int paginCnt = 0;
+
+    	if(currentPageCnt > 1) {
+    		paginCnt =( viewPageCnt * currentPageCnt ) - viewPageCnt;
+    	}
+
+    	paramMap.put("viewPageCnt", Integer.parseInt(String.valueOf(viewPageCnt)));
+    	paramMap.put("paginCnt", Integer.parseInt(String.valueOf(paginCnt)));
+    	
+    	List<HashMap<String,Object>> authUserList = null;
+    	
+    	try {
+    		authUserList = systemService.selectAuthUserList(paramMap);
+    		authUserListTot = systemService.selectAuthUserTotalCount(paramMap);	
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	
+    	
+    	PagingUtil paging = new PagingUtil(10, viewPageCnt, Long.valueOf(String.valueOf(authUserListTot)));
+    	
+    	Map<String,Object> resultMap = new HashMap<String,Object>();
+    	resultMap.put("authUserList", authUserList);
+    	resultMap.put("authUserListTot", authUserListTot);
+    	resultMap.put("searchType", searchType);
+    	resultMap.put("searchWord", searchWord);
+    	resultMap.put("pagingView", paging.getFixedBlock(currentPageCnt));
+
+    	return resultMap;
+	}
+	//권한사용자 등록삭제
+	@ResponseBody
+	@RequestMapping("/systemMng/authUserInDel.json")
+	public Map<String,Object> authUserInDel(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		String resultCode ="";
+		
+		try {
+			int tempInt = systemService.authUserInDel(param);
+			resultCode = "200";
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+			resultCode = "500";
+		}
+		
+		LOG.debug("resultCode :: " + resultCode);
+		resultMap.put("resultCode", resultCode);
+		return resultMap;
+	}
 }

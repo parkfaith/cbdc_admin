@@ -8,7 +8,53 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+    $(document).ready(function() {
+    	authUserList(1);
+    	
+    	//전체 체크
+        $(".chkAll").click(function(){
+            var $chkArea = $(this).closest('table');
+            if($(this).is(":checked") == true) {
+                $chkArea.find('.authChk').prop("checked", true);
+            }else{
+                $chkArea.find('.authChk').prop("checked", false);
+            }
+        });
+
+        //권한삭제
+        /* $("#delAuth").click(function(){
+            var cnt = 0;
+            $('#authList').find('.authChk').each(function(){
+                if($(this).is(":checked") == true){
+                    cnt++;
+                }
+            });
+            if(cnt == 0){
+                alert('삭제할 사용자를 선택해주세요!');
+            }else{
+                var c = confirm('선택한 사용자를 권한에서 삭제하시겠습니까?');
+                if(c){
+                    alert('사용자에 대한 권한이 삭제되었습니다.')
+                }
+            }
+            return false;
+        }); */
+
+        //팝업생성
+        $("#addAuth").click(function(){
+            openModal('authMemModal');
+            authUserListPop(1);
+            return false;
+        });
+    });
+    
+    //팝업닫기 - 초기화
+    function closeAuthModal(){
+        closeModal('authMemModal');
+        $("#memModalSel option:eq(0)").prop("selected", true);
+        $("#searchWordpop").val('');
+        $('#memModalList').find("input[type='checkbox']").prop("checked", false);
+    }
     </script>
 </head>
 <body>
@@ -84,14 +130,14 @@
                             <div class="searchBox">
                                 <span>검색어</span>
                                 <label class="sel">
-                                    <select>
-                                        <option value="">아이디</option>
-                                        <option value="">이름</option>
+                                    <select id="searchType">
+                                        <option value="USERID">아이디</option>
+                                        <option value="USERNM">이름</option>
                                     </select>
                                 </label>
                                 <label class="text btnBox">
-                                    <input type="text" placeholder="검색어 입력">
-                                    <a href="#" class="searchBtn">검색</a>
+                                    <input type="text" placeholder="검색어 입력" id="searchWord" name="searchWord">
+                                    <a href="#" class="searchBtn" id="btn_userSearch">검색</a>
                                 </label>
                             </div>
                             <div class="btnArea">
@@ -103,11 +149,11 @@
                         <div class="listBox">
                             <div class="listTop">
                                 <div class="listCnt">
-                                    전체 <span>00</span> 건
+                                    전체 <span id="selectAuthUserTotalCount">00</span> 건
                                 </div>
                                 <div class="listCntSel">
                                     <label>
-                                        <select>
+                                        <select id="pageView" name="pageView">
                                             <option value="10">10개씩</option>
                                             <option value="20">20개씩</option>
                                             <option value="30">30개씩</option>
@@ -117,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="tblList">
-                                <table id="authList">
+                                <table>
                                     <colgroup>
                                         <col>
                                         <col>
@@ -138,71 +184,12 @@
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- <tr>
-                                            <td colspan="6" class="empty">결과가 없습니다.</td>
-                                        </tr> -->
-                                        <tr>
-                                            <td class="num">
-                                                <label>
-                                                    <input type="checkbox" class="authChk">
-                                                </label>
-                                            </td>
-                                            <td class="user">bokuser1</td>
-                                            <td class="insti">홍길동</td>
-                                            <td class="date">2021-00-00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="num">
-                                                <label>
-                                                    <input type="checkbox" class="authChk">
-                                                </label>
-                                            </td>
-                                            <td class="user">bokuser1</td>
-                                            <td class="insti">홍길동</td>
-                                            <td class="date">2021-00-00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="num">
-                                                <label>
-                                                    <input type="checkbox" class="authChk">
-                                                </label>
-                                            </td>
-                                            <td class="user">bokuser1</td>
-                                            <td class="insti">홍길동</td>
-                                            <td class="date">2021-00-00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="num">
-                                                <label>
-                                                    <input type="checkbox" class="authChk">
-                                                </label>
-                                            </td>
-                                            <td class="user">bokuser1</td>
-                                            <td class="insti">홍길동</td>
-                                            <td class="date">2021-00-00</td>
-                                        </tr>
+                                     <tbody id="authUserList">
+                                        
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="paging">
-                                <a href="#" class="fst">처음</a>
-                                <a href="#" class="prv">이전</a>
-
-                                <a href="#">1</a>
-                                <a href="#" class="current">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a href="#">7</a>
-                                <a href="#">8</a>
-                                <a href="#">9</a>
-                                <a href="#">10</a>
-
-                                <a href="#" class="nxt">다음</a>
-                                <a href="#" class="end">맨끝</a>
-                            </div>
+                            <div class="paging" id="pagination"></div>
                         </div>
                         
                     </div>
@@ -210,11 +197,91 @@
             </div>
         </div>
     </div>
+    
+    <!-- 사용자 권한 등록 Modal-->
+    <div class="modal" id="authMemModal">
+        <div class="modalInner">
+            <div class="modalTop">
+                <h2>사용자 권한 등록</h2>
+            </div>
+            <div class="modalBody">
+                <div class="modalBodyInner">
+                    <div class="searchArea">
+                        <div class="searchBox">
+                            <span>검색어</span>
+                            <label class="sel">
+                                <select id="memModalSel">
+                                    <option value="">아이디</option>
+                                    <option value="">이름</option>
+                                </select>
+                            </label>
+                            <label class="text btnBox">
+                                <input type="text" id="searchWordpop" name="searchWordpop" placeholder="검색어 입력">
+                                <a href="#" class="searchBtn">검색</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="listBox">
+                        <div class="listTop">
+                            <div class="listCnt">
+                                전체 <span id="totalCntpop">00</span> 건
+                            </div>
+                            <div class="listCntSel">
+                                <label>
+                                    <select id="pageViewpop" name="pageViewpop">
+                                        <option value="10">10개씩</option>
+                                        <option value="20">20개씩</option>
+                                        <option value="30">30개씩</option>
+                                        <option value="50">50개씩</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="tblList resTbl">
+                            <table id="memModalList">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label>
+                                                <input type="checkbox" class="chkAll">
+                                            </label>
+                                        </th>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>등록일</th>
+                                    </tr>
+                                </thead>
+                                	<tbody id="userListpop">
+                                        
+                                    </tbody>
+                            </table>
+                        </div>
+                        <div class="paging" id="paginationpop"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modalBtnArea">
+                <a href="#" class="button app" id="addMemAuth">추가</a>
+                <a href="#" class="button close" onclick="closeAuthModal(); return false;">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask"></div>
 </body>
 <script src="/cbdc_js/systemMng/authManage.js"></script>
 <form name="authForm" id="authForm">
 	<input type="hidden" name="saveType" id="saveType">
 	<input type="hidden" name="detailType" id="detailType">
 	<input type="hidden" name="authSeq" id="authSeq" value="${detailMap.AUTH_SEQ }">
+	<input type="hidden" name="authCode" id="authCode" value="${detailMap.AUTH_CODE }">
 </form>
 </html>

@@ -116,4 +116,52 @@ public class SystemServiceImpl implements SystemService{
 	public HashMap<String, Object> selectAuthInfo(HashMap<String, Object> paramMap) {
 		return systemDAO.selectAuthInfo(paramMap);
 	}
+	
+	@Override
+	public List<HashMap<String, Object>> selectAuthUserList(HashMap<String, Object> paramMap){
+		return systemDAO.selectAuthUserList(paramMap);
+	}
+	
+	@Override
+	public int selectAuthUserTotalCount(HashMap<String, Object> paramMap) {
+		return systemDAO.selectAuthUserTotalCount(paramMap);
+	}
+	
+	@Override
+	public int authUserInDel(HashMap<String, Object> paramMap) {
+		String saveType = (String) paramMap.get("saveType");
+		int  returnInt = 0;
+		paramMap.put("logUserId","admin");
+		
+		String authUserArrVal = paramMap.get("authUserArr").toString();
+		String authUserVal = "";
+		if(authUserArrVal.contains(",")) {
+			String[] authUserArr = authUserArrVal.split(",");
+			
+			for(int i=0; i<authUserArr.length; i++) {
+				authUserVal = authUserArr[i];
+				paramMap.put("authUserVal", authUserVal);
+				if("C".equals(saveType)) {//입력일 때
+					systemDAO.insertUserAuthInfo(paramMap);
+				}else if("D".equals(saveType)) {//입력일 때
+					systemDAO.deleteUserAuthInfo(paramMap);
+				}else {
+					returnInt = 500;
+				}
+			}
+		}else {
+			authUserVal = authUserArrVal;
+			paramMap.put("authUserVal", authUserVal);
+			//insert code
+			if("C".equals(saveType)) {//입력일 때
+				systemDAO.insertUserAuthInfo(paramMap);
+			}else if("D".equals(saveType)) {//입력일 때
+				systemDAO.deleteUserAuthInfo(paramMap);
+			}else {
+				returnInt = 500;
+			}
+		}
+		
+		return returnInt;
+	}
 }

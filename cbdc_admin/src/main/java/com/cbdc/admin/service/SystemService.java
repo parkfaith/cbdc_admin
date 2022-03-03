@@ -40,9 +40,17 @@ public interface SystemService {
 	public int cudAuthInfo(HashMap<String, Object> paramMap);
 	public int selectAuthSeq(HashMap<String, Object> paramMap);
 	/**
-	 * 권한 상세 페이지
+	 * 권한 상세 페이지 + 권한사용자 항목
 	 * @param paramMap
 	 * @return
 	 */
 	public HashMap<String, Object> selectAuthInfo(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectAuthUserList(HashMap<String, Object> paramMap);
+	public int selectAuthUserTotalCount(HashMap<String, Object> paramMap);
+	/**
+	 * 권한사용자 추가 삭제
+	 * @param paramMap
+	 * @return
+	 */
+	public int authUserInDel(HashMap<String, Object> paramMap);
 }

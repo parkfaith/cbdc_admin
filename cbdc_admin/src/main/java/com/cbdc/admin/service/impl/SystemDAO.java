@@ -31,4 +31,10 @@ public interface SystemDAO {
 	
 	public int deleteAuthInfo(HashMap<String, Object> paramMap);
 	public int updateAuthInfo(HashMap<String, Object> paramMap);
+	
+	public List<HashMap<String, Object>> selectAuthUserList(HashMap<String, Object> paramMap);
+	public int selectAuthUserTotalCount(HashMap<String, Object> paramMap);
+	
+	public int insertUserAuthInfo(HashMap<String, Object> paramMap);
+	public int deleteUserAuthInfo(HashMap<String, Object> paramMap);
 }
