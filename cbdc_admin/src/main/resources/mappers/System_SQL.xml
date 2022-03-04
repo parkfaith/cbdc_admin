@@ -284,6 +284,28 @@
 		  WHERE t.AUTH_SEQ = #{authSeq}	 
     </select>
     
+    <select id="selectAuthInfoFromCode" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    <![CDATA[
+  		/* System_SQL.xml selectAuthInfoFromCode 
+   		 * 권한 상세 조회 (코드로 검토)
+   		 */
+   	]]>
+        SELECT t.AUTH_SEQ
+			 , t.AUTH_CODE
+			 , t.AUTH_NM
+			 , t.AUTH_DESC
+			 , t.AUTH_ORDERNO
+			 , t.REG_ID
+			 , t.UPD_ID
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			 , DATE_FORMAT(t.REG_DATE,'%Y-%m-%d %H:%i:%s') as REG_DATE
+			 , ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.UPD_ID ) as UPD_NM
+			 , DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d %H:%i:%s') as UPD_DATE
+			 , ( SELECT COUNT(USER_SEQ) FROM TB_ADM_USER dui WHERE dui.AUTH_CODE LIKE CONCAT('%',t.AUTH_CODE,'%') AND DEL_YN = 'N' ) as AUTH_USERCNT
+		  FROM TB_ADM_AUTH t
+		  WHERE t.AUTH_CODE = #{authCode}	 
+    </select>
+    
     <select id="selectAuthUserList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<![CDATA[
 	  		/* System_SQL.xml selectAuthUserList 

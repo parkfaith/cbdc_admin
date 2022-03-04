@@ -78,5 +78,5 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/userManage.js"></script>
+<script src="/cbdc_js/systemMng/user/userInputPage.js"></script>
 </html>

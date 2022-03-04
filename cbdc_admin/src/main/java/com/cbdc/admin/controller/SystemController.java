@@ -239,6 +239,19 @@ public class SystemController {
 		
 		return returnJsp;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/systemMng/selectAuthNameList.json", method = RequestMethod.POST)
+	public Map<String, Object> selectAuthNameList(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		LOG.debug("selectAuthNameList paramMap :: " + paramMap.toString());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<HashMap<String,Object>> selectAuthNameList = systemService.selectAuthNameList(paramMap);
+		resultMap.put("selectAuthNameList", selectAuthNameList);
+		
+		return resultMap;
+	}
 	/**
 	 * 권한 관리 목록
 	 * @param paramMap
@@ -450,4 +463,17 @@ public class SystemController {
 		resultMap.put("resultCode", resultCode);
 		return resultMap;
 	}
+	/**
+	 * 메뉴관리
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/systemMng/menuMngPage.do")
+    public String menuMngPage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		
+        return "systemMng/menu/menuMngPage";
+    }
 }

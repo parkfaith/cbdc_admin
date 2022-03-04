@@ -81,5 +81,5 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/authManage.js"></script>
+<script src="/cbdc_js/systemMng/auth/authInputPage.js"></script>
 </html>

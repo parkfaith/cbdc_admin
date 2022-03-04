@@ -21,25 +21,6 @@
             }
         });
 
-        //권한삭제
-        /* $("#delAuth").click(function(){
-            var cnt = 0;
-            $('#authList').find('.authChk').each(function(){
-                if($(this).is(":checked") == true){
-                    cnt++;
-                }
-            });
-            if(cnt == 0){
-                alert('삭제할 사용자를 선택해주세요!');
-            }else{
-                var c = confirm('선택한 사용자를 권한에서 삭제하시겠습니까?');
-                if(c){
-                    alert('사용자에 대한 권한이 삭제되었습니다.')
-                }
-            }
-            return false;
-        }); */
-
         //팝업생성
         $("#addAuth").click(function(){
             openModal('authMemModal');
@@ -95,7 +76,7 @@
                                     </tr>
                                     <tr>
                                         <th>권한사용자</th>
-                                        <td>${detailMap.AUTH_USERCNT }</td>
+                                        <td id="checkAuthUserCnt">${detailMap.AUTH_USERCNT }</td>
                                         <th>정렬순서</th>
                                         <td>1</td>
                                     </tr>
@@ -277,7 +258,7 @@
 
     <div class="mask"></div>
 </body>
-<script src="/cbdc_js/systemMng/authManage.js"></script>
+<script src="/cbdc_js/systemMng/auth/authDetailPage.js"></script>
 <form name="authForm" id="authForm">
 	<input type="hidden" name="saveType" id="saveType">
 	<input type="hidden" name="detailType" id="detailType">

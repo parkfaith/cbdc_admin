@@ -1,5 +1,6 @@
 package com.cbdc.admin.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -61,7 +62,57 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public HashMap<String, Object> selectUserInfo(HashMap<String, Object> paramMap) {
-		return systemDAO.selectUserInfo(paramMap);
+		HashMap<String, Object> returnMap = new HashMap<String, Object>();
+		HashMap<String, Object> userInfoMap = systemDAO.selectUserInfo(paramMap);
+		/*
+		List<HashMap<String, Object>> authNameList = new ArrayList<HashMap<String, Object>>();
+		//권한 이름
+		if(userInfoMap.get("AUTH_CODE")==null||"".equals(userInfoMap.get("AUTH_CODE"))) {
+			
+		}else {
+			String authCode = userInfoMap.get("AUTH_CODE").toString();
+			String[] authCodeArr = authCode.split(",");
+			
+			for(int i=0; i<authCodeArr.length; i++) {
+				if(authCodeArr[i]==null||"".equals(authCodeArr[i])) {
+					
+				}else {
+					HashMap<String, Object> authInfo = systemDAO.selectAuthInfoFromCode(paramMap);
+					authInfo.put("authCode", authInfo.get("AUTH_CODE"));
+					authInfo.put("authName", authInfo.get("AUTH_NM"));
+					authNameList.add(authInfo);
+				}
+			}
+		}
+		*/
+		returnMap.put("userInfoMap", userInfoMap);
+		//returnMap.put("authNameList", authNameList);
+		//return systemDAO.selectUserInfo(paramMap);
+		return returnMap;
+	}
+	
+	@Override
+	public List<HashMap<String, Object>> selectAuthNameList(HashMap<String, Object> paramMap){
+		List<HashMap<String, Object>> authNameList = new ArrayList<HashMap<String, Object>>();
+		if(paramMap.get("authCodeStr")==null||"".equals(paramMap.get("authCodeStr"))) {
+			authNameList = null;
+		}else {
+			String authCode = paramMap.get("authCodeStr").toString();
+			String[] authCodeArr = authCode.split(",");
+			
+			for(int i=0; i<authCodeArr.length; i++) {
+				if(authCodeArr[i]==null||"".equals(authCodeArr[i])) {
+					
+				}else {
+					paramMap.put("authCode", authCodeArr[i]);
+					HashMap<String, Object> authInfo = systemDAO.selectAuthInfoFromCode(paramMap);
+					authInfo.put("authCode", authInfo.get("AUTH_CODE"));
+					authInfo.put("authName", authInfo.get("AUTH_NM"));
+					authNameList.add(authInfo);
+				}
+			}
+		}
+		return authNameList;
 	}
 	
 	@Override

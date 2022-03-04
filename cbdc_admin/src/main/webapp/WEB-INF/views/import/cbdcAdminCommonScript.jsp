@@ -16,3 +16,9 @@
 <script src="/js/common.js"></script>
 <script src="/cbdc_js/cmm.js"></script>
 <script src="/cbdc_js/cbdc_optional.js"></script>
+<!-- 메뉴관리 -->
+<link rel="stylesheet" type="text/css" href="/css/jsLists.css">
+<script type="text/javascript" src="/js/jsLists.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/jquery.treeview.css">
+<script type="text/javascript" src="/js/jquery.treeview.js"></script>

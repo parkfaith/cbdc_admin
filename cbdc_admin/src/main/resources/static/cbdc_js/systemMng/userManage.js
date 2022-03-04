@@ -253,3 +253,12 @@ function userUpdate(){
 function fnGoPaging(no) {
 	userSearch(no);
 }
+
+function selectAuthName(authCodeStr){
+	var obj = new Object();
+	obj.authCodeStr = authCodeStr;
+	
+	cmm.callAjax('/systemMng/selectAuthNameList.json', 'POST', obj, function(data){
+		console.log(data);
+	});
+}

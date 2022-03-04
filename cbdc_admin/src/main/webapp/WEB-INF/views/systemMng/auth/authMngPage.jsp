@@ -95,7 +95,7 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/authManage.js"></script>
+<script src="/cbdc_js/systemMng/auth/authMngPage.js"></script>
 <form name="authForm" id="authForm">
 	<input type="hidden" name="authSeq" id="authSeq">
 </form>

@@ -127,7 +127,7 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/userManage.js"></script>
+<script src="/cbdc_js/systemMng/user/userMngPage.js"></script>
 <form name="userForm" id="userForm">
 	<input type="hidden" name="userSeq" id="userSeq">
 </form>

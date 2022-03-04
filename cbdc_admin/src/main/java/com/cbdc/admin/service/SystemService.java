@@ -25,6 +25,7 @@ public interface SystemService {
 	 * @return
 	 */
 	public HashMap<String, Object> selectUserInfo(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectAuthNameList(HashMap<String, Object> paramMap);
 	/**
 	 * 권한 목록조회
 	 * @param paramMap

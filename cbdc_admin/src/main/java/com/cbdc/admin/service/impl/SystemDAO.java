@@ -28,6 +28,7 @@ public interface SystemDAO {
 	public int selectAuthSeq(HashMap<String, Object> paramMap);
 
 	public HashMap<String, Object> selectAuthInfo(HashMap<String, Object> paramMap);
+	public HashMap<String, Object> selectAuthInfoFromCode(HashMap<String, Object> paramMap);
 	
 	public int deleteAuthInfo(HashMap<String, Object> paramMap);
 	public int updateAuthInfo(HashMap<String, Object> paramMap);

@@ -8,7 +8,9 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+    $(document).ready(function() {
+    	selectAuthName('${detailMap.userInfoMap.AUTH_CODE }');
+    });
     </script>
 </head>
 <body>
@@ -41,13 +43,13 @@
                                     </colgroup>
                                     <tr>
                                         <th>아이디</th>
-                                        <td>${detailMap.USER_ID }</td>
+                                        <td>${detailMap.userInfoMap.USER_ID }</td>
                                         <th>이름</th>
-                                        <td>${detailMap.USER_NM }</td>
+                                        <td>${detailMap.userInfoMap.USER_NM }</td>
                                     </tr>
                                     <tr>
                                         <th>권한</th>
-                                        <td colspan="3">
+                                        <td colspan="3" id="authNameList">
                                             <span class="flag auth">관리자조회</span>
                                             <span class="flag auth">개발자</span>
                                             <span class="flag auth">승인/배포</span>
@@ -56,15 +58,15 @@
                                     </tr>
                                     <tr>
                                         <th>등록자</th>
-                                        <td>${detailMap.REG_NM }</td>
+                                        <td>${detailMap.userInfoMap.REG_NM }</td>
                                         <th>등록일</th>
-                                        <td>${detailMap.REG_DATE }</td>
+                                        <td>${detailMap.userInfoMap.REG_DATE }</td>
                                     </tr>
                                     <tr>
                                         <th>수정자</th>
-                                        <td>${detailMap.UPD_NM }</td>
+                                        <td>${detailMap.userInfoMap.UPD_NM }</td>
                                         <th>수정일</th>
-                                        <td>${detailMap.UPD_DATE }</td>
+                                        <td>${detailMap.userInfoMap.UPD_DATE }</td>
                                     </tr>
                                 </table>
                             </div>
@@ -83,10 +85,10 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/userManage.js"></script>
+<script src="/cbdc_js/systemMng/user/userDetailPage.js"></script>
 <form name="userForm" id="userForm">
 	<input type="hidden" name="saveType" id="saveType">
 	<input type="hidden" name="detailType" id="detailType">
-	<input type="hidden" name="userSeq" id="userSeq" value="${detailMap.USER_SEQ }">
+	<input type="hidden" name="userSeq" id="userSeq" value="${detailMap.userInfoMap.USER_SEQ }">
 </form>
 </html>
