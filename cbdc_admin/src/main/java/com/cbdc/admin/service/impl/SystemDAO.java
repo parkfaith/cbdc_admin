@@ -38,4 +38,7 @@ public interface SystemDAO {
 	
 	public int insertUserAuthInfo(HashMap<String, Object> paramMap);
 	public int deleteUserAuthInfo(HashMap<String, Object> paramMap);
+	
+	/************ 메뉴 관리 ***********************************/
+	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap);
 }

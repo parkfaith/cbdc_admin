@@ -9,7 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(window).ready(function(){
-        JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
+        //JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
 
         $(document).on('click','a.menuItem',function(){
             $(".menuMngTreeInner ul li a.menuItem").removeClass('selected');
@@ -47,30 +47,8 @@
                                     </div>
                                     <div class="menuTreeBox">
                                         <ul id="menuTreeList">
-                                            <li>
-                                                <a href="#" class="menuItem depth1">CBDC Admin</a>
-                                                <ul>
-                                                    <li><a href="#" class="menuItem depth2">대시보드</a></li>
-                                                    <li><a href="#" class="menuItem depth2">모니터링</a>
-                                                        <ul>
-                                                            <li><a href="#" class="menuItem depth3">노드정보</a></li>
-                                                            <li><a href="#" class="menuItem depth3">블록정보</a></li>
-                                                            <li><a href="#" class="menuItem depth3">거래정보</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#" class="menuItem depth2">노드관리</a></li>
-                                                    <li><a href="#" class="menuItem depth2">스마트계약관리</a></li>
-                                                    <li><a href="#" class="menuItem depth2">시스템관리</a>
-                                                        <ul>
-                                                            <li><a href="#" class="menuItem depth3">공통코드관리</a></li>
-                                                            <li><a href="#" class="menuItem depth3">사용자관리</a></li>
-                                                            <li><a href="#" class="menuItem depth3">메뉴관리</a></li>
-                                                            <li><a href="#" class="menuItem depth3">프로그램관리</a></li>
-                                                            <li><a href="#" class="menuItem depth3">권한관리</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
+										    
+                                            <!-- <li><a href="#" class="menuItem depth1">CBDC Admin</a><ul><li><a href="#" class="menuItem depth2">대시보드</a></li><li><a href="#" class="menuItem depth2">모니터링</a><ul><li><a href="#" class="menuItem depth3">노드정보</a></li><li><a href="#" class="menuItem depth3">블록정보</a></li><li><a href="#" class="menuItem depth3">거래정보</a></li></ul></li><li><a href="#" class="menuItem depth2">노드관리</a></li><li><a href="#" class="menuItem depth2">스마트계약관리</a></li><li><a href="#" class="menuItem depth2">시스템관리</a><ul><li><a href="#" class="menuItem depth3">사용자관리</a></li><li><a href="#" class="menuItem depth3">메뉴관리</a></li><li><a href="#" class="menuItem depth3">권한관리</a></li></ul></li></ul></li> -->
                                         </ul>
                                     </div>
                                     <div class="viewBtnArea tal">
@@ -98,7 +76,7 @@
                                                     <th>메뉴명</th>
                                                     <td colspan="3">
                                                         <label class="w100per">
-                                                            <input type="text" class="w100per" placeholder="메뉴명">
+                                                            <input type="text" class="w100per" placeholder="메뉴명" id="menuNm">
                                                         </label>
                                                     </td>
                                                 </tr>
@@ -106,7 +84,7 @@
                                                     <th>상위메뉴</th>
                                                     <td colspan="3">
                                                         <label class="w100per">
-                                                            <select class="w100per mx-w800px">
+                                                            <select class="w100per mx-w800px" id="upperMenu">
                                                                 <option>모니터링</option>
                                                             </select>
                                                         </label>
@@ -116,7 +94,7 @@
                                                     <th>메뉴경로</th>
                                                     <td colspan="3">
                                                         <label class="w100per">
-                                                            <input type="text" class="w100per" placeholder="URL">
+                                                            <input type="text" class="w100per" placeholder="URL" id="menuUrl">
                                                         </label>
                                                     </td>
                                                 </tr>
@@ -124,21 +102,21 @@
                                                     <th>메뉴설명</th>
                                                     <td colspan="3">
                                                         <label class="w100per">
-                                                            <textarea></textarea>
+                                                            <textarea id="menuDesc"></textarea>
                                                         </label>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>등록자</th>
-                                                    <td>홍길동</td>
+                                                    <td id="regId">홍길동</td>
                                                     <th>등록일</th>
-                                                    <td>2021-00-00 00:00:00</td>
+                                                    <td id="regDate">2021-00-00 00:00:00</td>
                                                 </tr>
                                                 <tr>
                                                     <th>수정자</th>
-                                                    <td>홍길동</td>
+                                                    <td id="updId">홍길동</td>
                                                     <th>수정일</th>
-                                                    <td>2021-00-00 00:00:00</td>
+                                                    <td id="updDate">2021-00-00 00:00:00</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -233,8 +211,8 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/auth/authMngPage.js"></script>
-<form name="authForm" id="authForm">
-	<input type="hidden" name="authSeq" id="authSeq">
+<script src="/cbdc_js/systemMng/menu/menuMngPage.js"></script>
+<form name="menuForm" id="menuForm">
+	<input type="hidden" name="menuSeq" id="menuSeq">
 </form>
 </html>

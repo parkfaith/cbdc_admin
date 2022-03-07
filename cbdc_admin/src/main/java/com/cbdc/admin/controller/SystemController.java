@@ -476,4 +476,17 @@ public class SystemController {
 		
         return "systemMng/menu/menuMngPage";
     }
+	
+	@ResponseBody
+	@RequestMapping(value = "/systemMng/selectMenuList.json", method = RequestMethod.POST)
+	public Map<String, Object> selectMenuList(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		LOG.debug("selectMenuList paramMap :: " + paramMap.toString());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<HashMap<String,Object>> selectMenuList = systemService.selectMenuList(paramMap);
+		resultMap.put("selectMenuList", selectMenuList);
+		
+		return resultMap;
+	}
 }

@@ -215,4 +215,9 @@ public class SystemServiceImpl implements SystemService{
 		
 		return returnInt;
 	}
+	
+	@Override
+	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap){
+		return systemDAO.selectMenuList(paramMap);
+	}
 }

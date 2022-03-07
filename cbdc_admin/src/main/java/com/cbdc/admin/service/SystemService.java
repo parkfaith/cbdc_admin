@@ -54,4 +54,10 @@ public interface SystemService {
 	 * @return
 	 */
 	public int authUserInDel(HashMap<String, Object> paramMap);
+	/**
+	 * 메뉴 목록
+	 * @param paramMap
+	 * @return
+	 */
+	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap);
 }

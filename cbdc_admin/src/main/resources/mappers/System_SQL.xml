@@ -415,5 +415,44 @@
 	    	, UPD_DATE = NOW()
 	    	WHERE USER_SEQ = #{authUserVal}	 
     </update>
+    
+    <select id="selectMenuList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectMenuList 
+	   		 * 시스템관리 > 메뉴목록 조회
+	   		 */
+	   	]]>
+		select
+			A.MENU_SEQ
+			, A.MENU_CODE
+			, A.MENU_UPPERCODE
+			, A.MENU_NM
+			, A.MENU_URL
+			, A.MENU_DESC
+			, A.MENU_AUTH
+			, A.MENU_FUNCAUTH
+			, A.MENU_USEYN
+			, A.MENU_DEPTH
+			, A.MENU_ORDER
+			, A.REG_ID
+			, A.REG_DATE
+			, A.UPD_ID
+			, A.UPD_DATE,
+			(SELECT CASE WHEN COUNT(1) > 0 THEN 'FOLDER' ELSE 'FILE' END
+				FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_UPPERCODE = A.MENU_CODE
+			) AS NODE_TYPE_NM
+		from
+			tb_adm_menu A
+			left join tb_adm_menu B
+			on
+			A.MENU_UPPERCODE = B.MENU_CODE
+		where
+			A.MENU_DEPTH > 1
+		order by
+			MENU_CODE,
+			MENU_DEPTH ,
+			MENU_ORDER
+	</select>
 
 </mapper>
