@@ -60,4 +60,8 @@ public interface SystemService {
 	 * @return
 	 */
 	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectAuthListNoPaging(HashMap<String, Object> paramMap);
+	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap);
+	public int cudMenuInfo(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap);
 }

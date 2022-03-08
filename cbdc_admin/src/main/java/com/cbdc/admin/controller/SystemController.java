@@ -476,7 +476,7 @@ public class SystemController {
 		
         return "systemMng/menu/menuMngPage";
     }
-	
+	//메뉴 목록
 	@ResponseBody
 	@RequestMapping(value = "/systemMng/selectMenuList.json", method = RequestMethod.POST)
 	public Map<String, Object> selectMenuList(@RequestParam HashMap<String, Object> paramMap,
@@ -485,8 +485,49 @@ public class SystemController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		List<HashMap<String,Object>> selectMenuList = systemService.selectMenuList(paramMap);
+		List<HashMap<String,Object>> selectAuthListNoPaging = systemService.selectAuthListNoPaging(paramMap);
 		resultMap.put("selectMenuList", selectMenuList);
+		resultMap.put("selectAuthListNoPaging", selectAuthListNoPaging);
 		
+		return resultMap;
+	}
+	//메뉴 상세 목록
+	@ResponseBody
+	@RequestMapping(value = "/systemMng/selectMenuInfo.json", method = RequestMethod.POST)
+	public Map<String, Object> selectMenuInfo(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		LOG.debug("selectMenuInfo paramMap :: " + paramMap.toString());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		HashMap<String, Object> selectMenuInfo = systemService.selectMenuInfo(paramMap);
+		List<HashMap<String,Object>> selectAuthListNoPaging = systemService.selectAuthListNoPaging(paramMap);
+		List<HashMap<String,Object>> selectUpperMenuList = systemService.selectUpperMenuList(paramMap);
+		
+		resultMap.put("selectMenuInfo", selectMenuInfo);
+		resultMap.put("selectAuthListNoPaging", selectAuthListNoPaging);
+		resultMap.put("selectUpperMenuList", selectUpperMenuList);
+		
+		return resultMap;
+	}
+	//메뉴 수정/등록/삭제
+	@ResponseBody
+	@RequestMapping("/systemMng/cudMenuInfoAjax.json")
+	public Map<String,Object> cudMenuInfoAjax(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		String resultCode ="";
+		
+		try {
+			int insertInt = systemService.cudMenuInfo(param);
+			
+			resultCode = "200";
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+			resultCode = "500";
+		}
+		
+		LOG.debug("resultCode :: " + resultCode);
+		resultMap.put("resultCode", resultCode);
 		return resultMap;
 	}
 }

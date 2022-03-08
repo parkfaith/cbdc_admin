@@ -204,6 +204,26 @@
 		]]>
 	</select>
 	
+	<select id="selectAuthListNoPaging" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectAuthListNoPaging 
+	   		 * 시스템관리 > 권한 목록(페이징 없이, 검색 없이-메뉴에서 사용)
+	   		 */
+	   	]]>
+		SELECT 
+        	 t.AUTH_SEQ
+			 , t.AUTH_CODE
+			 , t.AUTH_NM
+			 , t.AUTH_DESC
+			 , t.AUTH_ORDERNO
+			 , t.REG_ID
+		  FROM TB_ADM_AUTH t
+		 WHERE t.DEL_YN = 'N'
+		 <![CDATA[
+			ORDER BY t.AUTH_SEQ DESC
+		]]>
+	</select>
+	
 	<select id="selectAuthTotalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		<![CDATA[
 	  		/* System_SQL.xml selectAuthTotalCount 
@@ -441,7 +461,10 @@
 			(SELECT CASE WHEN COUNT(1) > 0 THEN 'FOLDER' ELSE 'FILE' END
 				FROM   tb_adm_menu TSM2
 				WHERE  TSM2.MENU_UPPERCODE = A.MENU_CODE
-			) AS NODE_TYPE_NM
+			) AS NODE_TYPE_NM,
+			(SELECT COUNT(1) FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_UPPERCODE = A.MENU_CODE
+			) AS DOWUNMENU_CNT
 		from
 			tb_adm_menu A
 			left join tb_adm_menu B
@@ -452,6 +475,79 @@
 		order by
 			MENU_CODE,
 			MENU_DEPTH ,
+			MENU_ORDER
+	</select>
+	
+	<select id="selectMenuInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectMenuInfo 
+	   		 * 시스템관리 > 메뉴상세 조회
+	   		 */
+	   	]]>
+		select
+			A.MENU_SEQ
+			, A.MENU_CODE
+			, A.MENU_UPPERCODE
+			, A.MENU_NM
+			, A.MENU_URL
+			, A.MENU_DESC
+			, A.MENU_AUTH
+			, A.MENU_FUNCAUTH
+			, A.MENU_USEYN
+			, A.MENU_DEPTH
+			, A.MENU_ORDER
+			, A.REG_ID
+			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = A.REG_ID ) as REG_NM
+			, A.REG_DATE
+			, A.UPD_ID
+			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = A.UPD_ID ) as UPD_NM
+			, A.UPD_DATE
+		from
+			tb_adm_menu A
+		where
+			A.MENU_SEQ = #{menuSeq}	 
+	</select>
+	
+	<update id="updateMenuInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml updateMenuInfo 
+     		 * 메뉴 정보 수정
+     		 */
+     	]]>
+	    	UPDATE tb_adm_menu SET
+	    	MENU_NM = #{menuNm}
+	    	, MENU_URL = #{menuUrl}
+	    	, MENU_DESC = #{menuDesc}
+	    	, MENU_AUTH = #{menuAuth}
+	    	, MENU_UPPERCODE = #{menuUppercode}
+	    	, UPD_ID = #{logUserId}
+	    	, UPD_DATE = NOW()
+	    	WHERE MENU_SEQ = #{menuSeq}	 
+    </update>
+    
+    <select id="selectUpperMenuList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectUpperMenuList 
+	   		 * 시스템관리 > 상위 메뉴 조회(2depth 메뉴 조회)
+	   		 */
+	   	]]>
+		select
+			A.MENU_SEQ
+			, A.MENU_CODE
+			, A.MENU_UPPERCODE
+			, A.MENU_NM
+			, A.MENU_URL
+			, A.MENU_DESC
+			, A.MENU_AUTH
+			, A.MENU_FUNCAUTH
+			, A.MENU_USEYN
+			, A.MENU_DEPTH
+			, A.MENU_ORDER
+		from
+			tb_adm_menu A
+		where
+			A.MENU_DEPTH = 2
+		order by
 			MENU_ORDER
 	</select>
 

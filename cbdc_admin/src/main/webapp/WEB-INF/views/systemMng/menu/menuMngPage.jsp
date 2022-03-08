@@ -12,7 +12,7 @@
         //JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
 
         $(document).on('click','a.menuItem',function(){
-            $(".menuMngTreeInner ul li a.menuItem").removeClass('selected');
+            $(".menuTreeBox ul li a.menuItem").removeClass('selected');
             $(this).addClass('selected');
             return false;
         });
@@ -51,7 +51,7 @@
                                             <!-- <li><a href="#" class="menuItem depth1">CBDC Admin</a><ul><li><a href="#" class="menuItem depth2">대시보드</a></li><li><a href="#" class="menuItem depth2">모니터링</a><ul><li><a href="#" class="menuItem depth3">노드정보</a></li><li><a href="#" class="menuItem depth3">블록정보</a></li><li><a href="#" class="menuItem depth3">거래정보</a></li></ul></li><li><a href="#" class="menuItem depth2">노드관리</a></li><li><a href="#" class="menuItem depth2">스마트계약관리</a></li><li><a href="#" class="menuItem depth2">시스템관리</a><ul><li><a href="#" class="menuItem depth3">사용자관리</a></li><li><a href="#" class="menuItem depth3">메뉴관리</a></li><li><a href="#" class="menuItem depth3">권한관리</a></li></ul></li></ul></li> -->
                                         </ul>
                                     </div>
-                                    <div class="viewBtnArea tal">
+                                    <div class="viewBtnArea tal" id="listBtn">
                                         <a href="#" class="button app">하위메뉴 추가</a>
                                         <a href="#" class="button up">위로</a>
                                         <a href="#" class="button down">아래로</a>
@@ -85,7 +85,7 @@
                                                     <td colspan="3">
                                                         <label class="w100per">
                                                             <select class="w100per mx-w800px" id="upperMenu">
-                                                                <option>모니터링</option>
+                                                                
                                                             </select>
                                                         </label>
                                                     </td>
@@ -108,13 +108,13 @@
                                                 </tr>
                                                 <tr>
                                                     <th>등록자</th>
-                                                    <td id="regId">홍길동</td>
+                                                    <td id="regNm">홍길동</td>
                                                     <th>등록일</th>
                                                     <td id="regDate">2021-00-00 00:00:00</td>
                                                 </tr>
                                                 <tr>
                                                     <th>수정자</th>
-                                                    <td id="updId">홍길동</td>
+                                                    <td id="updNm">홍길동</td>
                                                     <th>수정일</th>
                                                     <td id="updDate">2021-00-00 00:00:00</td>
                                                 </tr>
@@ -129,7 +129,7 @@
 
                                         <div class="listBox">
                                             <div class="tblList">
-                                                <table id="authList">
+                                                <table>
                                                     <colgroup>
                                                         <col>
                                                         <col>
@@ -150,56 +150,17 @@
                                                             <th>권한설명</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="num">
-                                                                <label>
-                                                                    <input type="checkbox" class="authChk">
-                                                                </label>
-                                                            </td>
-                                                            <td class="auth">authCode</td>
-                                                            <td class="auth">관리자조회</td>
-                                                            <td class="insti">&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="num">
-                                                                <label>
-                                                                    <input type="checkbox" class="authChk">
-                                                                </label>
-                                                            </td>
-                                                            <td class="auth">authCode</td>
-                                                            <td class="auth">개발자</td>
-                                                            <td class="insti">&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="num">
-                                                                <label>
-                                                                    <input type="checkbox" class="authChk">
-                                                                </label>
-                                                            </td>
-                                                            <td class="auth">authCode</td>
-                                                            <td class="auth">승인배포</td>
-                                                            <td class="insti">&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="num">
-                                                                <label>
-                                                                    <input type="checkbox" class="authChk">
-                                                                </label>
-                                                            </td>
-                                                            <td class="auth">authCode</td>
-                                                            <td class="auth">시스템관리</td>
-                                                            <td class="insti">&nbsp;</td>
-                                                        </tr>
+                                                    <tbody id="authList">
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="viewBtnArea">
-                                        <a href="#" class="button app">수정</a>
-                                        <a href="#" class="button rej">삭제</a>
+                                    <div class="viewBtnArea" id="viewBtnArea">
+                                        <a href="#none" class="button app" id="menuUpdateBtn">수정</a>
+                                        <a href="#none" class="button rej" id="menuDeleteBtn">삭제</a>
                                     </div>
                                 </div>
                             </div>

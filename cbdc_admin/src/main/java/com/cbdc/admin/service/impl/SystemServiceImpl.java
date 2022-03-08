@@ -121,6 +121,11 @@ public class SystemServiceImpl implements SystemService{
 	}
 	
 	@Override
+	public List<HashMap<String, Object>> selectAuthListNoPaging(HashMap<String, Object> paramMap){
+		return systemDAO.selectAuthListNoPaging(paramMap);
+	}
+	
+	@Override
 	public int selectAuthTotalCount(HashMap<String, Object> paramMap) {
 		return systemDAO.selectAuthTotalCount(paramMap);
 	}
@@ -219,5 +224,36 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap){
 		return systemDAO.selectMenuList(paramMap);
+	}
+	
+	@Override
+	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap) {
+		return systemDAO.selectMenuInfo(paramMap);
+	}
+	
+	@Override
+	public int cudMenuInfo(HashMap<String, Object> paramMap) {
+		String saveType = (String) paramMap.get("saveType");
+		int  returnInt = 0;
+		
+		if("C".equals(saveType)) {//입력일 때
+			
+			returnInt = systemDAO.insertUserInfo(paramMap);
+		}else if("U".equals(saveType)) {//수정일 때
+			paramMap.put("logUserId","admin");
+			returnInt = systemDAO.updateMenuInfo(paramMap);
+		}else if("D".equals(saveType)) {//삭제 일 때
+			paramMap.put("logUserId","admin");
+			returnInt = systemDAO.deleteUserInfo(paramMap);
+		}else {
+			returnInt = 500;
+		}
+		
+		return returnInt;
+	}
+	
+	@Override
+	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap){
+		return systemDAO.selectUpperMenuList(paramMap);
 	}
 }

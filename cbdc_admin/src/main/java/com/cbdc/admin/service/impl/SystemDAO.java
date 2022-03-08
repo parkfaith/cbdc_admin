@@ -41,4 +41,9 @@ public interface SystemDAO {
 	
 	/************ 메뉴 관리 ***********************************/
 	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectAuthListNoPaging(HashMap<String, Object> paramMap);
+	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap);
+	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap);
+	
+	public int updateMenuInfo(HashMap<String, Object> paramMap);
 }
