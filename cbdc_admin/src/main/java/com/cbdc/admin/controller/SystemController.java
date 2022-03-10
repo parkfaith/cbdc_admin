@@ -530,4 +530,14 @@ public class SystemController {
 		resultMap.put("resultCode", resultCode);
 		return resultMap;
 	}
+	
+	@RequestMapping(value="/systemMng/childMenuPage.do")
+    public String childMenuPage(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		
+		List<HashMap<String,Object>> selectUpperMenuList = systemService.selectUpperMenuList(param);
+		
+		model.addAttribute("param", param);
+		model.addAttribute("selectUpperMenuList", selectUpperMenuList);
+        return "systemMng/menu/childMenuPage";
+    }
 }

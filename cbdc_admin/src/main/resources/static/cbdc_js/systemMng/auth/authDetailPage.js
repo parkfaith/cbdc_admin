@@ -156,6 +156,26 @@ function authUpdate(){
 		}
 	});
 }
+
+function authDelete(){
+	
+	var obj = new Object();
+	obj.authSeq =$.trim($('#authSeq').val());
+	obj.saveType = "D";
+	 
+	cmm.callAjax('/systemMng/cudAuthInfoAjax.json', 'POST', obj, function(data){
+		var resultCode = data.resultCode;
+		
+		if("200" == resultCode) {
+			alert("권한이 삭제되었습니다.");
+			var goUrl = "/systemMng/authMngPage.do";
+	    	$(location).attr('href',goUrl);
+		} else {
+			alert("권한 삭제에 에러가 발생했습니다.");
+			return false;
+		}
+	});
+}
         
 function fnGoPaging(no) {
 	authUserList(no);

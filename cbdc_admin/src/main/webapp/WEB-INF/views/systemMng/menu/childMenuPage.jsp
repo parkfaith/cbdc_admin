@@ -122,45 +122,9 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="viewArea menuAuth">
-                                        <div class="viewTop">
-                                            <h2>권한정보</h2>
-                                        </div>
-
-                                        <div class="listBox">
-                                            <div class="tblList">
-                                                <table>
-                                                    <colgroup>
-                                                        <col>
-                                                        <col>
-                                                        <col>
-                                                        <col>
-                                                        <col>
-                                                        <col>
-                                                    </colgroup>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                <label>
-                                                                    <input type="checkbox" class="chkAll">
-                                                                </label>
-                                                            </th>
-                                                            <th>권한코드</th>
-                                                            <th>권한명</th>
-                                                            <th>권한설명</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="authList">
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="viewBtnArea" id="viewBtnArea">
-                                        <a href="#none" class="button app" id="menuUpdateBtn">수정</a>
-                                        <a href="#none" class="button rej" id="menuDeleteBtn">삭제</a>
+                                        <a href="#none" class="button app" id="menuInsertBtn">등록</a>
+                                        <a href="#none" class="button rej" id="menuCancelBtn">취소</a>
                                     </div>
                                 </div>
                             </div>
@@ -173,8 +137,8 @@
     </div>
 </body>
 <script src="/cbdc_js/systemMng/menu/menuMngPage.js"></script>
-<form name="menuForm" id="menuForm">
+<form name="insertMenuForm" id="insertMenuForm">
 	<input type="hidden" name="menuSeq" id="menuSeq">
-	<input type="hidden" name="childMenuCnt" id="childMenuCnt">
+	
 </form>
 </html>

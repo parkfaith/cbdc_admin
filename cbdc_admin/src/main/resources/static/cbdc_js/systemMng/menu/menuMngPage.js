@@ -43,6 +43,27 @@ $(document).ready(function() {
 		}
     });
     
+    $("#menuDeleteBtn").click(function(){
+		let checkCnt = $("#childMenuCnt").val();
+		if(checkCnt > 0){
+			alert("하위 메뉴가 있어 삭제할 수 없습니다.");
+			return false;
+		}else{
+			var c = confirm('메뉴를 삭제하시겠습니까?');
+        	if(c){
+        		menuDelete();
+        	}
+        	return false;	
+		}
+	});
+	
+	$("#childMenuForm").click(function(){
+		let form = document.menuForm;
+		
+    	form.action = "/systemMng/childMenuPage.do";
+    	form.method = "post";
+    	form.submit();
+	});
 });
 
 function menuList(){
@@ -97,6 +118,7 @@ function selectMenu(menu_seq){
 		$('#menuNm').val(menuInfo.MENU_NM);
 		$('#menuUrl').val(menuInfo.MENU_URL);
 		$('#menuDesc').val(menuInfo.MENU_DESC);
+		$('#childMenuCnt').val(menuInfo.CHILDMENU_CNT);
 		
 		$('#regNm').text(menuInfo.REG_NM);
 		$('#regDate').text(menuInfo.REG_DATE);
@@ -111,10 +133,10 @@ function selectMenu(menu_seq){
 			$("#upperMenu").empty();
 			$.each(data.selectUpperMenuList, function(i,item) {
 				selectedMenu = "";
-				if(item.MENU_CODE==menuInfo.MENU_UPPERCODE){
+				if(item.MENU_SEQ==menuInfo.MENU_PCODE){
 					selectedMenu = "selected";
 				}
-				$("#upperMenu").append('<option value="'+item.MENU_CODE+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
+				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
 			});	
 		}else{
 			$("#upperMenu").empty().append('<option value="ROOT">CBDC Admin</option>');	
@@ -190,9 +212,34 @@ function menuUpdate(){
 		if("200" == resultCode) {
 			alert("메뉴정보가 수정되었습니다.");
 			selectMenu(obj.menuSeq);
+			menuList();	
 		} else {
 			alert("메뉴정보 수정에 에러가 발생했습니다.");
 			return false;
 		}
 	});
+}
+
+function menuDelete(){
+	
+	var obj = new Object();
+	obj.menuSeq =$.trim($('#menuSeq').val());
+	obj.saveType = "D";
+	 
+	cmm.callAjax('/systemMng/cudMenuInfoAjax.json', 'POST', obj, function(data){
+		var resultCode = data.resultCode;
+		
+		if("200" == resultCode) {
+			alert("메뉴가 삭제되었습니다.");
+			var goUrl = "/systemMng/menuMngPage.do";
+	    	$(location).attr('href',goUrl);
+		} else {
+			alert("메뉴 삭제에 에러가 발생했습니다.");
+			return false;
+		}
+	});
+}
+
+function InsertFormUpperMenu(menuSeq){
+	
 }

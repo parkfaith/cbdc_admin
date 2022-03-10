@@ -436,10 +436,10 @@
 	    	WHERE USER_SEQ = #{authUserVal}	 
     </update>
     
-    <select id="selectMenuList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    <select id="selectMenuListOld" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<![CDATA[
 	  		/* System_SQL.xml selectMenuList 
-	   		 * 시스템관리 > 메뉴목록 조회
+	   		 * 시스템관리 > 메뉴목록 조회(예전거...삭제예정)
 	   		 */
 	   	]]>
 		select
@@ -472,10 +472,59 @@
 			A.MENU_UPPERCODE = B.MENU_CODE
 		where
 			A.MENU_DEPTH > 1
+			and A.MENU_USEYN = 'Y'
 		order by
 			MENU_CODE,
 			MENU_DEPTH ,
 			MENU_ORDER
+	</select>
+	
+	<select id="selectMenuList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml selectMenuList 
+	   		 * 시스템관리 > 메뉴목록 조회
+	   		 */
+	   	]]>
+	   	<![CDATA[
+		select
+			tam.MENU_SEQ
+			, tam.MENU_PCODE
+			, tam.MENU_NM
+			, tam.MENU_URL
+			, tam.MENU_DESC
+			, tam.MENU_AUTH
+			, tam.MENU_FUNCAUTH
+			, tam.MENU_USEYN
+			, tam.MENU_DEPTH
+			, tam.MENU_ORDER
+			, tam.REG_ID
+			, tam.REG_DATE
+			, tam.UPD_ID
+			, tam.UPD_DATE,
+			(SELECT CASE WHEN COUNT(1) > 0 THEN 'FOLDER' ELSE 'FILE' END
+				FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_PCODE = tam.MENU_SEQ
+			) AS NODE_TYPE_NM,
+			(SELECT COUNT(1) FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_PCODE = tam.MENU_SEQ
+			) AS DOWUNMENU_CNT
+		from
+			(
+			select
+				fnc_hierarchi() as id,
+				@level as level
+			from
+				(
+				select
+					@start_with := 0,
+					@id := @start_with,
+					@level := 0) vars
+			join TB_ADM_MENU
+			where
+				@id is not null) fnc
+		join TB_ADM_MENU tam on
+			fnc.id = tam.MENU_SEQ
+		]]>
 	</select>
 	
 	<select id="selectMenuInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -486,8 +535,7 @@
 	   	]]>
 		select
 			A.MENU_SEQ
-			, A.MENU_CODE
-			, A.MENU_UPPERCODE
+			, A.MENU_PCODE
 			, A.MENU_NM
 			, A.MENU_URL
 			, A.MENU_DESC
@@ -502,6 +550,7 @@
 			, A.UPD_ID
 			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = A.UPD_ID ) as UPD_NM
 			, A.UPD_DATE
+			, ( SELECT COUNT(1) FROM   tb_adm_menu TSM2 WHERE  TSM2.MENU_PCODE = A.MENU_SEQ) AS CHILDMENU_CNT
 		from
 			tb_adm_menu A
 		where
@@ -519,11 +568,21 @@
 	    	, MENU_URL = #{menuUrl}
 	    	, MENU_DESC = #{menuDesc}
 	    	, MENU_AUTH = #{menuAuth}
-	    	, MENU_UPPERCODE = #{menuUppercode}
+	    	, MENU_PCODE = #{menuUppercode}
 	    	, UPD_ID = #{logUserId}
 	    	, UPD_DATE = NOW()
 	    	WHERE MENU_SEQ = #{menuSeq}	 
     </update>
+    
+    <delete id="deleteMenuInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml deleteMenuInfo 
+     		 * 메뉴 정보 삭제
+     		 */
+     	]]>
+	    	DELETE FROM tb_adm_menu
+	    	WHERE MENU_SEQ = #{menuSeq}
+    </delete>
     
     <select id="selectUpperMenuList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<![CDATA[
@@ -533,8 +592,7 @@
 	   	]]>
 		select
 			A.MENU_SEQ
-			, A.MENU_CODE
-			, A.MENU_UPPERCODE
+			, A.MENU_PCODE
 			, A.MENU_NM
 			, A.MENU_URL
 			, A.MENU_DESC
