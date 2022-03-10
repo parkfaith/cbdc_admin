@@ -57,6 +57,16 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#movingUp").click(function(){
+		let menuSeq = $("#menuSeq").val();
+		move_li('UP', menuSeq);
+	});	
+	
+	$("#movingDown").click(function(){
+		let menuSeq = $("#menuSeq").val();
+		move_li('DOWN', menuSeq);
+	});	
+	
 	$("#childMenuForm").click(function(){
 		let form = document.menuForm;
 		
@@ -80,9 +90,9 @@ function menuList(){
 		
 		$.each(data.selectMenuList, function(i,item) {
 			if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FILE'){
-				menuhtml +='<li><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a></li>';
+				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a></li>';
 			}else if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FOLDER'){
-				menuhtml +='<li><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a>';
+				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a>';
 				downMenuCnt = item.DOWUNMENU_CNT
 			}
 			
@@ -99,7 +109,7 @@ function menuList(){
 			}
 		});
 		menuhtml +='</ul></li>';
-		//console.log(menuhtml);
+		console.log(menuhtml);
 		$('#menuTreeList').empty().html(menuhtml);
 		JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
 		
@@ -238,6 +248,16 @@ function menuDelete(){
 			return false;
 		}
 	});
+}
+
+function move_li(gbn, no)
+{ 
+	var $li = $("#id_li_"+no); 
+	if( gbn == "UP" ) { 
+		$li.prev().before($li); 
+	}else{ 
+		$li.next().after($li); 
+	} 
 }
 
 function InsertFormUpperMenu(menuSeq){
