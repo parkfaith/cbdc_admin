@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.service.impl.LoginDAO">
+
+	<select id="selectLoginInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* Login_SQL.xml selectLoginInfo 
+	   		 * 로그인
+	   		 */
+	   	]]>
+	   	<![CDATA[
+		select
+			, USER_SEQ
+			, USER_ID
+			, USER_PWD
+			, USER_NM
+			, AUTH_CODE
+			, REG_ID
+			, REG_DATE
+			, UPD_ID
+			, UPD_DATE
+			, DEL_YN
+			, FIRST_LOGIN
+			, ACCESS_IP 
+			, DATE_FORMAT(ACCESS_DATE ,'%Y-%m-%d %H:%i:%s') as ACCESS_DATE
+		from
+			tb_adm_user
+		where
+			USER_ID =LOWER(#{userId})
+			and USER_PWD = #{userPwd}
+			and DEL_YN = 'N'
+		]]>
+	</select>
+	
+	<insert id="insertLoginLog" parameterType="java.util.HashMap">
+    	<![CDATA[
+	    	/* Login_SQL.xml insertLoginLog */
+	    	INSERT INTO tb_login_log (
+	    		LOG_TY
+				, USER_ID
+				, USER_NM
+				, USER_IP
+				, REG_YMD
+				, REG_DT
+	    	) VALUES (
+	    		#{logTy}
+	    		, #{userId}
+	    		, (SELECT t.USER_NM FROM tb_adm_user t WHERE t.USER_ID =#{userId})
+	    		, #{userIp}
+	    		, DATE_FORMAT(NOW(),'%Y-%m-%d')
+	    		, NOW()
+	    	)
+		]]>    
+    </insert>
+</mapper>

@@ -237,7 +237,8 @@ public class SystemServiceImpl implements SystemService{
 		int  returnInt = 0;
 		
 		if("C".equals(saveType)) {//입력일 때
-			returnInt = systemDAO.insertUserInfo(paramMap);
+			paramMap.put("logUserId","admin");
+			returnInt = systemDAO.insertMenuInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
 			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.updateMenuInfo(paramMap);

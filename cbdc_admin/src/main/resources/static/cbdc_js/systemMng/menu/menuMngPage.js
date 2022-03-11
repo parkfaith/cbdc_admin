@@ -68,17 +68,23 @@ $(document).ready(function() {
 	});	
 	
 	$("#childMenuForm").click(function(){
-		let form = document.menuForm;
-		
-    	form.action = "/systemMng/childMenuPage.do";
-    	form.method = "post";
-    	form.submit();
+		let menuSeq = $("#menuSeq").val();
+		InsertFormUpperMenu(menuSeq);
+	});
+	
+	$("#menuInsertBtn").click(function(){
+		var c = confirm('메뉴를 등록하시겠습니까?');
+    	if(c){
+    		menuInsert();
+    	}
+    	return false;	
 	});
 });
 
 function menuList(){
 	$('#viewBtnArea').hide();
 	$('#listBtn').hide();
+	$('#viewInsertBtnArea').hide();
 	let depthCheck = 0;
 	let downMenuCnt = 0;
 	let param = new Object();
@@ -118,6 +124,7 @@ function menuList(){
 
 function selectMenu(menu_seq){
 	$('#viewBtnArea').show();
+	$('#viewInsertBtnArea').hide();
 	let param = new Object();
 	param.menuSeq = menu_seq;
 	$('#menuSeq').val(menu_seq);
@@ -136,7 +143,7 @@ function selectMenu(menu_seq){
 		$('#updDate').text(menuInfo.UPD_DATE);
 		
 		if(menuInfo.MENU_DEPTH ==2 ){
-			$("#upperMenu").empty().append('<option value="ROOT">CBDC Admin</option>');
+			$("#upperMenu").empty().append('<option value="1">CBDC Admin</option>');
 			$('#listBtn').show();
 		}else if(menuInfo.MENU_DEPTH ==3 ){
 			$('#listBtn').hide();
@@ -149,7 +156,7 @@ function selectMenu(menu_seq){
 				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
 			});	
 		}else{
-			$("#upperMenu").empty().append('<option value="ROOT">CBDC Admin</option>');	
+			$("#upperMenu").empty().append('<option value="1">CBDC Admin</option>');	
 		}
 		
 		let authhtml = "";
@@ -260,6 +267,67 @@ function move_li(gbn, no)
 	} 
 }
 
-function InsertFormUpperMenu(menuSeq){
+function InsertFormUpperMenu(){
+	$('#viewBtnArea').hide();
+	$('#viewInsertBtnArea').show();
+	$('#menuNm').val('');
+	$('#menuUrl').val('');
+	$('#menuDesc').val('');
+	$('#regNm').text('');
+	$('#regDate').text('');
+	$('#updNm').text('');
+	$('#updDate').text('');
+	console.log
+	let param = new Object();
+	let insertUpperMenu = $('#menuSeq').val();
+	cmm.callAjax('/systemMng/selectUpperMenuList.json', 'POST', param, function(data){
+		$.each(data.selectUpperMenuList, function(i,item) {
+			let selectedMenu = ""
+			if(item.MENU_SEQ==insertUpperMenu){
+				selectedMenu = "selected";
+			}
+			$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
+		});	
+	});
+}
+
+function menuInsert(){
+	let obj = new Object();
+	obj.menuSeq =$.trim($('#menuSeq').val());
+	obj.menuNm =$.trim($('#menuNm').val());
+	obj.menuUrl =$.trim($('#menuUrl').val());
+	obj.menuDesc =$.trim($('#menuDesc').val());
+	obj.menuPcode =$.trim($('#upperMenu').val());
+	let select_obj = '';
+	let chkListAuthLen = $("input[name='chkListAuth']:checked").length;
+	if(chkListAuthLen < 1){
+		obj.menuAuth = "";	
+	}else{
+		$("input[name='chkListAuth']:checked").each(function (index) {
+	        if (index != 0) {
+	            select_obj += ',';
+	        }
+	        select_obj += $(this).val();
+	        
+	    });	
+	    obj.menuAuth = 	select_obj;
+	}
+	obj.menuFuncauth ='';
+	obj.menuDepth ='3';
+	obj.menuOrder ='0';
 	
+	obj.saveType = "C";
+	
+	cmm.callAjax('/systemMng/cudMenuInfoAjax.json', 'POST', obj, function(data){
+		var resultCode = data.resultCode;
+		
+		if("200" == resultCode) {
+			alert("메뉴정보가 등록되었습니다.");
+			selectMenu(obj.menuSeq);
+			menuList();	
+		} else {
+			alert("메뉴정보 등록에 에러가 발생했습니다.");
+			return false;
+		}
+	});
 }

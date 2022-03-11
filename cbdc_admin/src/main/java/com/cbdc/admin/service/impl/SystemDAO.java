@@ -45,6 +45,7 @@ public interface SystemDAO {
 	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap);
 	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap);
 	
+	public int insertMenuInfo(HashMap<String, Object> paramMap);
 	public int updateMenuInfo(HashMap<String, Object> paramMap);
 	public int deleteMenuInfo(HashMap<String, Object> paramMap);
 }

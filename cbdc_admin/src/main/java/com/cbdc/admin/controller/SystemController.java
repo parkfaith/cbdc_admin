@@ -509,6 +509,18 @@ public class SystemController {
 		
 		return resultMap;
 	}
+	//2depth 메뉴 리스트
+	@ResponseBody
+	@RequestMapping(value = "/systemMng/selectUpperMenuList.json", method = RequestMethod.POST)
+	public Map<String, Object> selectUpperMenuList(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<HashMap<String,Object>> selectUpperMenuList = systemService.selectUpperMenuList(paramMap);
+		resultMap.put("selectUpperMenuList", selectUpperMenuList);
+		
+		return resultMap;
+	}
 	//메뉴 수정/등록/삭제
 	@ResponseBody
 	@RequestMapping("/systemMng/cudMenuInfoAjax.json")
@@ -530,14 +542,4 @@ public class SystemController {
 		resultMap.put("resultCode", resultCode);
 		return resultMap;
 	}
-	
-	@RequestMapping(value="/systemMng/childMenuPage.do")
-    public String childMenuPage(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-		
-		List<HashMap<String,Object>> selectUpperMenuList = systemService.selectUpperMenuList(param);
-		
-		model.addAttribute("param", param);
-		model.addAttribute("selectUpperMenuList", selectUpperMenuList);
-        return "systemMng/menu/childMenuPage";
-    }
 }

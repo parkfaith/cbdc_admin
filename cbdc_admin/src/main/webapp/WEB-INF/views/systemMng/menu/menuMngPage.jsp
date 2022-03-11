@@ -16,6 +16,7 @@
             $(this).addClass('selected');
             return false;
         });
+        
 	});
     </script>
 </head>
@@ -122,6 +123,11 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- <div class="viewBtnArea" id="insertMenuBtnArea">
+                                        <a href="#none" class="button app" id="menuInsertBtn">등록</a>
+                                        <a href="#none" class="button rej" id="menuCancelBtn">취소</a>
+                                    </div> -->
+                                    
                                     <div class="viewArea menuAuth">
                                         <div class="viewTop">
                                             <h2>권한정보</h2>
@@ -159,8 +165,11 @@
                                     </div>
                                     
                                     <div class="viewBtnArea" id="viewBtnArea">
-                                        <a href="#none" class="button app" id="menuUpdateBtn">수정</a>
+                                        <a href="#none" class="button app" id="menuUpdateBtn">저장</a>
                                         <a href="#none" class="button rej" id="menuDeleteBtn">삭제</a>
+                                    </div>
+                                    <div class="viewBtnArea" id="viewInsertBtnArea">
+                                        <a href="#none" class="button app" id="menuInsertBtn">저장</a>
                                     </div>
                                 </div>
                             </div>

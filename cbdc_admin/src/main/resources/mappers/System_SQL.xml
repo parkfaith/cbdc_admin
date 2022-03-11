@@ -557,6 +557,46 @@
 			A.MENU_SEQ = #{menuSeq}	 
 	</select>
 	
+	<insert id="insertMenuInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* System_SQL.xml insertMenuInfo 
+     		 * 메뉴 입력 
+     		 */
+     	]]>
+     	
+     	<![CDATA[
+	    	INSERT INTO tb_adm_menu (
+	    		MENU_PCODE,
+				MENU_NM,
+				MENU_URL,
+				MENU_DESC,
+				MENU_AUTH,
+				MENU_FUNCAUTH,
+				MENU_USEYN,
+				MENU_DEPTH,
+				MENU_ORDER,
+				REG_ID,
+				REG_DATE,
+				UPD_ID,
+				UPD_DATE
+	    	) VALUES (
+	    		 #{menuPcode}
+	    		 , #{menuNm}
+	    		 , #{menuUrl}
+				 , #{menuDesc}
+				 , #{menuAuth}
+				 , #{menuFuncauth}
+				 , 'Y'
+				 , #{menuDepth}
+				 , #{menuOrder}
+				 , #{logUserId}
+				 , NOW()
+				 , #{logUserId}
+				 , NOW()
+	    	)
+    	]]>
+    </insert>
+	
 	<update id="updateMenuInfo" parameterType="java.util.HashMap">
     	<![CDATA[
     		/* System_SQL.xml updateMenuInfo 
