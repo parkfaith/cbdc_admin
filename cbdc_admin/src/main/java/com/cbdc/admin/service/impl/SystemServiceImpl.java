@@ -42,16 +42,13 @@ public class SystemServiceImpl implements SystemService{
 		int  returnInt = 0;
 		
 		if("C".equals(saveType)) {//입력일 때
-			paramMap.put("userPwd","12345");
+			paramMap.put("userPwd","12345");// 초기에는 userid 와 동일
 			paramMap.put("authCode","");
-			paramMap.put("logUserId","admin");
 			
 			returnInt = systemDAO.insertUserInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.updateUserInfo(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.deleteUserInfo(paramMap);
 		}else {
 			returnInt = 500;
@@ -152,14 +149,11 @@ public class SystemServiceImpl implements SystemService{
                     .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                     .toString();
 		    paramMap.put("authCode", generatedString);
-		    paramMap.put("logUserId","admin");
 		    
 			returnInt = systemDAO.insertAuthInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.updateAuthInfo(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.deleteAuthInfo(paramMap);
 		}else {
 			returnInt = 500;
@@ -187,7 +181,6 @@ public class SystemServiceImpl implements SystemService{
 	public int authUserInDel(HashMap<String, Object> paramMap) {
 		String saveType = (String) paramMap.get("saveType");
 		int  returnInt = 0;
-		paramMap.put("logUserId","admin");
 		
 		String authUserArrVal = paramMap.get("authUserArr").toString();
 		String authUserVal = "";
@@ -237,13 +230,10 @@ public class SystemServiceImpl implements SystemService{
 		int  returnInt = 0;
 		
 		if("C".equals(saveType)) {//입력일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.insertMenuInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.updateMenuInfo(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			paramMap.put("logUserId","admin");
 			returnInt = systemDAO.deleteMenuInfo(paramMap);
 		}else {
 			returnInt = 500;

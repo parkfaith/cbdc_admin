@@ -34,4 +34,9 @@ public class LoginServiceImpl implements LoginService{
 	public int insertLoginLog(HashMap<String, Object> paramMap) {
 		return loginDAO.insertLoginLog(paramMap);
 	}
+	
+	@Override
+	public int updateLastAccessInfo(HashMap<String, Object> paramMap) {
+		return loginDAO.updateLastAccessInfo(paramMap);
+	}
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -159,6 +160,10 @@ public class SystemController {
 	public Map<String,Object> cudUserInfoAjax(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		String resultCode ="";
+		
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	param.put("logUserId", userInfoMap.get("USER_ID"));
 		
 		try {
 			int insertInt = systemService.cudUserInfo(param);
@@ -343,6 +348,10 @@ public class SystemController {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		String resultCode ="";
 		
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	param.put("logUserId", userInfoMap.get("USER_ID"));
+		
 		try {
 			int insertInt = systemService.cudAuthInfo(param);
 			int insertAuthSeq = 0;
@@ -450,6 +459,10 @@ public class SystemController {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		String resultCode ="";
 		
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	param.put("logUserId", userInfoMap.get("USER_ID"));
+		
 		try {
 			int tempInt = systemService.authUserInDel(param);
 			resultCode = "200";
@@ -527,6 +540,10 @@ public class SystemController {
 	public Map<String,Object> cudMenuInfoAjax(@RequestParam HashMap<String,Object> param, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		String resultCode ="";
+		
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	param.put("logUserId", userInfoMap.get("USER_ID"));
 		
 		try {
 			int insertInt = systemService.cudMenuInfo(param);

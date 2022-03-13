@@ -31,6 +31,18 @@ public class LoginController {
 		return new ModelAndView("login/loginPage");	
 	}
 	
+	@RequestMapping(value = "/login/loginProc.do")
+	public ModelAndView loginProcPage(@RequestParam HashMap<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) request.getSession().getAttribute("USER_INFO");
+		if (userInfoMap != null) {
+			paramMap.put("userId", userInfoMap.get("USER_ID"));
+		}
+
+		return loginProc(paramMap, request, response);
+	}
+	
 	private ModelAndView loginProc(HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -51,24 +63,55 @@ public class LoginController {
 				request.getSession().setAttribute("USER_INFO", userInfoMap);
 				/* 접속로그 적재 */
 				HashMap<String,Object> logMap = new HashMap<String,Object>();
-				logMap.put("ssoUserId", userInfoMap.get("USER_ID"));
+				logMap.put("userId", userInfoMap.get("USER_ID"));
 				logMap.put("userNm", userInfoMap.get("USER_NM"));
 				logMap.put("userIp", ip);
 				logMap.put("logTy", "I"); // I : Login, O : LogOut, F : LoginFail
 				loginService.insertLoginLog(logMap);
 				
 				/* 최종접속기록 */
-				//loginService.updateLastAccessInfo(logMap);
+				loginService.updateLastAccessInfo(logMap);
 				
-				mav.setViewName("redirect:"+request.getContextPath()+"/main.do");
+				mav.setViewName("redirect:"+request.getContextPath()+"/dashboardPage.do");
 			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			LOG.warn(e.getMessage(), e);
+			mav.setViewName("redirect:" + request.getContextPath() + "/");
+			return mav;
 			
 		}
 		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/login/loginOutProc.do")
+	public ModelAndView loginOutProc(@RequestParam HashMap<String, Object> paramMap, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) request.getSession().getAttribute("USER_INFO");
+
+		/* 접속로그 적재 */
+		HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+				.getRequest();
+		String ip = req.getHeader("X-FORWARDED-FOR");
+		if (ip == null) {
+			ip = req.getRemoteAddr();
+		}
+
+		HashMap<String, Object> logMap = new HashMap<String, Object>();
+		logMap.put("userId", userInfoMap.get("USER_ID"));
+		logMap.put("userNm", userInfoMap.get("USER_NM"));
+		logMap.put("userIp", ip);
+		logMap.put("logTy", "O"); // I : Login, O : LogOut, F : LoginFail
+		loginService.insertLoginLog(logMap);
+
+		/* 세션만료 처리 */
+		request.getSession().invalidate();
+
+		mav.setViewName("redirect:"+request.getContextPath()+"/");
 		return mav;
 	}
 }

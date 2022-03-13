@@ -12,7 +12,7 @@
 	   	]]>
 	   	<![CDATA[
 		select
-			, USER_SEQ
+			USER_SEQ
 			, USER_ID
 			, USER_PWD
 			, USER_NM
@@ -54,4 +54,16 @@
 	    	)
 		]]>    
     </insert>
+    
+    <update id="updateLastAccessInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+	  		/* Login_SQL.xml updateLastAccessInfo 
+	   		 * 로그인
+	   		 */
+	   	]]>
+    	UPDATE tb_adm_user
+    	   SET ACCESS_IP = #{userIp}
+    	     , ACCESS_DATE = NOW()
+    	 WHERE USER_ID = #{userId}
+    </update>
 </mapper>

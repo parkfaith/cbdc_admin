@@ -8,7 +8,14 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+       function loginProc(){
+    	   let form = document.loginForm;
+    	   
+    	   form.method = "post";
+    	   form.action = "/login/loginProc.do";
+    	   form.target = "_self";
+    	   form.submit();
+       }
     </script>
 </head>
 <body>
@@ -21,17 +28,19 @@
             </h2>
         </div>
         <div class="loginBody">
+        	<form name="loginForm" id="loginForm">
             <ul>
                 <li>
-                    <input type="text" placeholder="아이디">
+                    <input type="text" placeholder="아이디" id="userId" name="userId">
                 </li>
                 <li>
-                    <input type="password" placeholder="비밀번호">
+                    <input type="password" placeholder="비밀번호" id="userPwd" name="userPwd">
                 </li>
                 <li>
-                    <a href="dashboard.html" class="loginBtn">확인</a>
+                    <a href="#none" class="loginBtn" onClick="loginProc();">확인</a>
                 </li>
             </ul>
+            </form>
             <p>관리자에게 전달받은 계정정보를 이용해 로그인해주세요.</p>
             <p class="sub">
                 아이디/비밀번호 분실 시 관리자에게 문의 해주세요. <br>

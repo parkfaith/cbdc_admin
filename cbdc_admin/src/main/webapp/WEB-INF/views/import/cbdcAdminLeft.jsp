@@ -4,7 +4,7 @@
     <nav>
         <ul>
             <li>
-                <a id="nav-dash" href="dashboard.html">대시보드</a>
+                <a id="nav-dash" href="/dashboardPage.do">대시보드</a>
             </li>
             <li class="sub">
                 <a href="#">모니터링</a>
