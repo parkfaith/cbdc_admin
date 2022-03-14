@@ -66,4 +66,33 @@
     	     , ACCESS_DATE = NOW()
     	 WHERE USER_ID = #{userId}
     </update>
+    
+    <select id="selectMenuInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* Login_SQL.xml selectMenuInfo 
+	   		 * 지금 접속한 메뉴의 정보(권한을 찾기 위해서)
+	   		 */
+	   	]]>
+	   	<![CDATA[
+		select
+			tam.MENU_SEQ
+			, tam.MENU_PCODE
+			, tam.MENU_NM
+			, tam.MENU_URL
+			, tam.MENU_DESC
+			, tam.MENU_AUTH
+			, tam.MENU_FUNCAUTH
+			, tam.MENU_USEYN
+			, tam.MENU_DEPTH
+			, tam.MENU_ORDER
+			, tam.REG_ID
+			, tam.REG_DATE
+			, tam.UPD_ID
+			, tam.UPD_DATE
+		from
+			TB_ADM_MENU tam
+		where
+			tam.MENU_URL =#{menuUrl}
+		]]>
+	</select>
 </mapper>

@@ -27,8 +27,16 @@ public class LoginController {
 	
 	@RequestMapping(value="/")
 	public ModelAndView loginPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		LOG.debug("paramMap :: " + paramMap.toString());
-		return new ModelAndView("login/loginPage");	
+		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) request.getSession().getAttribute("USER_INFO");
+		if (userInfoMap != null) {
+			mav.setViewName("redirect:"+request.getContextPath()+"/dashboardPage.do");
+		}else {
+			//return new ModelAndView("login/loginPage");	
+			mav.setViewName("login/loginPage");
+		}
+		return mav;
 	}
 	
 	@RequestMapping(value = "/login/loginProc.do")

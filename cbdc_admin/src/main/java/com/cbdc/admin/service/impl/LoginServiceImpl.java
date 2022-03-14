@@ -39,4 +39,17 @@ public class LoginServiceImpl implements LoginService{
 	public int updateLastAccessInfo(HashMap<String, Object> paramMap) {
 		return loginDAO.updateLastAccessInfo(paramMap);
 	}
+	
+	@Override
+	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			resultMap =loginDAO.selectMenuInfo(paramMap);
+		} catch (Exception e) {
+			LOG.warn(e.getMessage(), e);
+		}
+
+		return resultMap;
+	}
 }

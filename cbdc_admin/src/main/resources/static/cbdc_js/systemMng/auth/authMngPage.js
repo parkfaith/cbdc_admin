@@ -49,9 +49,9 @@ function authSearch(no){
 				html +='<td class="auth">'
 				html +='<a href="#" onClick="goDetailPage(\''+item.AUTH_SEQ+'\')">'+item.AUTH_NM+'</a>'
 				html +='</td>'
-				//html +='<td class="code">'+item.AUTH_DESC+'</td>'
+				html +='<td class="code">'+item.AUTH_DESC+'</td>'
 				html +='<td class="cnt">'+item.AUTH_USERCNT+'</td>'
-				html +='<td class="cnt">'+item.AUTH_ORDERNO+'</td>'
+				//html +='<td class="cnt">'+item.AUTH_ORDERNO+'</td>'
 				html +='<td class="writer">'+item.REG_ID+'</td>'
 				html +='<td class="date">'+item.REG_DATE+'</td>'
     			html +='</tr>';
