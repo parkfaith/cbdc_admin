@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/res.css">
 
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/js/common.js"></script>
-<script src="/cbdc_js/cmm.js"></script>
-<script src="/cbdc_js/cbdc_optional.js"></script>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/cbdc_js/cmm.js"></script>
+<script type="text/javascript" src="/cbdc_js/cbdc_optional.js"></script>
 <!-- 메뉴관리 -->
 <link rel="stylesheet" type="text/css" href="/css/jsLists.css">
 <script type="text/javascript" src="/js/jsLists.js"></script>

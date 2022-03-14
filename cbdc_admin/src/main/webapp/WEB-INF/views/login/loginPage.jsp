@@ -19,6 +19,7 @@
     </script>
 </head>
 <body>
+	<div class="mainContent nav-login"></div>
     <div class="loginBox">
         <div class="loginTop">
             <span class="bokLogo"></span>

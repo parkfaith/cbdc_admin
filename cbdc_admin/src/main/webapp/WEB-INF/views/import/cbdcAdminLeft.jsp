@@ -9,9 +9,9 @@
             <li class="sub">
                 <a href="#">모니터링</a>
                 <ul class="subMenu">
-                    <li><a id="nav-mnt-node" href="mnNodeList.html">노드정보</a></li>
-                    <li><a id="nav-mnt-block" href="mnBlockList.html">블록정보</a></li>
-                    <li><a id="nav-mnt-tx" href="mnTxList.html">거래정보</a></li>
+                    <li><a id="nav-mnt-node" href="/monitoring/nodeInfoPage.do">노드정보</a></li>
+                    <li><a id="nav-mnt-block" href="/monitoring/blockInfoPage.do">블록정보</a></li>
+                    <li><a id="nav-mnt-tx" href="/monitoring/txInfoPage.do">거래정보</a></li>
                 </ul>
             </li>
             <li>

@@ -16,30 +16,47 @@
         <c:import url="/WEB-INF/views/import/cbdcAdminTop.jsp" />
         <div class="content">
             <c:import url="/WEB-INF/views/import/cbdcAdminLeft.jsp" />
-            <div class="mainContent nav-mng-auth">
+            <div class="mainContent nav-mnt-block">
                 <div class="innerCont">
                     <div class="contArea">
                         <div class="contTop">
-                            <h2>권한 목록</h2>
+                            <h2>블록정보 목록</h2>
                             <div class="breadcrum">
                                 <dl>
                                     <dd><a href="#">home</a></dd>
-                                    <dd>시스템</dd>
-                                    <dd>권한관리</dd>
-                                    <dd>권한 목록</dd>
+                                    <dd>모니터링</dd>
+                                    <dd>블록정보 목록</dd>
                                 </dl>
                             </div>
                         </div>
                         <div class="searchArea">
                             <div class="searchBox">
-                                <span>권한명</span>
-                                <label class="text btnBox">
-                                    <input type="text" placeholder="권한명 입력" id="searchWord">
-                                    <a href="#none" id="btn_Search" class="searchBtn">검색</a>
+                                <span>상태</span>
+                                <label class="sel">
+                                    <select>
+                                        <option value="">전체</option>
+                                        <option value="">Active</option>
+                                        <option value="">Inactive</option>
+                                    </select>
                                 </label>
                             </div>
-                            <div class="btnArea">
-                                <a href="#" class="button app" id="btnInput" name="btnInput">권한등록</a>
+                            <div class="searchBox">
+                                <span>유형</span>
+                                <label class="sel">
+                                    <select>
+                                        <option value="">전체</option>
+                                        <option value="">PN</option>
+                                        <option value="">CN</option>
+                                        <option value="">LN</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="searchBox">
+                                <span>검색어</span>
+                                <label class="text btnBox">
+                                    <input type="text" id="searchWord" name="searchWord" placeholder="노드이름 입력">
+                                    <a href="#none" class="searchBtn" id="btn_Search">검색</a>
+                                </label>
                             </div>
                         </div>
                         <div class="listBox">
@@ -64,30 +81,27 @@
                                         <col>
                                         <col>
                                         <col>
-                                        <col width="20%">
+                                        <col style="width:220px">
                                         <col>
-                                        <col>
-                                        <col>
-                                        <col>
+                                        <col style="width:220px">
                                     </colgroup>
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>권한코드</th>
-                                            <th>권한명</th>
-                                            <th>권한설명</th>
-                                            <th>권한사용자</th>
-                                            <!-- <th>정렬순서</th> -->
-                                            <th>수정자</th>
-                                            <th>수정일</th>
+                                            <th>상태</th>
+                                            <th>이름</th>
+                                            <th>생성일시</th>
+                                            <th>유형</th>
+                                            <th>최신불록생성시간</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="authList">
+                                    <tbody id="nodeInfoList">
                                         
                                     </tbody>
                                 </table>
                             </div>
                             <div class="paging" id="pagination"></div>
+                            
                         </div>
                     </div>
                 </div>
@@ -95,8 +109,6 @@
         </div>
     </div>
 </body>
-<script src="/cbdc_js/systemMng/auth/authMngPage.js"></script>
-<form name="authForm" id="authForm">
-	<input type="hidden" name="authSeq" id="authSeq">
-</form>
+<script src="/cbdc_js/monitoring/blockInfoPage.js"></script>
+
 </html>

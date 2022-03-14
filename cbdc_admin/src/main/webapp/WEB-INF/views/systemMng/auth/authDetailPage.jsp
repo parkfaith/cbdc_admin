@@ -72,13 +72,9 @@
                                     </tr>
                                     <tr>
                                         <th>권한명</th>
-                                        <td colspan="3">${detailMap.AUTH_NM }</td>
-                                    </tr>
-                                    <tr>
+                                        <td>${detailMap.AUTH_NM }</td>
                                         <th>권한사용자</th>
                                         <td id="checkAuthUserCnt">${detailMap.AUTH_USERCNT }</td>
-                                        <th>정렬순서</th>
-                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <th>권한설명</th>
