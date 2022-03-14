@@ -92,9 +92,10 @@
                         
                         <div class="viewBtnArea">
                             <a href="/systemMng/authMngPage.do" class="button list">목록</a>
-
+							<c:if test="${paramMap.btnCheck eq 'ACCEPT' }">
                             <a href="#" id="authUpdatePageBtn" class="button app">수정</a>
                             <a href="#" id="authDeleteBtn" class="button rej">삭제</a>
+                            </c:if>
                         </div>
                         
                         <div class="viewArea">
@@ -117,10 +118,12 @@
                                     <a href="#" class="searchBtn" id="btn_userSearch">검색</a>
                                 </label>
                             </div>
+                            <c:if test="${paramMap.btnCheck eq 'ACCEPT' }">
                             <div class="btnArea">
                                 <a href="#" class="button app" id="addAuth">추가</a>
                                 <a href="#" class="button rej" id="delAuth">삭제</a>
                             </div>
+                            </c:if>
                         </div>
 
                         <div class="listBox">

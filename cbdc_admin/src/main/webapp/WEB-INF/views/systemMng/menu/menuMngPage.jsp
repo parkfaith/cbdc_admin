@@ -163,7 +163,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <c:if test="${btnCheck eq 'ACCEPT' }">
                                     <div class="viewBtnArea" id="viewBtnArea">
                                         <a href="#none" class="button app" id="menuUpdateBtn">저장</a>
                                         <a href="#none" class="button rej" id="menuDeleteBtn">삭제</a>
@@ -171,6 +171,7 @@
                                     <div class="viewBtnArea" id="viewInsertBtnArea">
                                         <a href="#none" class="button app" id="menuInsertBtn">저장</a>
                                     </div>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

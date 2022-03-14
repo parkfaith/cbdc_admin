@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cbdc.admin.common.MenuAuthCheck;
 import com.cbdc.admin.common.PagingUtil;
 import com.cbdc.admin.service.SystemService;
 
@@ -62,6 +63,20 @@ public class SystemController {
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("searchSdate", searchSdate);
 		model.addAttribute("searchEdate", searchEdate);
+		
+		/**
+		 * 버튼 활성여부 체크
+		 */
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	HashMap<String,Object> menuInfoMap = (HashMap<String, Object>) session.getAttribute("MENU_AUTHINFO");
+    	
+    	String userAuth = userInfoMap.get("AUTH_CODE").toString();
+    	String menuAuth = menuInfoMap.get("MENU_AUTH").toString();
+    	
+    	String btnCheck = MenuAuthCheck.authResult(userAuth, menuAuth);
+    	model.addAttribute("btnCheck", btnCheck);
+    	/**********************************************************************/
 		
 		returnJsp = "systemMng/user/userMngPage";
 		return returnJsp;
@@ -231,11 +246,9 @@ public class SystemController {
 		
 		HashMap<String, Object> detailMap = new HashMap<>();
 		detailMap = systemService.selectUserInfo(paramMap);
-		if(detailMap != null) {
-			//권한상세 데이터 받기
-		}
 		
 		model.addAttribute("detailMap", detailMap);
+		model.addAttribute("paramMap", paramMap);
 		if(paramMap.get("detailType")==null||"".equals(paramMap.get("detailType").toString())) {
 			returnJsp = "systemMng/user/userDetailPage";
 		}else {
@@ -275,6 +288,19 @@ public class SystemController {
 		
 		String returnJsp = "";
 		model.addAttribute("searchWord", searchWord);
+		/**
+		 * 버튼 활성여부 체크
+		 */
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	HashMap<String,Object> menuInfoMap = (HashMap<String, Object>) session.getAttribute("MENU_AUTHINFO");
+    	
+    	String userAuth = userInfoMap.get("AUTH_CODE").toString();
+    	String menuAuth = menuInfoMap.get("MENU_AUTH").toString();
+    	
+    	String btnCheck = MenuAuthCheck.authResult(userAuth, menuAuth);
+    	model.addAttribute("btnCheck", btnCheck);
+    	/**********************************************************************/
 		returnJsp = "systemMng/auth/authMngPage";
 		return returnJsp;
     }
@@ -394,6 +420,7 @@ public class SystemController {
 		detailMap = systemService.selectAuthInfo(paramMap);
 		
 		model.addAttribute("detailMap", detailMap);
+		model.addAttribute("paramMap", paramMap);
 		if(paramMap.get("detailType")==null||"".equals(paramMap.get("detailType").toString())) {
 			returnJsp = "systemMng/auth/authDetailPage";
 		}else {
@@ -486,6 +513,20 @@ public class SystemController {
 	 */
 	@RequestMapping(value="/systemMng/menuMngPage.do")
     public String menuMngPage(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		
+		/**
+		 * 버튼 활성여부 체크
+		 */
+		HttpSession session = request.getSession();
+    	HashMap<String,Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
+    	HashMap<String,Object> menuInfoMap = (HashMap<String, Object>) session.getAttribute("MENU_AUTHINFO");
+    	
+    	String userAuth = userInfoMap.get("AUTH_CODE").toString();
+    	String menuAuth = menuInfoMap.get("MENU_AUTH").toString();
+    	
+    	String btnCheck = MenuAuthCheck.authResult(userAuth, menuAuth);
+    	model.addAttribute("btnCheck", btnCheck);
+    	/**********************************************************************/
 		
         return "systemMng/menu/menuMngPage";
     }

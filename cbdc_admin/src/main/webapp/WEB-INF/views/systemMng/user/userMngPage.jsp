@@ -54,8 +54,9 @@
                                 </label>
                             </div>
                             <div class="btnArea">
-                                <!-- <a href="mngUserReg.html" class="button app">사용자등록</a> -->
+                                <c:if test="${btnCheck eq 'ACCEPT' }">
                                 <a href="#" class="button app" id="btnInput" name="btnInput">사용자등록</a>
+                                </c:if>
                             </div>
                         </div>
                         <div class="listBox">
@@ -130,5 +131,6 @@
 <script src="/cbdc_js/systemMng/user/userMngPage.js"></script>
 <form name="userForm" id="userForm">
 	<input type="hidden" name="userSeq" id="userSeq">
+	<input type="hidden" name="btnCheck" id="btnCheck" value="${btnCheck }">
 </form>
 </html>

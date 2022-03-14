@@ -78,7 +78,7 @@
                         
                         <div class="viewBtnArea">
                             <a href="/systemMng/authMngPage.do" class="button list">목록</a>
-
+							
                             <a href="#" id="authUpdateBtn" class="button app">수정</a>
                             <a href="#" id="authCancelBtn" class="button rej">취소</a>
                         </div>

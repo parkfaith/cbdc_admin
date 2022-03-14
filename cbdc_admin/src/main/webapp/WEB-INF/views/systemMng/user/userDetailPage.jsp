@@ -74,9 +74,10 @@
                         
                         <div class="viewBtnArea">
                             <a href="userMngPage.do" class="button list">목록</a>
-
+							<c:if test="${paramMap.btnCheck eq 'ACCEPT' }">
                             <a href="#" id="userUpdatePageBtn" class="button app">수정</a>
                             <a href="#" id="userDeleteBtn" class="button rej">삭제</a>
+                            </c:if>
                         </div>
                         
                     </div>

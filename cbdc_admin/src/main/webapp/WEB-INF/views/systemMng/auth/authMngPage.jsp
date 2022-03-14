@@ -38,9 +38,11 @@
                                     <a href="#none" id="btn_Search" class="searchBtn">검색</a>
                                 </label>
                             </div>
+                            <c:if test="${btnCheck eq 'ACCEPT' }">
                             <div class="btnArea">
                                 <a href="#" class="button app" id="btnInput" name="btnInput">권한등록</a>
                             </div>
+                            </c:if>
                         </div>
                         <div class="listBox">
                             <div class="listTop">
@@ -98,5 +100,6 @@
 <script src="/cbdc_js/systemMng/auth/authMngPage.js"></script>
 <form name="authForm" id="authForm">
 	<input type="hidden" name="authSeq" id="authSeq">
+	<input type="hidden" name="btnCheck" id="btnCheck" value="${btnCheck }">
 </form>
 </html>

@@ -33,16 +33,15 @@ public class LoginIntercepter implements HandlerInterceptor{
 			
 		} else {
 			LOG.debug("[>] SESSION ==========>>>  OK");
-
 			String uri = request.getRequestURI();
 			
 			if(uri.contains(".do")) {
-				request.getSession().setAttribute("MENU_URL", uri);
 				HashMap<String,Object> activeParam = new HashMap<String,Object>();
+				HashMap<String,Object> menuAuthInfo = new HashMap<String,Object>();
 				activeParam.put("menuUrl", uri);
-				loginService.selectMenuInfo(activeParam);
+				menuAuthInfo = loginService.selectMenuInfo(activeParam);
+				request.getSession().setAttribute("MENU_AUTHINFO", menuAuthInfo);
 			}
-			
 		}
 		return true;
 		//return resultHandle;
