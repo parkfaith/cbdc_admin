@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cbdc.admin.service.SystemService;
@@ -15,6 +16,10 @@ public class SystemServiceImpl implements SystemService{
 
 	@Autowired
 	private SystemDAO systemDAO;
+	
+	@Autowired 
+	private PasswordEncoder passwordEncoder;
+	 
 	
 	@Override
 	public List<HashMap<String, Object>> selectUserList(HashMap<String, Object> paramMap){
@@ -42,7 +47,10 @@ public class SystemServiceImpl implements SystemService{
 		int  returnInt = 0;
 		
 		if("C".equals(saveType)) {//입력일 때
-			paramMap.put("userPwd","12345");// 초기에는 userid 와 동일
+			String passInit = paramMap.get("userId").toString();
+			String encPass = passwordEncoder.encode(passInit);
+			 
+			paramMap.put("userPwd",encPass);// 초기에는 userid 와 동일
 			paramMap.put("authCode","");
 			
 			returnInt = systemDAO.insertUserInfo(paramMap);

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cbdc.admin.service.LoginService;
@@ -20,7 +21,7 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public HashMap<String, Object> selectLoginInfo(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
+		
 		try {
 			resultMap =loginDAO.selectLoginInfo(paramMap);
 		} catch (Exception e) {
@@ -51,5 +52,10 @@ public class LoginServiceImpl implements LoginService{
 		}
 
 		return resultMap;
+	}
+	
+	@Override
+	public int updatePassword(HashMap<String, Object> paramMap) {
+		return loginDAO.updatePassword(paramMap);
 	}
 }

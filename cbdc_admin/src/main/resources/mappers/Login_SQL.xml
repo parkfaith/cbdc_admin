@@ -29,7 +29,6 @@
 			tb_adm_user
 		where
 			USER_ID =LOWER(#{userId})
-			and USER_PWD = #{userPwd}
 			and DEL_YN = 'N'
 		]]>
 	</select>
@@ -95,4 +94,18 @@
 			tam.MENU_URL =#{menuUrl}
 		]]>
 	</select>
+	
+	<update id="updatePassword" parameterType="java.util.HashMap">
+    	<![CDATA[
+	  		/* Login_SQL.xml updatePassword 
+	   		 * 비밀번호 변경
+	   		 */
+	   	]]>
+    	UPDATE tb_adm_user
+    	   SET USER_PWD = #{checkPass}
+			, FIRST_LOGIN = 'N'
+			, UPD_ID = #{logUserId}
+			, UPD_DATE = NOW()
+    	 WHERE USER_ID = #{logUserId}
+    </update>
 </mapper>
