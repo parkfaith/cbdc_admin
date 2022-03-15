@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cbdc.admin.service.MonitoringService;
+import com.cbdc.admin.service.SystemService;
+
 @Controller
 public class MonitoringController {
+	
+	@Autowired
+	MonitoringService monitoringService;
 
 	private static final Logger LOG = LoggerFactory.getLogger(MonitoringController.class);
 	/**
@@ -41,7 +48,7 @@ public class MonitoringController {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			
+			monitoringService.selectNodeList(paramMap);
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.warn(e.getMessage(), e);
