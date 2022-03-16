@@ -1,6 +1,7 @@
 package com.cbdc.admin.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cbdc.admin.service.MonitoringService;
-import com.cbdc.admin.service.SystemService;
 
 @Controller
 public class MonitoringController {
@@ -27,7 +27,7 @@ public class MonitoringController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MonitoringController.class);
 	/**
-	 * 모니터링 / 노드정보
+	 * 모니터링 > 노드정보
 	 * @param paramMap
 	 * @param request
 	 * @param response
@@ -43,21 +43,38 @@ public class MonitoringController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/monitoring/selectNodeList.json", method = RequestMethod.POST)
-	public Map<String, Object> selectUpperMenuList(@RequestParam HashMap<String, Object> paramMap,
+	public Map<String, Object> selectNodeList(@RequestParam HashMap<String, Object> paramMap,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<HashMap<String,Object>> nodeList = null;
 		try {
-			monitoringService.selectNodeList(paramMap);
+			nodeList = monitoringService.selectNodeList(paramMap);
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.warn(e.getMessage(), e);
 		}
 		
+		resultMap.put("nodeList", nodeList);
+		
 		return resultMap;
 	}
+	
+	@RequestMapping(value={"/monitoring/nodeDetailPage.do"})
+	public String nodeDetailPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String returnJsp = "";
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		//detailMap = systemService.selectAuthInfo(paramMap);
+		//model.addAttribute("detailMap", detailMap);
+		model.addAttribute("nodeId", paramMap.get("nodeId"));
+		
+		returnJsp = "monitoring/nodeDetailPage";
+		
+		return returnJsp;
+	}
 	/**
-	 * 모니터링/블록정보
+	 * 모니터링 > 블록정보
 	 * @param paramMap
 	 * @param request
 	 * @param response
@@ -70,6 +87,58 @@ public class MonitoringController {
 		
 		String returnJsp = "monitoring/blockInfoPage";
 		return returnJsp;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/monitoring/selectBlockList.json", method = RequestMethod.POST)
+	public Map<String, Object> selectBlockList(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<HashMap<String,Object>> blockList = null;
+		try {
+			blockList = monitoringService.selectBlockList(paramMap);
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+		}
+		
+		resultMap.put("blockList", blockList);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value={"/monitoring/blockDetailPage.do"})
+	public String blockDetailPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String returnJsp = "";
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		//detailMap = systemService.selectAuthInfo(paramMap);
+		//model.addAttribute("detailMap", detailMap);
+		model.addAttribute("blockId", paramMap.get("blockId"));
+		
+		returnJsp = "monitoring/blockDetailPage";
+		
+		return returnJsp;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/monitoring/selectBlockInfo.json", method = RequestMethod.POST)
+	public Map<String, Object> selectBlockInfo(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> blockInfoMap = new HashMap<String, Object>();
+		try {
+			blockInfoMap = monitoringService.selectBlockInfo(paramMap);
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+		}
+		
+		resultMap.put("blockInfoMap", blockInfoMap);
+		
+		return resultMap;
 	}
 	/**
 	 * 모니터링 / 거래정보

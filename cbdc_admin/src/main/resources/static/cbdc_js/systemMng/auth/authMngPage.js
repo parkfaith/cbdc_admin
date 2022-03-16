@@ -22,9 +22,9 @@ $(document).ready(function() {
 
 
 function authSearch(no){
-	var html = "";
-	var authTot = "0";
-	var param = new Object();
+	let html = "";
+	let authTot = "0";
+	let param = new Object();
 	param.currentPageNum = no;
 	param.viewPageCnt    = $('#pageView').val();
 

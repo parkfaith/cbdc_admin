@@ -8,7 +8,9 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+    $(document).ready(function() {
+    	nodeList();	
+    });
     </script>
 </head>
 <body>
@@ -110,5 +112,7 @@
     </div>
 </body>
 <script src="/cbdc_js/monitoring/nodeInfoPage.js"></script>
-
+<form name="nodeForm" id="nodeForm">
+	<input type="hidden" name="nodeId" id="nodeId">
+</form>
 </html>

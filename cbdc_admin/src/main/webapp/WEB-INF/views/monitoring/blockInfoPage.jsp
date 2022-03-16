@@ -8,7 +8,9 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+    $(document).ready(function() {
+    	blockList();	
+    }); 
     </script>
 </head>
 <body>
@@ -80,7 +82,7 @@
                                     <colgroup>
                                         <col>
                                         <col>
-                                        <col>
+                                        <col style="width:220px">
                                         <col style="width:220px">
                                         <col>
                                         <col style="width:220px">
@@ -88,14 +90,14 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>상태</th>
-                                            <th>이름</th>
-                                            <th>생성일시</th>
-                                            <th>유형</th>
-                                            <th>최신불록생성시간</th>
+                                            <th>Block Height</th>
+                                            <th>Creation Time</th>
+                                            <th>Creation Node</th>
+                                            <th>Tx. Count</th>
+                                            <th>Block Size</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="nodeInfoList">
+                                    <tbody id="blockInfoList">
                                         
                                     </tbody>
                                 </table>
@@ -110,5 +112,7 @@
     </div>
 </body>
 <script src="/cbdc_js/monitoring/blockInfoPage.js"></script>
-
+<form name="blockForm" id="blockForm">
+	<input type="hidden" name="blockId" id="blockId">
+</form>
 </html>
