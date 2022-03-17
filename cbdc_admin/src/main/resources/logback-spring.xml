@@ -13,6 +13,19 @@
 			<Pattern>%d %5p %m%n</Pattern>
 		</encoder>
 	</appender>
+	
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file>./application_log/application.log</file>
+      <encoder>
+          <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-5level [%logger{0}:%line] - %msg %n</pattern>
+      </encoder>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <fileNamePattern>application.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+          <maxHistory>30</maxHistory>
+          <totalSizeCap>5GB</totalSizeCap>
+      </rollingPolicy>
+  </appender>
+	
 
 	<!-- Logger -->
 	<logger name="com.cbdc" level="DEBUG" appender-ref="console" />
@@ -21,6 +34,6 @@
 
 	<!-- Root Logger -->
 	<root level="off">
-		<appender-ref ref="console" />
+		<appender-ref ref="file" />
 	</root>
 </configuration>

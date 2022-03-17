@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cbdc.admin.service.MonitoringService;
+import com.cbdc.admin.service.impl.monDao2.MonitorTxDAO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -29,6 +31,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 public class MonitoringServiceImpl implements MonitoringService{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(MonitoringServiceImpl.class);
+	
+	@Autowired
+	private MonitorDAO monitorDAO;
+	
+	@Autowired
+	private MonitorTxDAO monitorTxDAO;
+	
 
 	@Override
 	public List<HashMap<String, Object>> selectNodeList(HashMap<String, Object> paramMap) {
@@ -154,5 +163,15 @@ public class MonitoringServiceImpl implements MonitoringService{
 			LOG.warn(e.getMessage(), e);
 		}
 		return blockDataMap;
+	}
+	
+	@Override
+	public int selectTestSecond(HashMap<String, Object> paramMap) {
+		return monitorTxDAO.selectTestSecond(paramMap);
+	}
+	
+	@Override
+	public int selectTestFirst(HashMap<String, Object> paramMap) {
+		return monitorDAO.selectTestFirst(paramMap);
 	}
 }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.service.impl.LoginDAO">
+
+	<select id="selectLoginInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* Login_SQL.xml selectLoginInfo 
+	   		 * 로그인
+	   		 */
+	   	]]>
+	   	<![CDATA[
+		select
+			USER_SEQ
+			, USER_ID
+			, USER_PWD
+			, USER_NM
+			, AUTH_CODE
+			, REG_ID
+			, REG_DATE
+			, UPD_ID
+			, UPD_DATE
+			, DEL_YN
+			, FIRST_LOGIN
+			, ACCESS_IP 
+			, DATE_FORMAT(ACCESS_DATE ,'%Y-%m-%d %H:%i:%s') as ACCESS_DATE
+		from
+			tb_adm_user
+		where
+			USER_ID =LOWER(#{userId})
+			and DEL_YN = 'N'
+		]]>
+	</select>
+	
+	<insert id="insertLoginLog" parameterType="java.util.HashMap">
+    	<![CDATA[
+	    	/* Login_SQL.xml insertLoginLog */
+	    	INSERT INTO tb_login_log (
+	    		LOG_TY
+				, USER_ID
+				, USER_NM
+				, USER_IP
+				, REG_YMD
+				, REG_DT
+	    	) VALUES (
+	    		#{logTy}
+	    		, #{userId}
+	    		, (SELECT t.USER_NM FROM tb_adm_user t WHERE t.USER_ID =#{userId})
+	    		, #{userIp}
+	    		, DATE_FORMAT(NOW(),'%Y-%m-%d')
+	    		, NOW()
+	    	)
+		]]>    
+    </insert>
+    
+    <update id="updateLastAccessInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+	  		/* Login_SQL.xml updateLastAccessInfo 
+	   		 * 로그인
+	   		 */
+	   	]]>
+    	UPDATE tb_adm_user
+    	   SET ACCESS_IP = #{userIp}
+    	     , ACCESS_DATE = NOW()
+    	 WHERE USER_ID = #{userId}
+    </update>
+    
+    <select id="selectMenuInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* Login_SQL.xml selectMenuInfo 
+	   		 * 지금 접속한 메뉴의 정보(권한을 찾기 위해서)
+	   		 */
+	   	]]>
+	   	<![CDATA[
+		select
+			tam.MENU_SEQ
+			, tam.MENU_PCODE
+			, tam.MENU_NM
+			, tam.MENU_URL
+			, tam.MENU_DESC
+			, tam.MENU_AUTH
+			, tam.MENU_FUNCAUTH
+			, tam.MENU_USEYN
+			, tam.MENU_DEPTH
+			, tam.MENU_ORDER
+			, tam.REG_ID
+			, tam.REG_DATE
+			, tam.UPD_ID
+			, tam.UPD_DATE
+		from
+			TB_ADM_MENU tam
+		where
+			tam.MENU_URL =#{menuUrl}
+		]]>
+	</select>
+	
+	<update id="updatePassword" parameterType="java.util.HashMap">
+    	<![CDATA[
+	  		/* Login_SQL.xml updatePassword 
+	   		 * 비밀번호 변경
+	   		 */
+	   	]]>
+    	UPDATE tb_adm_user
+    	   SET USER_PWD = #{checkPass}
+			, FIRST_LOGIN = 'N'
+			, UPD_ID = #{logUserId}
+			, UPD_DATE = NOW()
+    	 WHERE USER_ID = #{logUserId}
+    </update>
+</mapper>

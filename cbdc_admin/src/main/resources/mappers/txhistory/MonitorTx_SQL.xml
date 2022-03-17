@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.service.impl.monDao2.MonitorTxDAO">
+	<select id="selectTestSecond" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        SELECT count(*)
+		  FROM tdts_envr_dtset_info
+    </select>
+</mapper>
