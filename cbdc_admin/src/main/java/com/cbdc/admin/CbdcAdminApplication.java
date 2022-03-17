@@ -20,11 +20,5 @@ public class CbdcAdminApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CbdcAdminApplication.class, args);
 	}
-	
-	@Bean
-    @ConfigurationProperties(value = "spring.datasource")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
-    }
 
 }

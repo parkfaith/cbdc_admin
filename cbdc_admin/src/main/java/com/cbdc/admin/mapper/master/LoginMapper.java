@@ -1,11 +1,11 @@
-package com.cbdc.admin.service.impl;
+package com.cbdc.admin.mapper.master;
 
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface LoginDAO {
+public interface LoginMapper {
 
 	public HashMap<String, Object> selectLoginInfo(HashMap<String, Object> paramMap);
 	public int insertLoginLog(HashMap<String, Object> paramMap);

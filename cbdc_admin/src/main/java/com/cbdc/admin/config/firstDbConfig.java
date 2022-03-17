@@ -18,7 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan(basePackages="com.cbdc.admin.service.impl",sqlSessionFactoryRef="db1SqlSessionFactory")
+@MapperScan(basePackages="com.cbdc.admin.mapper.master",sqlSessionFactoryRef="db1SqlSessionFactory")
 @EnableTransactionManagement
 public class firstDbConfig {
 	

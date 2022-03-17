@@ -21,8 +21,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.cbdc.admin.mapper.master.MonitorMapper;
+import com.cbdc.admin.mapper.second.MonitorTxMapper;
 import com.cbdc.admin.service.MonitoringService;
-import com.cbdc.admin.service.impl.monDao2.MonitorTxDAO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -33,11 +34,10 @@ public class MonitoringServiceImpl implements MonitoringService{
 	private static final Logger LOG = LoggerFactory.getLogger(MonitoringServiceImpl.class);
 	
 	@Autowired
-	private MonitorDAO monitorDAO;
+	private MonitorMapper monitorMapper;
 	
 	@Autowired
-	private MonitorTxDAO monitorTxDAO;
-	
+	private MonitorTxMapper monitorTxMapper;
 
 	@Override
 	public List<HashMap<String, Object>> selectNodeList(HashMap<String, Object> paramMap) {
@@ -167,11 +167,12 @@ public class MonitoringServiceImpl implements MonitoringService{
 	
 	@Override
 	public int selectTestSecond(HashMap<String, Object> paramMap) {
-		return monitorTxDAO.selectTestSecond(paramMap);
+		return monitorTxMapper.selectTestSecond(paramMap);
 	}
 	
 	@Override
 	public int selectTestFirst(HashMap<String, Object> paramMap) {
-		return monitorDAO.selectTestFirst(paramMap);
+		return monitorMapper.selectTestFirst(paramMap);
 	}
+	
 }

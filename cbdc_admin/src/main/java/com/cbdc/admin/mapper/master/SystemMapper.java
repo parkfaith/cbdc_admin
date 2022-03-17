@@ -1,4 +1,4 @@
-package com.cbdc.admin.service.impl;
+package com.cbdc.admin.mapper.master;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface SystemDAO {
+public interface SystemMapper {
 	/************ 사용자 관리 ***********************************/
 	public List<HashMap<String, Object>> selectUserList(HashMap<String, Object> paramMap);
 	public int selectUserTotalCount(HashMap<String, Object> paramMap);

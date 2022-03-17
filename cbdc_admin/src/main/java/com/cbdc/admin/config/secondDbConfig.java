@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan(basePackages="com.cbdc.admin.service.impl.monDao2",sqlSessionFactoryRef="db2SqlSessionFactory")
+@MapperScan(basePackages="com.cbdc.admin.mapper.second",sqlSessionFactoryRef="db2SqlSessionFactory")
 @EnableTransactionManagement
 public class secondDbConfig {
 	
@@ -32,7 +32,7 @@ public class secondDbConfig {
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("db2DataSource") DataSource db2DataSource, ApplicationContext applicationContext) throws Exception{
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(db2DataSource);
-		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/txhistory/*.xml"));
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/admin/*.xml"));
 		return sessionFactory.getObject();
 	}
 	

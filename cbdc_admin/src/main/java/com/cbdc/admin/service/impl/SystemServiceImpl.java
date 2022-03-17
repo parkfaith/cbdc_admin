@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.cbdc.admin.mapper.master.SystemMapper;
 import com.cbdc.admin.service.SystemService;
 
 @Service
 public class SystemServiceImpl implements SystemService{
 
 	@Autowired
-	private SystemDAO systemDAO;
+	private SystemMapper systemMapper;
 	
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
@@ -24,22 +25,22 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public List<HashMap<String, Object>> selectUserList(HashMap<String, Object> paramMap){
-		return systemDAO.selectUserList(paramMap);
+		return systemMapper.selectUserList(paramMap);
 	}
 	
 	@Override
 	public int selectUserTotalCount(HashMap<String, Object> paramMap) {
-		return systemDAO.selectUserTotalCount(paramMap);
+		return systemMapper.selectUserTotalCount(paramMap);
 	}
 	
 	@Override
 	public int checkUserId(HashMap<String, Object> paramMap) {
-		return systemDAO.checkUserId(paramMap);
+		return systemMapper.checkUserId(paramMap);
 	}
 	
 	@Override
 	public int selectUserSeq(HashMap<String, Object> paramMap) {
-		return systemDAO.selectUserSeq(paramMap);
+		return systemMapper.selectUserSeq(paramMap);
 	}
 	
 	@Override
@@ -54,11 +55,11 @@ public class SystemServiceImpl implements SystemService{
 			paramMap.put("userPwd",encPass);// 초기에는 userid 와 동일
 			paramMap.put("authCode","");
 			
-			returnInt = systemDAO.insertUserInfo(paramMap);
+			returnInt = systemMapper.insertUserInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			returnInt = systemDAO.updateUserInfo(paramMap);
+			returnInt = systemMapper.updateUserInfo(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			returnInt = systemDAO.deleteUserInfo(paramMap);
+			returnInt = systemMapper.deleteUserInfo(paramMap);
 		}else {
 			returnInt = 500;
 		}
@@ -69,7 +70,7 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public HashMap<String, Object> selectUserInfo(HashMap<String, Object> paramMap) {
 		HashMap<String, Object> returnMap = new HashMap<String, Object>();
-		HashMap<String, Object> userInfoMap = systemDAO.selectUserInfo(paramMap);
+		HashMap<String, Object> userInfoMap = systemMapper.selectUserInfo(paramMap);
 		/*
 		List<HashMap<String, Object>> authNameList = new ArrayList<HashMap<String, Object>>();
 		//권한 이름
@@ -83,7 +84,7 @@ public class SystemServiceImpl implements SystemService{
 				if(authCodeArr[i]==null||"".equals(authCodeArr[i])) {
 					
 				}else {
-					HashMap<String, Object> authInfo = systemDAO.selectAuthInfoFromCode(paramMap);
+					HashMap<String, Object> authInfo = systemMapper.selectAuthInfoFromCode(paramMap);
 					authInfo.put("authCode", authInfo.get("AUTH_CODE"));
 					authInfo.put("authName", authInfo.get("AUTH_NM"));
 					authNameList.add(authInfo);
@@ -93,7 +94,7 @@ public class SystemServiceImpl implements SystemService{
 		*/
 		returnMap.put("userInfoMap", userInfoMap);
 		//returnMap.put("authNameList", authNameList);
-		//return systemDAO.selectUserInfo(paramMap);
+		//return systemMapper.selectUserInfo(paramMap);
 		return returnMap;
 	}
 	
@@ -111,7 +112,7 @@ public class SystemServiceImpl implements SystemService{
 					
 				}else {
 					paramMap.put("authCode", authCodeArr[i]);
-					HashMap<String, Object> authInfo = systemDAO.selectAuthInfoFromCode(paramMap);
+					HashMap<String, Object> authInfo = systemMapper.selectAuthInfoFromCode(paramMap);
 					authInfo.put("authCode", authInfo.get("AUTH_CODE"));
 					authInfo.put("authName", authInfo.get("AUTH_NM"));
 					authNameList.add(authInfo);
@@ -123,22 +124,22 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public List<HashMap<String, Object>> selectAuthList(HashMap<String, Object> paramMap){
-		return systemDAO.selectAuthList(paramMap);
+		return systemMapper.selectAuthList(paramMap);
 	}
 	
 	@Override
 	public List<HashMap<String, Object>> selectAuthListNoPaging(HashMap<String, Object> paramMap){
-		return systemDAO.selectAuthListNoPaging(paramMap);
+		return systemMapper.selectAuthListNoPaging(paramMap);
 	}
 	
 	@Override
 	public int selectAuthTotalCount(HashMap<String, Object> paramMap) {
-		return systemDAO.selectAuthTotalCount(paramMap);
+		return systemMapper.selectAuthTotalCount(paramMap);
 	}
 	
 	@Override
 	public int selectAuthSeq(HashMap<String, Object> paramMap) {
-		return systemDAO.selectAuthSeq(paramMap);
+		return systemMapper.selectAuthSeq(paramMap);
 	}
 	
 	@Override
@@ -159,11 +160,11 @@ public class SystemServiceImpl implements SystemService{
                     .toString();
 		    paramMap.put("authCode", generatedString);
 		    
-			returnInt = systemDAO.insertAuthInfo(paramMap);
+			returnInt = systemMapper.insertAuthInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			returnInt = systemDAO.updateAuthInfo(paramMap);
+			returnInt = systemMapper.updateAuthInfo(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			returnInt = systemDAO.deleteAuthInfo(paramMap);
+			returnInt = systemMapper.deleteAuthInfo(paramMap);
 		}else {
 			returnInt = 500;
 		}
@@ -173,17 +174,17 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public HashMap<String, Object> selectAuthInfo(HashMap<String, Object> paramMap) {
-		return systemDAO.selectAuthInfo(paramMap);
+		return systemMapper.selectAuthInfo(paramMap);
 	}
 	
 	@Override
 	public List<HashMap<String, Object>> selectAuthUserList(HashMap<String, Object> paramMap){
-		return systemDAO.selectAuthUserList(paramMap);
+		return systemMapper.selectAuthUserList(paramMap);
 	}
 	
 	@Override
 	public int selectAuthUserTotalCount(HashMap<String, Object> paramMap) {
-		return systemDAO.selectAuthUserTotalCount(paramMap);
+		return systemMapper.selectAuthUserTotalCount(paramMap);
 	}
 	
 	@Override
@@ -200,9 +201,9 @@ public class SystemServiceImpl implements SystemService{
 				authUserVal = authUserArr[i];
 				paramMap.put("authUserVal", authUserVal);
 				if("C".equals(saveType)) {//입력일 때
-					systemDAO.insertUserAuthInfo(paramMap);
+					systemMapper.insertUserAuthInfo(paramMap);
 				}else if("D".equals(saveType)) {//입력일 때
-					systemDAO.deleteUserAuthInfo(paramMap);
+					systemMapper.deleteUserAuthInfo(paramMap);
 				}else {
 					returnInt = 500;
 				}
@@ -212,9 +213,9 @@ public class SystemServiceImpl implements SystemService{
 			paramMap.put("authUserVal", authUserVal);
 			//insert code
 			if("C".equals(saveType)) {//입력일 때
-				systemDAO.insertUserAuthInfo(paramMap);
+				systemMapper.insertUserAuthInfo(paramMap);
 			}else if("D".equals(saveType)) {//입력일 때
-				systemDAO.deleteUserAuthInfo(paramMap);
+				systemMapper.deleteUserAuthInfo(paramMap);
 			}else {
 				returnInt = 500;
 			}
@@ -225,12 +226,12 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public List<HashMap<String, Object>> selectMenuList(HashMap<String, Object> paramMap){
-		return systemDAO.selectMenuList(paramMap);
+		return systemMapper.selectMenuList(paramMap);
 	}
 	
 	@Override
 	public HashMap<String, Object> selectMenuInfo(HashMap<String, Object> paramMap) {
-		return systemDAO.selectMenuInfo(paramMap);
+		return systemMapper.selectMenuInfo(paramMap);
 	}
 	
 	@Override
@@ -239,7 +240,7 @@ public class SystemServiceImpl implements SystemService{
 		int  returnInt = 0;
 		
 		if("C".equals(saveType)) {//입력일 때
-			returnInt = systemDAO.insertMenuInfo(paramMap);
+			returnInt = systemMapper.insertMenuInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
 			
 			// **** 메뉴 순서 변경 추가
@@ -269,10 +270,10 @@ public class SystemServiceImpl implements SystemService{
 			 paramMap.put("depth3", depth3);
 			 // **** 메뉴 순서 변경 추가 끝
 			 
-			returnInt = systemDAO.updateMenuInfo(paramMap) 
-					+ systemDAO.updateMenuOrder(paramMap) + systemDAO.updateMenuPOrder(paramMap);
+			returnInt = systemMapper.updateMenuInfo(paramMap) 
+					+ systemMapper.updateMenuOrder(paramMap) + systemMapper.updateMenuPOrder(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
-			returnInt = systemDAO.deleteMenuInfo(paramMap);
+			returnInt = systemMapper.deleteMenuInfo(paramMap);
 		}else {
 			returnInt = 500;
 		}
@@ -282,7 +283,7 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Override
 	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap){
-		return systemDAO.selectUpperMenuList(paramMap);
+		return systemMapper.selectUpperMenuList(paramMap);
 	}
 	
 }
