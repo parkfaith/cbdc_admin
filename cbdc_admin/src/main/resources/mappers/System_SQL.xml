@@ -486,7 +486,7 @@
 	   		 */
 	   	]]>
 	   	<![CDATA[
-		select
+		 /*select
 			tam.MENU_SEQ
 			, tam.MENU_PCODE
 			, tam.MENU_NM
@@ -523,7 +523,43 @@
 			where
 				@id is not null) fnc
 		join TB_ADM_MENU tam on
-			fnc.id = tam.MENU_SEQ
+			fnc.id = tam.MENU_SEQ */
+			
+		SELECT 
+        	A.MENU_SEQ
+			, A.MENU_PCODE
+			, A.MENU_NM
+			, A.MENU_URL
+			, A.MENU_DESC
+			, A.MENU_AUTH
+			, A.MENU_FUNCAUTH
+			, A.MENU_USEYN
+			, A.MENU_DEPTH
+			, A.MENU_ORDER
+			, A.REG_ID
+			, A.REG_DATE
+			, A.UPD_ID
+			, A.UPD_DATE,
+			(SELECT CASE WHEN COUNT(1) > 0 THEN 'FOLDER' ELSE 'FILE' END
+				FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_PCODE = A.MENU_SEQ
+			) AS NODE_TYPE_NM,
+			(SELECT COUNT(1) FROM   tb_adm_menu TSM2
+				WHERE  TSM2.MENU_PCODE = A.MENU_SEQ
+			) AS DOWNMENU_CNT,
+        CASE A.MENU_DEPTH 
+			WHEN 1 THEN C.MENU_PDEPTH
+			WHEN 2 THEN CONCAT(B.MENU_PDEPTH,' > ', A.MENU_ORDER)  
+			WHEN 3 THEN CONCAT(C.MENU_PDEPTH, ' > ', B.MENU_ORDER,' > ', A.MENU_ORDER)
+				END as navigator
+		FROM tb_adm_menu A LEFT JOIN tb_adm_menu B
+			ON A.MENU_PDEPTH = B.MENU_DEPTH
+			AND A.MENU_PORDER = B.MENU_ORDER
+		 LEFT JOIN tb_adm_menu C 
+			ON A.MENU_USEYN = C.MENU_USEYN
+		WHERE A.MENU_SEQ > 0
+		 	AND C.MENU_SEQ = ( SELECT MENU_SEQ FROM tb_adm_menu where MENU_SEQ > 0 and MENU_DEPTH = 1)
+		 ORDER BY navigator;
 		]]>
 	</select>
 	
@@ -574,7 +610,9 @@
 				MENU_FUNCAUTH,
 				MENU_USEYN,
 				MENU_DEPTH,
+				MENU_PDEPTH,
 				MENU_ORDER,
+				MENU_PORDER,
 				REG_ID,
 				REG_DATE,
 				UPD_ID,
@@ -588,7 +626,17 @@
 				 , #{menuFuncauth}
 				 , 'Y'
 				 , #{menuDepth}
-				 , #{menuOrder}
+				 , #{menuPdepth}
+				 , (SELECT IF(MAX(tam.MENU_ORDER) IS NULL,1,MAX(tam.MENU_ORDER)+1)
+				 	FROM (
+				 		SELECT MENU_ORDER
+				 		FROM tb_adm_menu
+				 		WHERE MENU_PCODE = #{menuPcode}) tam)
+				 , (SELECT tam.MENU_ORDER
+				 	FROM (
+				 		SELECT MENU_ORDER
+				 		FROM tb_adm_menu
+				 		WHERE MENU_SEQ = #{menuPcode}) tam)
 				 , #{logUserId}
 				 , NOW()
 				 , #{logUserId}
@@ -649,4 +697,33 @@
 			MENU_ORDER
 	</select>
 
+	<update id="updateMenuOrder" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml updateMenuOrder 
+	   		 * 시스템관리 > 메뉴관리 > 메뉴순서 변경 (2depth)
+	   		 */
+	   	]]>
+		<foreach item="item" collection="depth2" separator=";">
+			UPDATE tb_adm_menu
+			SET MENU_ORDER = #{item.menuOrder}
+				, UPD_DATE = now()
+				, UPD_ID = #{logUserId}
+			WHERE MENU_SEQ = #{item.menuSeq}
+		</foreach>
+	</update>
+	
+	<update id="updateMenuPOrder" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* System_SQL.xml updateMenuOrder 
+	   		 * 시스템관리 > 메뉴관리 > 메뉴순서 변경2 (2depth의 하위메뉴)
+	   		 */
+	   	]]>
+		<foreach item="item" collection="depth3" separator=";">
+			UPDATE tb_adm_menu
+			SET MENU_PORDER = #{item.menuPorder}
+				, UPD_DATE = NOW()
+				, UPD_ID = #{logUserId}
+			WHERE MENU_PCODE = #{item.menuFolder}
+		</foreach>
+	</update>
 </mapper>

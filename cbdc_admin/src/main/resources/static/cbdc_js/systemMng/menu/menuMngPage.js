@@ -95,13 +95,19 @@ function menuList(){
 	cmm.callAjax('/systemMng/selectMenuList.json', 'POST', param, function(data){
 		
 		$.each(data.selectMenuList, function(i,item) {
-			if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FILE'){
+
+			/*if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FILE'){
 				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a></li>';
 			}else if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FOLDER'){
 				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2">'+item.MENU_NM+'</a>';
 				downMenuCnt = item.DOWUNMENU_CNT
+			}*/
+			if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FILE'){
+				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2" data-seq="' + item.MENU_SEQ + '">'+item.MENU_NM+'</a></li>';
+			}else if(item.MENU_DEPTH == 2&&item.NODE_TYPE_NM == 'FOLDER'){
+				menuhtml +='<li id="id_li_'+item.MENU_SEQ+'"><a href="#none" onClick="javascript:selectMenu('+item.MENU_SEQ+')" class="menuItem depth2" data-seq="' + item.MENU_SEQ + '" data-dmc="' + item.DOWNMENU_CNT + '">'+item.MENU_NM+'</a>';
+				downMenuCnt = item.DOWNMENU_CNT;
 			}
-			
 			if(item.MENU_DEPTH == 3){
 				if(depthCheck ==0 ){
 					menuhtml +='<ul>';
@@ -115,7 +121,7 @@ function menuList(){
 			}
 		});
 		menuhtml +='</ul></li>';
-		console.log(menuhtml);
+		//console.log(menuhtml);
 		$('#menuTreeList').empty().html(menuhtml);
 		JSLists.applyToList('menuTreeList', 'ALL', 'openAll');
 		
@@ -143,7 +149,7 @@ function selectMenu(menu_seq){
 		$('#updDate').text(menuInfo.UPD_DATE);
 		
 		if(menuInfo.MENU_DEPTH ==2 ){
-			$("#upperMenu").empty().append('<option value="1">CBDC Admin</option>');
+			$("#upperMenu").empty().append('<option value="1" data-depth="'+ (parseInt(menuInfo.MENU_DEPTH)-1) +'">CBDC Admin</option>');
 			$('#listBtn').show();
 		}else if(menuInfo.MENU_DEPTH ==3 ){
 			$('#listBtn').hide();
@@ -153,7 +159,7 @@ function selectMenu(menu_seq){
 				if(item.MENU_SEQ==menuInfo.MENU_PCODE){
 					selectedMenu = "selected";
 				}
-				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
+				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'">'+item.MENU_NM+'</option>');	
 			});	
 		}else{
 			$("#upperMenu").empty().append('<option value="1">CBDC Admin</option>');	
@@ -222,7 +228,9 @@ function menuUpdate(){
 	    });	
 	    obj.menuAuth = 	select_obj;
 	}
-	 
+	
+	updateMenuOrder(obj);
+	
 	cmm.callAjax('/systemMng/cudMenuInfoAjax.json', 'POST', obj, function(data){
 		var resultCode = data.resultCode;
 		
@@ -242,7 +250,7 @@ function menuDelete(){
 	var obj = new Object();
 	obj.menuSeq =$.trim($('#menuSeq').val());
 	obj.saveType = "D";
-	 
+	
 	cmm.callAjax('/systemMng/cudMenuInfoAjax.json', 'POST', obj, function(data){
 		var resultCode = data.resultCode;
 		
@@ -286,7 +294,7 @@ function InsertFormUpperMenu(){
 			if(item.MENU_SEQ==insertUpperMenu){
 				selectedMenu = "selected";
 			}
-			$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
+			$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+' data-depth="'+ item.MENU_DEPTH + '">'+item.MENU_NM+'</option>');	
 		});	
 	});
 }
@@ -298,6 +306,19 @@ function menuInsert(){
 	obj.menuUrl =$.trim($('#menuUrl').val());
 	obj.menuDesc =$.trim($('#menuDesc').val());
 	obj.menuPcode =$.trim($('#upperMenu').val());
+	
+	obj.menuFuncauth ='';
+	obj.saveType = "C";
+	
+	/////////
+	var depth =$('#upperMenu').find("option:selected").data("depth");
+		obj.menuDepth = parseInt(depth)+1; //추가되는 메뉴의 depth
+		obj.menuPdepth = parseInt(depth); //추가되는 메뉴의 상위depth
+	console.log("insert depth ? : " + obj.menuDepth);
+	console.log("insert pdepth ? : " + obj.menuPdepth);
+	//////////
+	
+	
 	let select_obj = '';
 	let chkListAuthLen = $("input[name='chkListAuth']:checked").length;
 	if(chkListAuthLen < 1){
@@ -312,11 +333,6 @@ function menuInsert(){
 	    });	
 	    obj.menuAuth = 	select_obj;
 	}
-	obj.menuFuncauth ='';
-	obj.menuDepth ='3';
-	obj.menuOrder ='0';
-	
-	obj.saveType = "C";
 	
 	cmm.callAjax('/systemMng/cudMenuInfoAjax.json', 'POST', obj, function(data){
 		var resultCode = data.resultCode;
@@ -330,4 +346,27 @@ function menuInsert(){
 			return false;
 		}
 	});
+}
+
+function updateMenuOrder(obj){
+	// 메뉴 순서 변경 추가
+	var seq = [];
+	var order = [];
+	var folder = [];
+	var porder = [];
+	
+	var depth2 = document.querySelectorAll('.depth2'); 
+	depth2.forEach(function(item,i) { 
+			seq.push(item.dataset.seq);
+			order.push(i+1); //메뉴순서(order)
+			if(!item.dataset.dmc == 0) { //dmc : downmenuCnt
+				folder.push(item.dataset.seq);
+				porder.push(i+1); //order번호
+			}
+	});
+	obj.seq = seq.toString(); //메뉴 전체 seq
+	obj.order= order.toString(); //메뉴 순서(order) arr
+	obj.folder = folder.toString(); //downmenu 가지고 있는 seq (folder)
+	obj.porder = porder.toString(); //downmenu 가지고 있는 seq의 order
+	// 메뉴 순서 변경 추가 끝
 }

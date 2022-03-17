@@ -48,4 +48,6 @@ public interface SystemDAO {
 	public int insertMenuInfo(HashMap<String, Object> paramMap);
 	public int updateMenuInfo(HashMap<String, Object> paramMap);
 	public int deleteMenuInfo(HashMap<String, Object> paramMap);
+	public int updateMenuOrder(HashMap<String, Object> paramMap);
+	public int updateMenuPOrder(HashMap<String, Object> paramMap);
 }

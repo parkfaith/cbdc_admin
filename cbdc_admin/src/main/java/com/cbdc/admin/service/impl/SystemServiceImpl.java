@@ -3,6 +3,7 @@ package com.cbdc.admin.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -240,7 +241,36 @@ public class SystemServiceImpl implements SystemService{
 		if("C".equals(saveType)) {//입력일 때
 			returnInt = systemDAO.insertMenuInfo(paramMap);
 		}else if("U".equals(saveType)) {//수정일 때
-			returnInt = systemDAO.updateMenuInfo(paramMap);
+			
+			// **** 메뉴 순서 변경 추가
+			String[] seq = ((String) paramMap.get("seq")).split(",");
+			String[] order = ((String) paramMap.get("order")).split(",");
+			String[] folder = ((String) paramMap.get("folder")).split(",");
+			String[] porder = ((String) paramMap.get("porder")).split(",");
+			
+			List<Map<String,Object>> depth2 = new ArrayList<>();
+			List<Map<String,Object>> depth3 = new ArrayList<>();
+			
+			 for(int i = 0; i < seq.length; i++) { //DEPTH 2 순서 변경
+				Map<String,Object> menuListMap = new HashMap<String, Object>();
+				menuListMap.put("menuSeq", seq[i]);
+				menuListMap.put("menuOrder", order [i]);
+				
+				depth2.add(menuListMap);
+			 }
+			 for(int i=0; i<folder.length; i++) { //DEPTH 3 PORDER 변경
+				Map<String,Object> pOrderListMap = new HashMap<String, Object>();
+				pOrderListMap.put("menuFolder", folder[i]);
+				pOrderListMap.put("menuPorder", porder[i]);
+				
+				depth3.add(pOrderListMap);
+			 } 
+			 paramMap.put("depth2", depth2);
+			 paramMap.put("depth3", depth3);
+			 // **** 메뉴 순서 변경 추가 끝
+			 
+			returnInt = systemDAO.updateMenuInfo(paramMap) 
+					+ systemDAO.updateMenuOrder(paramMap) + systemDAO.updateMenuPOrder(paramMap);
 		}else if("D".equals(saveType)) {//삭제 일 때
 			returnInt = systemDAO.deleteMenuInfo(paramMap);
 		}else {
@@ -254,4 +284,5 @@ public class SystemServiceImpl implements SystemService{
 	public List<HashMap<String, Object>> selectUpperMenuList(HashMap<String, Object> paramMap){
 		return systemDAO.selectUpperMenuList(paramMap);
 	}
+	
 }
