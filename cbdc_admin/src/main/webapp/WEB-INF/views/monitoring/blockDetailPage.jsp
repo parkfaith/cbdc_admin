@@ -61,22 +61,23 @@
                             <div class="tblList">
                                 <table>
                                     <colgroup>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
+                                        <col>
                                         <col style="width:220px">
-                                        <col>
-                                        <col>
-                                        <col>
-                                        <col>
-                                        <col>
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>Creation Time</th>
-                                            <th>Transaction ID</th>
+                                            <th>Transaction Hash</th>
                                             <th>Tx Receipt Status</th>
                                             <th>From Address</th>
                                             <th>To Address</th>
                                             <th>Value</th>
                                             <th>Nonce</th>
+                                            <th>Timestamp</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,34 +85,18 @@
                                             <td colspan="8" class="empty">결과가 없습니다.</td>
                                         </tr> -->
                                         <tr>
+                                             <td>
+                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
                                             <td class="date">2021-00-00 00:00:00</td>
-                                            <td>TransactionIDTransactionIDTransactionIDTransactionID</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="paging">
-                                <a href="#" class="fst">처음</a>
-                                <a href="#" class="prv">이전</a>
-
-                                <a href="#">1</a>
-                                <a href="#" class="current">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a href="#">7</a>
-                                <a href="#">8</a>
-                                <a href="#">9</a>
-                                <a href="#">10</a>
-
-                                <a href="#" class="nxt">다음</a>
-                                <a href="#" class="end">맨끝</a>
                             </div>
                         </div>
                         <div class="viewBtnArea">

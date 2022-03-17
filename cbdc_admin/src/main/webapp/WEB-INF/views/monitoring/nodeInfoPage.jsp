@@ -43,21 +43,31 @@
                                 </label>
                             </div>
                             <div class="searchBox">
+                                <span>기관</span>
+                                <label class="sel">
+                                    <select>
+                                        <option value="">전체</option>
+                                        <option value="">한국은행</option>
+                                        <option value="">참가기관</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="searchBox">
                                 <span>유형</span>
                                 <label class="sel">
                                     <select>
                                         <option value="">전체</option>
-                                        <option value="">PN</option>
                                         <option value="">CN</option>
-                                        <option value="">LN</option>
+                                        <option value="">PN</option>
+                                        <option value="">EN</option>
                                     </select>
                                 </label>
                             </div>
                             <div class="searchBox">
                                 <span>검색어</span>
                                 <label class="text btnBox">
-                                    <input type="text" id="searchWord" name="searchWord" placeholder="노드이름 입력">
-                                    <a href="#none" class="searchBtn" id="btn_Search">검색</a>
+                                    <input type="text" placeholder="노드이름 입력">
+                                    <a href="#" class="searchBtn">검색</a>
                                 </label>
                             </div>
                         </div>
@@ -83,8 +93,9 @@
                                         <col>
                                         <col>
                                         <col>
-                                        <col style="width:220px">
                                         <col>
+                                        <col>
+                                        <col style="width:220px">
                                         <col style="width:220px">
                                     </colgroup>
                                     <thead>
@@ -92,9 +103,10 @@
                                             <th>No.</th>
                                             <th>상태</th>
                                             <th>이름</th>
-                                            <th>생성일시</th>
+                                            <th>기관</th>
                                             <th>유형</th>
-                                            <th>최신불록생성시간</th>
+                                            <th>Block Height</th>
+                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody id="nodeInfoList">

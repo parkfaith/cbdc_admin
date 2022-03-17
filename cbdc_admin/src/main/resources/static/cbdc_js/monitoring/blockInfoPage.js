@@ -16,17 +16,15 @@ function blockList(){
 				blockCnt = info.length;
 				$.each(info, function(i,item) {
 					blockListHtml +='<tr>';
-					blockListHtml +='<td class="num">000</td>';
 					blockListHtml +='<td><a href="#none" onClick="goDetailPage(\''+item.blockHeightH+'\')">'+item.blockHeightD+'</a></td>';
 					blockListHtml +='<td class="date">2021-00-00 00:00:00</td>';
-					blockListHtml +='<td>'+item.creationNode+'</td>';
 					blockListHtml +='<td>1</td>';
 					blockListHtml +='<td>0</td>';
 					blockListHtml += '</tr>';
 				});
 			}
 		}else{
-			blockListHtml += '<tr><td colspan="6">검색결과가 없습니다</td></tr>';
+			blockListHtml += '<tr><td colspan="4">검색결과가 없습니다</td></tr>';
 		}
 		
 		$('#blockInfoList').empty().html(blockListHtml);
@@ -74,7 +72,7 @@ function blockDetail(selectBlockId){
 			blockDetailHtml += '	<tr>';
 			blockDetailHtml += '		<th>Creation Node</th>';
 			blockDetailHtml += '		<td>5</td>';
-			blockDetailHtml += '		<th>Creation Time</th>';
+			blockDetailHtml += '		<th>Timestamp</th>';
 			blockDetailHtml += '		<td>2021-00-00 00:00:00</td>';
 			blockDetailHtml += '	</tr>';
 			blockDetailHtml += '</table>';

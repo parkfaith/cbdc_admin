@@ -31,31 +31,30 @@
                         </div>
                         <div class="searchArea">
                             <div class="searchBox">
-                                <span>상태</span>
-                                <label class="sel">
-                                    <select>
-                                        <option value="">전체</option>
-                                        <option value="">Active</option>
-                                        <option value="">Inactive</option>
-                                    </select>
+                                <span>Transaction Time</span>
+                                <label class="date">
+                                    <input type="text" class="datepickerSingle" placeholder="YY-MM-DD H:m:s">
+                                    ~
+                                    <input type="text" class="datepickerSingle" placeholder="YY-MM-DD H:m:s">
                                 </label>
                             </div>
                             <div class="searchBox">
-                                <span>유형</span>
-                                <label class="sel">
-                                    <select>
-                                        <option value="">전체</option>
-                                        <option value="">PN</option>
-                                        <option value="">CN</option>
-                                        <option value="">LN</option>
-                                    </select>
+                                <span>From Address</span>
+                                <label class="text">
+                                    <input type="text" placeholder="From Address 입력">
                                 </label>
                             </div>
                             <div class="searchBox">
-                                <span>검색어</span>
-                                <label class="text btnBox">
-                                    <input type="text" id="searchWord" name="searchWord" placeholder="노드이름 입력">
-                                    <a href="#none" class="searchBtn" id="btn_Search">검색</a>
+                                <span>To Address</span>
+                                <label class="text">
+                                    <input type="text" placeholder="To Address 입력">
+                                </label>
+                            </div>
+                            <div class="searchBox">
+                                <span>Transaction Hash</span>
+                                <label class="text btnBox ">
+                                    <input type="text" placeholder="Transaction ID 입력">
+                                    <a href="#" class="searchBtn">검색</a>
                                 </label>
                             </div>
                         </div>
@@ -81,21 +80,23 @@
                                         <col>
                                         <col>
                                         <col>
-                                        <col style="width:220px">
                                         <col>
-                                        <col style="width:220px">
+                                        <col>
+                                        <col>
+                                        <col style="width:320px">
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>상태</th>
-                                            <th>이름</th>
-                                            <th>생성일시</th>
-                                            <th>유형</th>
-                                            <th>최신불록생성시간</th>
+                                            <th>Transaction Hash</th>
+                                            <th>Tx Receipt Status</th>
+                                            <th>From Address</th>
+                                            <th>To Address</th>
+                                            <th>Value</th>
+                                            <th>Nonce</th>
+                                            <th>Timestamp</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="nodeInfoList">
+                                    <tbody id="txInfoList">
                                         
                                     </tbody>
                                 </table>

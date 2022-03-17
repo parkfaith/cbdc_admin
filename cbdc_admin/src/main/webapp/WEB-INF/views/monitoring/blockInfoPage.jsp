@@ -33,42 +33,33 @@
                         </div>
                         <div class="searchArea">
                             <div class="searchBox">
-                                <span>상태</span>
-                                <label class="sel">
-                                    <select>
-                                        <option value="">전체</option>
-                                        <option value="">Active</option>
-                                        <option value="">Inactive</option>
-                                    </select>
+                                <span>Block Height</span>
+                                <label class="date">
+                                    <input type="text">
+                                    ~
+                                    <input type="text">
                                 </label>
                             </div>
                             <div class="searchBox">
-                                <span>유형</span>
-                                <label class="sel">
-                                    <select>
-                                        <option value="">전체</option>
-                                        <option value="">PN</option>
-                                        <option value="">CN</option>
-                                        <option value="">LN</option>
-                                    </select>
+                                <span>Timestamp</span>
+                                <label class="date">
+                                    <input type="text" class="datepickerSingle" placeholder="YY-MM-DD H:m:s">
+                                    ~
+                                    <input type="text" class="datepickerSingle" placeholder="YY-MM-DD H:m:s">
                                 </label>
                             </div>
                             <div class="searchBox">
-                                <span>검색어</span>
                                 <label class="text btnBox">
-                                    <input type="text" id="searchWord" name="searchWord" placeholder="노드이름 입력">
-                                    <a href="#none" class="searchBtn" id="btn_Search">검색</a>
+                                    <a href="#" class="searchBtn">검색</a>
                                 </label>
                             </div>
                         </div>
                         <div class="listBox">
                             <div class="listTop">
-                                <div class="listCnt">
-                                    전체 <span id="totalCnt">00</span> 건
-                                </div>
                                 <div class="listCntSel">
+                                    <span>최근</span>
                                     <label>
-                                        <select id="pageView" name="pageView">
+                                        <select>
                                             <option value="10">10개씩</option>
                                             <option value="20">20개씩</option>
                                             <option value="30">30개씩</option>
@@ -81,18 +72,14 @@
                                 <table>
                                     <colgroup>
                                         <col>
-                                        <col>
                                         <col style="width:220px">
                                         <col style="width:220px">
-                                        <col>
                                         <col style="width:220px">
                                     </colgroup>
                                     <thead>
-                                        <tr>
-                                            <th>No.</th>
+                                       <tr>
                                             <th>Block Height</th>
-                                            <th>Creation Time</th>
-                                            <th>Creation Node</th>
+                                            <th>Timestamp</th>
                                             <th>Tx. Count</th>
                                             <th>Block Size</th>
                                         </tr>
@@ -102,8 +89,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="paging" id="pagination"></div>
-                            
                         </div>
                     </div>
                 </div>
