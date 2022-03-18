@@ -83,7 +83,7 @@ public class LoginController {
 			}else{
 				String passData = paramMap.get("userPwd").toString(); 
 				String dbPassData =userInfoMap.get("USER_PWD").toString();
-				System.out.println("asfdas========"+passwordEncoder.encode("test3"));
+				
 				if(passwordEncoder.matches(passData, dbPassData)) {
 					//로그인 성공
 					request.getSession().setAttribute("USER_INFO", userInfoMap);
@@ -166,12 +166,22 @@ public class LoginController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/passwordChange.do")
+	public ModelAndView firstPasswordChangeForm(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		LOG.debug("passwordChange paramMap :: " + paramMap.toString());
+		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) request.getSession().getAttribute("USER_INFO");
+		
+		mav.setViewName("login/firstPasswordChange");
+		return mav;
+	}
+	
+	@RequestMapping(value="/passwordChangeForm.do")
 	public ModelAndView passwordChangeForm(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		LOG.debug("passwordChange paramMap :: " + paramMap.toString());
 		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) request.getSession().getAttribute("USER_INFO");
 		
-		mav.setViewName("login/passwordChange");
+		mav.setViewName("login/passwordChangeForm");
 		return mav;
 	}
 	

@@ -26,11 +26,11 @@ $(document).ready(function() {
 		let nodeNm =$.trim($('#nodeNm').val());
 		let nodeOrg =$.trim($('#nodeOrg').val());
 		let nodeType =$.trim($('#nodeType').val());
-		let nodePubKey =$.trim($('#nodePubKey').val());
+		let nodePubkey =$.trim($('#nodePubkey').val());
 		let nodeIp =$.trim($('#nodeIp').val());
 		let nodePort1 =$.trim($('#nodePort1').val());
 		let nodePort2 =$.trim($('#nodePort2').val());
-		let nodePrometPort =$.trim($('#nodePrometPort').val());
+		let nodePrometport =$.trim($('#nodePrometport').val());
 		let checkCnt = 0;
 		
 		if(nodeNm==""){
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			checkCnt = 1;
 		}
 		
-		if(nodePubKey==""){
+		if(nodePubkey==""){
 			checkCnt = 1;
 		}
 		
@@ -61,7 +61,7 @@ $(document).ready(function() {
 			checkCnt = 1;
 		}
 		
-		if(nodePrometPort==""){
+		if(nodePrometport==""){
 			checkCnt = 1;
 		}
 		
@@ -121,7 +121,7 @@ function nodeUpdate(){
 	obj.nodeIp =$.trim($('#nodeIp').val());
 	obj.nodePort1 =$.trim($('#nodePort1').val());
 	obj.nodePort2 =$.trim($('#nodePort2').val());
-	obj.nodePrometPort =$.trim($('#nodePrometPort').val());
+	obj.nodePrometport =$.trim($('#nodePrometport').val());
 	obj.saveType = "U";
 	 
 	cmm.callAjax('/nodeMng/cudNodeInfoAjax.json', 'POST', obj, function(data){

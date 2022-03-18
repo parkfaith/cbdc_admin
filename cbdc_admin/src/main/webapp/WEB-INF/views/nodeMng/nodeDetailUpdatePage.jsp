@@ -93,7 +93,7 @@
                                         <th class="req">Prometheus Port</th>
                                         <td>
                                         	<label class="w40per">
-                                                <input type="text" class="w100per" placeholder="Prometheus Port" id="nodePrometPort" name="nodePrometPort" value="${detailMap.nodeInfoMap.NODE_PROMETPORT }">
+                                                <input type="text" class="w100per" placeholder="Prometheus Port" id="nodePrometport" name="nodePrometport" value="${detailMap.nodeInfoMap.NODE_PROMETPORT }">
                                             </label>
                                         </td>
                                     </tr>

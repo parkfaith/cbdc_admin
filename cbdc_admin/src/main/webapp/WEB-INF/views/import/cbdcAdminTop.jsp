@@ -13,7 +13,7 @@
         </a>
         <div class="userList">
             <ul>
-                <li><a href="mngUserPassword.html">비밀번호 변경</a></li>
+                <li><a href="/passwordChangeForm.do">비밀번호 변경</a></li>
                 <li><a href="/login/loginOutProc.do">로그아웃</a></li>
             </ul>
         </div>
