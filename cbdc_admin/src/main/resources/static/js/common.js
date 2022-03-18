@@ -57,6 +57,44 @@ $(window).ready(function() {
         return false;
     });
 
+    //datepickerSingle
+    if( $(".datepickerSingle").length > 0 ){
+        $('.datepickerSingle').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoApply:true,
+            autoUpdateInput: false,
+            timePicker : true,
+            timePicker24Hour : true,
+            timePickerSeconds : true,
+            minYear: 2021,
+            buttonClasses : "button dateform",
+            applyButtonClasses : "button dateform app",
+            maxYear: parseInt(moment().format('YYYY'),10) + 5,
+            locale: {
+                monthNames:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                daysOfWeek:['월','화','수','목','금','토','일'],
+                format:'YYYY-MM-DD HH:mm:ss',
+                cancelLabel : '닫기',
+                applyLabel : '선택',
+            }
+        });
+        $('.datepickerSingle').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm:ss'));
+        });
+    }
+
+    if( $(".hashCode").length > 0 ){
+        $(".hashCode").each(function(){
+            $(this).attr('title',$(this).html());
+            $(this).html(convertHash($(this).html()));
+        });
+    }
+    $(document).on('click','.hashCode',function(){
+        $(this).html( $(this).attr('title') );
+        $(this).attr('class','hashCodeView');
+    });
+
 });
 
 $(window).resize(function() {
@@ -66,6 +104,12 @@ $(window).resize(function() {
 $(window).scroll(function(){
     
 });
+
+function convertHash(a){
+    var hash = a;
+    hash = hash.substring(0,5) + '...' + hash.substring((hash.length - 5), hash.length);
+    return hash;
+}
 
 //숫자콤마
 function comma(str) {

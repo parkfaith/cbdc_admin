@@ -47,16 +47,6 @@
                                 <div class="listCnt">
                                     전체 <span>00</span> 건
                                 </div>
-                                <div class="listCntSel">
-                                    <label>
-                                        <select>
-                                            <option value="10">10개씩</option>
-                                            <option value="20">20개씩</option>
-                                            <option value="30">30개씩</option>
-                                            <option value="50">50개씩</option>
-                                        </select>
-                                    </label>
-                                </div>
                             </div>
                             <div class="tblList">
                                 <table>

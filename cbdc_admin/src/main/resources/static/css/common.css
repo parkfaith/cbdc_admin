@@ -77,6 +77,12 @@ textarea {
 	font-family:NotoSans;
 }
 
+::placeholder {
+	color: #222;
+	font-size: 12px;
+	opacity: 0.3;
+}
+
 address, em{
 	font-style:normal
 }
@@ -539,6 +545,8 @@ p.info{
 .pdt-80{ padding-top:80px !important }
 .pdt-90{ padding-top:90px !important }
 .pdt-100{ padding-top:100px !important }
+
+.pdb-0{ padding-bottom:0px !important }
 
 /* loading */
 .loading{

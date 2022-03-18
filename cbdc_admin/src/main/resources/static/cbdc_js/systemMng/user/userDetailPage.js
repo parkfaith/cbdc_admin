@@ -106,3 +106,13 @@ function selectAuthName(authCodeStr){
 		}
 	});
 }
+
+function goDetailPage(userSeq){
+	var form = document.userForm;
+        	
+	form.userSeq.value = userSeq;
+	
+	form.action = "/systemMng/userDetailPage.do";
+	form.method = "post";
+	form.submit();
+}

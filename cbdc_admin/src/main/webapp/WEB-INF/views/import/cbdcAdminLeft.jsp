@@ -15,7 +15,7 @@
                 </ul>
             </li>
             <li>
-                <a id="nav-node-mng" href="nodeMngList.html">노드관리</a>
+                <a id="nav-node-mng" href="/nodeMng/nodeMngPage.do">노드관리</a>
             </li>
             <li>
                 <a id="nav-smt-cnrt" href="smartContMngList.html">스마트계약관리</a>

@@ -27,23 +27,13 @@
                     <div class="contArea">
                         <div class="mainDashboard" style="opacity:0;">
                             <div class="searchArea">
-                                <div class="searchBox">
-                                    <span>체인 선택</span>
-                                    <label class="sel">
-                                        <select>
-                                            <option value="">CBDC 블록체인 A</option>
-                                            <option value="">CBDC 블록체인 B</option>
-                                            <option value="">CBDC 블록체인 C</option>
-                                        </select>
-                                    </label>
-                                </div>
-                                <div class="btnArea">
+                                <h1>Dashborad</h1>
+                                <div class="btnArea pdt-0">
                                     <a href="#" onclick="location.reload(); return false;" class="button dashReset">reset</a>
                                 </div>
                             </div>
-                            <div class="dashboardArea">
+                            <div class="dashboardArea pdb-0">
                                 <div class="dashboardAreaTop">
-                                    <span>전체 <b>3</b> 개</span>
                                     <div class="statusList">
                                         <ul>
                                             <li class="nodeSts nor">NOMARL</li>
@@ -51,8 +41,14 @@
                                             <li class="nodeSts fat">FATAL</li>
                                             <li class="nodeTpye cn">CN</li>
                                             <li class="nodeTpye pn">PN</li>
+                                            <li class="nodeTpye en">EN</li>
                                         </ul>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="dashboardArea">
+                                <div class="dashboardAreaTop">
+                                    <span>한국은행 <b>(3)</b></span>
                                 </div>
                                 <div class="nodeStausList">
                                     <ul>
@@ -67,31 +63,7 @@
                                         <li class="nodeStausListBox war">
                                             <div class="nodeStausBox">
                                                 <div class="nodeInfo">
-                                                    <p class="nodeTpye cn"> BOK NODE #1</p>
-                                                    <p class="blHeight">0,000,000</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="nodeStausListBox nor">
-                                            <div class="nodeStausBox">
-                                                <div class="nodeInfo">
-                                                    <p class="nodeTpye cn"> BOK NODE #1</p>
-                                                    <p class="blHeight">0,000,000</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="nodeStausListBox nor">
-                                            <div class="nodeStausBox">
-                                                <div class="nodeInfo">
-                                                    <p class="nodeTpye cn"> BOK NODE #1</p>
-                                                    <p class="blHeight">0,000,000</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="nodeStausListBox nor">
-                                            <div class="nodeStausBox">
-                                                <div class="nodeInfo">
-                                                    <p class="nodeTpye cn"> BOK NODE #1</p>
+                                                    <p class="nodeTpye pn"> BOK NODE #1</p>
                                                     <p class="blHeight">0,000,000</p>
                                                 </div>
                                             </div>
@@ -100,6 +72,31 @@
                                             <div class="nodeStausBox">
                                                 <div class="nodeInfo">
                                                     <p class="nodeTpye pn"> BOK NODE #1 </p>
+                                                    <p class="blHeight">0,000,000</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="dashboardArea">
+                                <div class="dashboardAreaTop">
+                                    <span>A은행 <b>(2)</b></span>
+                                </div>
+                                <div class="nodeStausList">
+                                    <ul>
+                                        <li class="nodeStausListBox nor">
+                                            <div class="nodeStausBox">
+                                                <div class="nodeInfo">
+                                                    <p class="nodeTpye cn"> A Bank NODE #1</p>
+                                                    <p class="blHeight">0,000,000</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nodeStausListBox war">
+                                            <div class="nodeStausBox">
+                                                <div class="nodeInfo">
+                                                    <p class="nodeTpye pn"> A Bank NODE #1</p>
                                                     <p class="blHeight">0,000,000</p>
                                                 </div>
                                             </div>
@@ -121,9 +118,13 @@
                                 </div>
                                 <div class="searchArea">
                                     <div class="searchBox">
-                                        <span>노드이름 검색</span>
+                                        <span>노드선택</span>
                                         <label class="text btnBox">
-                                            <input type="text" placeholder="노드이름 입력">
+                                            <select>
+                                                <option value="">Node #1</option>
+                                                <option value="">Node #2</option>
+                                                <option value="">Node #3</option>
+                                            </select>
                                             <a href="#" class="searchBtn">검색</a>
                                         </label>
                                     </div>
@@ -137,56 +138,84 @@
                                             <span>CPU 사용량</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>Memory 사용량</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>Disk 사용량</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>Disk I/O</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>네트워크 I/O</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>네트워크 사용량</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>Session</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>SQL 사용량</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Dead Lock</span>
+                                            <div class="setValue">
+                                                <p class="viewValue">00.00</p>
+                                                <p class="unit">(단위)</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>TPS</span>
+                                            <div class="setValue">
+                                                <p class="viewValue">00.00</p>
+                                                <p class="unit">(단위)</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Thread</span>
+                                            <div class="setValue">
+                                                <p class="viewValue">00.00</p>
+                                                <p class="unit">(단위)</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Memory(Heap Usage, Heap Max)</span>
+                                            <div class="setValue">
+                                                <p class="viewValue">00.00</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -199,59 +228,52 @@
                                 <div class="sysMonitoring chain">
                                     <ul>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>초당 트랜잭션 처리 건수</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>초당 블록 생성 건수</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>노드별 연결 개수</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>블록 높이</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>평균 트랜잭션 크기</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>평균 블록 크기</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                         <li>
-                                            <span>CPU 사용량</span>
+                                            <span>평균 트랜잭션 처리시간</span>
                                             <div class="setValue">
                                                 <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <span>CPU 사용량</span>
-                                            <div class="setValue">
-                                                <p class="viewValue">00.00</p>
-                                                <p class="unit">%</p>
+                                                <p class="unit">(단위)</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -266,8 +288,8 @@
             </div>
         </div>
     </div>
-</body>
-<style>
+
+    <style>
         .u-legend{
             width:130px;
         }
@@ -277,9 +299,6 @@
             color:#fff !important;
         }
     </style>
-
-    <script src="../js/uPlot/uPlot.iife.js"></script>
-    <script src="../js/uPlot/lib/placement.min.js"></script>
 
     <script>
         var getW = $(".txGrpBox").width();
@@ -402,4 +421,6 @@
 
 
     </script>
+
+</body>
 </html>

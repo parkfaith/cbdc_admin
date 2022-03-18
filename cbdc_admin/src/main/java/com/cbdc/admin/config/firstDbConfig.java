@@ -35,7 +35,7 @@ public class firstDbConfig {
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("db1DataSource") DataSource db1DataSource, ApplicationContext applicationContext) throws Exception{
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(db1DataSource);
-		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/admin/*.xml"));
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/*.xml"));
 		return sessionFactory.getObject();
 	}
 	

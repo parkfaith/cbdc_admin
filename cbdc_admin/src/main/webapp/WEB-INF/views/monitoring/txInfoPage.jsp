@@ -8,7 +8,9 @@
 <head>
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
-       
+    $(document).ready(function() {
+    	txList();	
+    }); 
     </script>
 </head>
 <body>
@@ -97,11 +99,60 @@
                                         </tr>
                                     </thead>
                                     <tbody id="txInfoList">
-                                        
+                                        <tr>
+                                            <td>
+                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td><span class="hashCode">0x44d827f98430784c8e3401748d8ba92c43df4546</span></td>
+                                            <td><span class="hashCode">0x44d827f98430784c8e3401748d8ba92c43df4546</span></td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="paging" id="pagination"></div>
+                            <div class="paging" id="pagination">
+                            	<a href="#" class="fst">처음</a>
+                                <a href="#" class="prv">이전</a>
+
+                                <a href="#">1</a>
+                                <a href="#" class="current">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+
+                                <a href="#" class="nxt">다음</a>
+                                <a href="#" class="end">맨끝</a>
+                            </div>
                             
                         </div>
                     </div>
@@ -111,5 +162,7 @@
     </div>
 </body>
 <script src="/cbdc_js/monitoring/txInfoPage.js"></script>
-
+<form name="txForm" id="txForm">
+	<input type="hidden" name="txId" id="txId">
+</form>
 </html>

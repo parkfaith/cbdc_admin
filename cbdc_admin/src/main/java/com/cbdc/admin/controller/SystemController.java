@@ -136,7 +136,7 @@ public class SystemController {
 			totalCnt = systemService.selectUserTotalCount(paramMap);
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			LOG.warn(e.getMessage(), e);
 		}
 
 		PagingUtil paging = new PagingUtil(10, viewPageCnt, Long.valueOf(String.valueOf(totalCnt)));

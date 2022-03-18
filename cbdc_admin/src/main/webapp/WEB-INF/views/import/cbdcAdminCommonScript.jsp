@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>한국은행 | CBDC 관리시스템</title>
 
+<link rel="stylesheet" href="../js/uPlot/uPlot.min.css">
+
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/res.css">
@@ -22,3 +24,10 @@
 
 <link rel="stylesheet" type="text/css" href="/css/jquery.treeview.css">
 <script type="text/javascript" src="/js/jquery.treeview.js"></script>
+
+<link rel="stylesheet" href="/css/daterangepicker.css">
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
+
+ <script src="/js/uPlot/uPlot.iife.js"></script>
+ <script src="/js/uPlot/lib/placement.min.js"></script>

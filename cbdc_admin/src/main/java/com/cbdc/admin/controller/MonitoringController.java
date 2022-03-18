@@ -158,4 +158,53 @@ public class MonitoringController {
 		String returnJsp = "monitoring/txInfoPage";
 		return returnJsp;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/monitoring/selectTxList.json", method = RequestMethod.POST)
+	public Map<String, Object> selectTxList(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<HashMap<String,Object>> txList = null;
+		try {
+			//blockList = monitoringService.selectBlockList(paramMap);
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+		}
+		
+		resultMap.put("txList", txList);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value={"/monitoring/txInfoDetailPage.do"})
+	public String txInfoDetailPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
+		String returnJsp = "";
+		
+		HashMap<String, Object> detailMap = new HashMap<>();
+		
+		returnJsp = "monitoring/txInfoDetailPage";
+		
+		return returnJsp;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/monitoring/selectTxInfo.json", method = RequestMethod.POST)
+	public Map<String, Object> selectTxInfo(@RequestParam HashMap<String, Object> paramMap,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> txInfoMap = new HashMap<String, Object>();
+		try {
+			//blockInfoMap = monitoringService.selectBlockInfo(paramMap);
+		} catch (Exception e) {
+			// TODO: handle exception
+			LOG.warn(e.getMessage(), e);
+		}
+		
+		resultMap.put("txInfoMap", txInfoMap);
+		
+		return resultMap;
+	}
 }

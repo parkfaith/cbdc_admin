@@ -32,7 +32,7 @@ public class secondDbConfig {
 	public SqlSessionFactory sqlSessionFactory(@Qualifier("db2DataSource") DataSource db2DataSource, ApplicationContext applicationContext) throws Exception{
 		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(db2DataSource);
-		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/admin/*.xml"));
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mappers/*.xml"));
 		return sessionFactory.getObject();
 	}
 	

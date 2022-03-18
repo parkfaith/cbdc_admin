@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.mapper.master.NodeMapper">
+
+	<select id="selectNodeList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* Node_SQL.xml selectNodeList 
+	   		 * 노드관리 > 노드 목록 
+	   		 */
+	   	]]>
+		SELECT 
+			@i:=@i+1 AS RN
+			, t.NODE_SEQ
+			, t.NODE_NM
+			, t.NODE_ORG
+			, t.NODE_TYPE
+			, t.NODE_IP
+			, t.NODE_PORT1
+			, t.NODE_PORT2
+			, t.NODE_PUBKEY
+			, t.NODE_PROMETPORT
+			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			, DATE_FORMAT(t.REG_DATE,'%Y-%m-%d') as REG_DATE
+			, t.UPD_ID
+			, DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d') as UPD_DATE
+		  FROM tb_adm_node t,
+		  (SELECT @i:=#{paginCnt}) AS foo
+		 WHERE DEL_YN = 'N'
+		 <if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "SEARCHNM"'>
+		 		AND (t.NODE_NM LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "SEARCHIP"'>
+		 		AND t.NODE_IP LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "SEARCHPORT1"'>
+		 		AND t.NODE_PORT1 LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "SEARCHPORT2"'>
+		 		AND t.NODE_PORT1 LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+		 <if test='searchOrg != null and searchOrg !=""'>
+		 	AND t.NODE_ORG = #{searchOrg}
+		 </if>
+		 <if test='searchNodeType != null and searchNodeType !=""'>
+		 	AND t.NODE_TYPE = #{searchNodeType}
+		 </if>
+		 <![CDATA[
+			ORDER BY t.NODE_SEQ DESC
+			   LIMIT #{viewPageCnt} OFFSET #{paginCnt}   
+		]]>
+	</select>
+	
+	<select id="selectNodeTotalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+	  		/* Node_SQL.xml selectNodeTotalCount 
+	   		 * 노드관리 > 노드 총 갯수 
+	   		 */
+	   	]]>
+	   	SELECT
+			COUNT(NODE_SEQ) AS NODE_TOTCNT
+		FROM
+			tb_adm_node t
+		WHERE DEL_YN = 'N'
+		<if test='searchWord != null and searchWord !=""'>
+		 	<if test='searchType eq "SEARCHNM"'>
+		 		AND (t.NODE_NM LIKE CONCAT('%',#{searchWord},'%'))
+		 	</if>
+		 	<if test='searchType eq "SEARCHIP"'>
+		 		AND t.NODE_IP LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "SEARCHPORT1"'>
+		 		AND t.NODE_PORT1 LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 	<if test='searchType eq "SEARCHPORT2"'>
+		 		AND t.NODE_PORT1 LIKE CONCAT('%',#{searchWord},'%')
+		 	</if>
+		 </if>
+		 <if test='searchOrg != null and searchOrg !=""'>
+		 	AND t.NODE_ORG = #{searchOrg}
+		 </if>
+		 <if test='searchType != null and searchType !=""'>
+		 	AND t.NODE_TYPE = #{searchType}
+		 </if>
+	</select>
+	
+	<insert id="insertNodeInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* Node_SQL.xml insertNodeInfo 
+     		 * 노드 추가 
+     		 */
+     	]]>
+     	
+     	<![CDATA[
+	    	INSERT INTO tb_adm_node (
+	    		NODE_NM
+				, NODE_ORG
+				, NODE_TYPE
+				, NODE_IP
+				, NODE_PORT1
+				, NODE_PORT2
+				, NODE_PUBKEY
+				, NODE_PROMETPORT
+				, REG_ID
+				, REG_DATE
+				, UPD_ID
+				, UPD_DATE
+	    	) VALUES (
+				#{nodeNm}
+				, #{nodeOrg}
+				, #{nodeType}
+				, #{nodeIp}
+				, #{nodePort1}
+				, #{nodePort2}
+				, #{nodePubKey}
+				, #{nodePrometPort}
+				, #{logUserId}
+				, NOW()
+				, #{logUserId}
+				, NOW()
+	    	)
+    	]]>
+    </insert>
+    
+    <select id="selectNodeInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    <![CDATA[
+  		/* Node_SQL.xml selectNodeInfo 
+   		 * 노드 상세 조회 
+   		 */
+   	]]>
+        SELECT 
+			t.NODE_SEQ
+			, t.NODE_NM
+			, t.NODE_ORG
+			, t.NODE_TYPE
+			, t.NODE_IP
+			, t.NODE_PORT1
+			, t.NODE_PORT2
+			, t.NODE_PUBKEY
+			, t.NODE_PROMETPORT
+			, t.REG_ID
+			, t.UPD_ID
+			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.REG_ID ) as REG_NM
+			, DATE_FORMAT(t.REG_DATE,'%Y-%m-%d %H:%i:%s') as REG_DATE
+			, ( SELECT dui.USER_NM FROM TB_ADM_USER dui WHERE dui.USER_ID = t.UPD_ID ) as UPD_NM
+			, DATE_FORMAT(t.UPD_DATE,'%Y-%m-%d %H:%i:%s') as UPD_DATE
+		  FROM tb_adm_node t
+		  WHERE t.NODE_SEQ = #{nodeSeq}	 
+    </select>
+    
+    <update id="deleteNodeInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* Node_SQL.xml deleteNodeInfo 
+     		 * 노드 삭제
+     		 */
+     	]]>
+	    	UPDATE tb_adm_node SET
+	    	DEL_YN = 'Y'
+	    	, UPD_ID = #{logUserId}
+	    	, UPD_DATE = NOW()
+	    	WHERE NODE_SEQ = #{nodeSeq}	 
+    </update>
+    
+    <update id="updateNodeInfo" parameterType="java.util.HashMap">
+    	<![CDATA[
+    		/* Node_SQL.xml updateNodeInfo 
+     		 * 노드 수정
+     		 */
+     	]]>
+	    	UPDATE tb_adm_node SET
+	    	NODE_NM = #{nodeNm}
+			, NODE_ORG = #{nodeOrg}
+			, NODE_TYPE = #{nodeType}
+			, NODE_IP = #{nodeIp}
+			, NODE_PORT1 = #{nodePort1}
+			, NODE_PORT2 = #{nodePort2}
+			, NODE_PUBKEY = #{nodePubkey}
+			, NODE_PROMETPORT = #{nodePrometport}
+	    	, UPD_ID = #{logUserId}
+	    	, UPD_DATE = NOW()
+	    	WHERE NODE_SEQ = #{nodeSeq}	 
+    </update>
+    
+    
+</mapper>
