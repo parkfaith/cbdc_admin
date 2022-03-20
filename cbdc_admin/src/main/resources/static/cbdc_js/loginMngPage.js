@@ -85,6 +85,7 @@ function passwordUpdate(){
 }
 
  function chkPW(pw){
+	/*
     var num = pw.search(/[0-9]/g);
     var eng = pw.search(/[a-z]/ig);
     var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -98,7 +99,8 @@ function passwordUpdate(){
     }else {
         return true;
     }
-
+	*/
+	return true;
 }
 
  
