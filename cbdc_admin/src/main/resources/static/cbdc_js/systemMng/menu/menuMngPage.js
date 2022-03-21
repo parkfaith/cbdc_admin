@@ -15,6 +15,7 @@ $(document).ready(function() {
      $("#menuUpdateBtn").click(function(){
 		let checkMenuNm = $.trim($('#menuNm').val());
 		let checkMenuUrl = $.trim($('#menuUrl').val());
+		let checkMenuId = $.trim($('#menuId').val());
 		let checkMenuDesc = $.trim($('#menuDesc').val());
 		let checkMenuCnt = 0;
 		
