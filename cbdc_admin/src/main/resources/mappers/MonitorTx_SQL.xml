@@ -6,4 +6,27 @@
 	<select id="selectTestSecond" parameterType="java.util.HashMap" resultType="java.lang.Integer">
         SELECT count(*) FROM tdts_envr_dtset_info
     </select>
+    
+    <select id="selectTxHistoryList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    	SELECT
+    		TRANSACTIONID
+    		, BLACKHASH
+    		, FROMADDR
+    		, TOADDR
+    		, VALUE
+    		, TRANSACTIONHASH
+    		, STATUS
+    		, TIMESTAMP
+    		, TYPEINT
+    		, GAS
+    		, GASPRICE
+    		, GASUSED
+    		, CONTRACTADDRESS
+    		, FEEPAYER
+    		, FEERATIO
+    		, TXERROR
+    		, INTERNAL
+    	FROM
+    	TRANSACTIONS
+    </select>
 </mapper>

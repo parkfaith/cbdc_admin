@@ -565,6 +565,7 @@
 	    		MENU_PCODE,
 				MENU_NM,
 				MENU_URL,
+				MENU_ID,
 				MENU_DESC,
 				MENU_AUTH,
 				MENU_FUNCAUTH,
@@ -581,6 +582,7 @@
 	    		 #{menuPcode}
 	    		 , #{menuNm}
 	    		 , #{menuUrl}
+	    		 , #{menuId}
 				 , #{menuDesc}
 				 , #{menuAuth}
 				 , #{menuFuncauth}
@@ -614,6 +616,7 @@
 	    	UPDATE tb_adm_menu SET
 	    	MENU_NM = #{menuNm}
 	    	, MENU_URL = #{menuUrl}
+	    	, MENU_ID = #{menuId}
 	    	, MENU_DESC = #{menuDesc}
 	    	, MENU_AUTH = #{menuAuth}
 	    	, MENU_PCODE = #{menuUppercode}
@@ -643,6 +646,7 @@
 			, A.MENU_PCODE
 			, A.MENU_NM
 			, A.MENU_URL
+			, A.MENU_ID
 			, A.MENU_DESC
 			, A.MENU_AUTH
 			, A.MENU_FUNCAUTH

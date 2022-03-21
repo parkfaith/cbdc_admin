@@ -26,6 +26,10 @@ $(document).ready(function() {
 			checkMenuCnt = 1;
 		}
 		
+		if(checkMenuId==''||checkMenuId==null){
+			checkMenuCnt = 1;
+		}
+		
 		if(checkMenuDesc==''||checkMenuDesc==null){
 			checkMenuCnt = 1;
 		}
@@ -140,6 +144,7 @@ function selectMenu(menu_seq){
 		let selectedMenu = "";
 		$('#menuNm').val(menuInfo.MENU_NM);
 		$('#menuUrl').val(menuInfo.MENU_URL);
+		$('#menuId').val(menuInfo.MENU_ID);
 		$('#menuDesc').val(menuInfo.MENU_DESC);
 		$('#childMenuCnt').val(menuInfo.CHILDMENU_CNT);
 		
@@ -211,6 +216,7 @@ function menuUpdate(){
 	obj.menuSeq =$.trim($('#menuSeq').val());
 	obj.menuNm =$.trim($('#menuNm').val());
 	obj.menuUrl =$.trim($('#menuUrl').val());
+	obj.menuId =$.trim($('#menuId').val());
 	obj.menuDesc =$.trim($('#menuDesc').val());
 	obj.menuUppercode =$.trim($('#upperMenu').val());
 	obj.saveType = "U";
@@ -280,6 +286,7 @@ function InsertFormUpperMenu(){
 	$('#viewInsertBtnArea').show();
 	$('#menuNm').val('');
 	$('#menuUrl').val('');
+	$('#menuId').val('');
 	$('#menuDesc').val('');
 	$('#regNm').text('');
 	$('#regDate').text('');
@@ -304,6 +311,7 @@ function menuInsert(){
 	obj.menuSeq =$.trim($('#menuSeq').val());
 	obj.menuNm =$.trim($('#menuNm').val());
 	obj.menuUrl =$.trim($('#menuUrl').val());
+	obj.menuId =$.trim($('#menuId').val());
 	obj.menuDesc =$.trim($('#menuDesc').val());
 	obj.menuPcode =$.trim($('#upperMenu').val());
 	

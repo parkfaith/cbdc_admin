@@ -93,9 +93,15 @@
                                                 </tr>
                                                 <tr>
                                                     <th>메뉴경로</th>
-                                                    <td colspan="3">
+                                                    <td>
                                                         <label class="w100per">
                                                             <input type="text" class="w100per" placeholder="URL" id="menuUrl">
+                                                        </label>
+                                                    </td>
+                                                    <th>메뉴ID</th>
+                                                    <td>
+                                                        <label class="w100per">
+                                                            <input type="text" class="w100per" placeholder="ID" id="menuId">
                                                         </label>
                                                     </td>
                                                 </tr>
