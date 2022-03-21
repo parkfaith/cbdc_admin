@@ -4,6 +4,13 @@
     <a href="/dashboard.do" class="cbdcLogo">
         CBDC ADMIN
     </a>
+    <a href="#" class="dashMenu">
+        <span class="dashMenuInner">
+            <span class="navBar">navBar</span>
+            <span class="navBar">navBar</span>
+            <span class="navBar">navBar</span>
+        </span>
+    </a>
     <div class="userInfo">
         <p>
             IP : <span>${USER_INFO.ACCESS_IP }</span>    최근접속 : <span>${USER_INFO.ACCESS_DATE }</span>

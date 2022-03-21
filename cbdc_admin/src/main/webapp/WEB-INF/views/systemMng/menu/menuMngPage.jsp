@@ -32,7 +32,7 @@
                             <h2>메뉴관리</h2>
                             <div class="breadcrum">
                                 <dl>
-                                    <dd><a href="#">home</a></dd>
+                                    <dd><a href="/">home</a></dd>
                                     <dd>시스템</dd>
                                     <dd>메뉴관리</dd>
                                 </dl>

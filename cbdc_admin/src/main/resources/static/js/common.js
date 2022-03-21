@@ -3,7 +3,7 @@ $(window).ready(function() {
     //메뉴설정
     setMenu();
     
-    $("a.dashMenu").click(function(){
+	$(document).on('click','a.dashMenu', function(){		
         if( $(this).hasClass('show') ){
             $(this).removeClass('show');
             $(".content .leftMenu").removeClass('show');
@@ -12,7 +12,7 @@ $(window).ready(function() {
             $(".content .leftMenu").addClass('show');
         }
         return false;
-    });
+	});
     
     //사용자 메뉴 (상단 로그인 정보)
     $("a.userBox").click(function(){
@@ -34,7 +34,7 @@ $(window).ready(function() {
     });
 
     //서브 메뉴있는 GNB 클릭 시
-    $("nav ul li.sub a").click(function(){
+	$(document).on('click','nav ul li.sub a', function(){
         if( !$(this).parent().parent('ul').hasClass('subMenu') ){
             if( $(this).parent().hasClass('on') ){
                 $(this).parent().removeClass('on');

@@ -25,7 +25,7 @@
                             <h2>노드관리 상세</h2>
                             <div class="breadcrum">
                                 <dl>
-                                    <dd><a href="#">home</a></dd>
+                                    <dd><a href="/">home</a></dd>
                                     <dd>노드관리</dd>
                                     <dd>노드관리 상세</dd>
                                 </dl>

@@ -48,18 +48,24 @@ function nodeSearch(no){
 			html +='</tr>';
 		}else{
 			$.each(data.nodeList, function(i,item) {
+				let NODE_ORGNM = '';
+				if(item.NODE_ORG=='bok'){
+					NODE_ORGNM = '한국은행';
+				}else{
+					NODE_ORGNM = '참가기관';
+				}
     			html +='<tr>';
-    			html +='<td class="num">'+item.RN+'</td>'
-				html +='<td>'
-				html +='<a href="#" onClick="goDetailPage(\''+item.NODE_SEQ+'\')">'+item.NODE_NM+'</a>'
-				html +='</td>'
-				html +='<td class="insti">'+item.NODE_ORG+'</td>'
-				html +='<td class="sts"><span class="node '+item.NODE_TYPE+'">'+item.NODE_TYPE+'</span></td>'
-				html +='<td class="insti">'+item.NODE_IP+'</td>'
-				html +='<td class="insti">'+item.NODE_PORT1+'</td>'
-				html +='<td class="insti">'+item.NODE_PORT2+'</td>'
-				html +='<td class="writer">'+item.REG_NM+'</td>'
-				html +='<td class="date">'+item.REG_DATE+'</td>'
+    			html +='<td class="num">'+item.RN+'</td>';
+				html +='<td>';
+				html +='<a href="#" onClick="goDetailPage(\''+item.NODE_SEQ+'\')">'+item.NODE_NM+'</a>';
+				html +='</td>';
+				html +='<td class="insti">'+NODE_ORGNM+'</td>';
+				html +='<td class="sts"><span class="node '+item.NODE_TYPE+'">'+item.NODE_TYPE+'</span></td>';
+				html +='<td class="insti">'+item.NODE_IP+'</td>';
+				html +='<td class="insti">'+item.NODE_PORT1+'</td>';
+				html +='<td class="insti">'+item.NODE_PORT2+'</td>';
+				html +='<td class="date">'+item.REG_DATE+'</td>';
+				html +='<td class="writer">'+item.REG_NM+'</td>';
     			html +='</tr>';
     		});
 			var pagingView = data.pagingView;

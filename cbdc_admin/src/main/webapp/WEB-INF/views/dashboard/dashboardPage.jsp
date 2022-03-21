@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-    <div class="wrap">
+    <div class="wrap mainDash">
         <c:import url="/WEB-INF/views/import/cbdcAdminTop.jsp" />
         <div class="content">
             <c:import url="/WEB-INF/views/import/cbdcAdminLeft.jsp" />

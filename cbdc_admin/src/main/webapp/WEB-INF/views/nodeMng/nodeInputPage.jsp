@@ -23,7 +23,7 @@
                             <h2>노드관리 목록</h2>
                             <div class="breadcrum">
                                 <dl>
-                                    <dd><a href="#">home</a></dd>
+                                    <dd><a href="/">home</a></dd>
                                     <dd>노드관리</dd>
                                     <dd>노드관리 등록</dd>
                                 </dl>

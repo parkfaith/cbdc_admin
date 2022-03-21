@@ -25,7 +25,7 @@
                             <h2>노드관리 상세</h2>
                             <div class="breadcrum">
                                 <dl>
-                                    <dd><a href="#">home</a></dd>
+                                    <dd><a href="/">home</a></dd>
                                     <dd>노드관리</dd>
                                     <dd>노드관리 상세</dd>
                                 </dl>
@@ -46,7 +46,10 @@
                                     </tr>
                                     <tr>
                                         <th>기관</th>
-                                        <td>${detailMap.nodeInfoMap.NODE_ORG }</td>
+                                        <td>
+                                        	<c:if test="${detailMap.nodeInfoMap.NODE_ORG eq 'bok' }">한국은행</c:if>
+                                        	<c:if test="${detailMap.nodeInfoMap.NODE_ORG eq 'etc' }">참가기관</c:if>
+                                        </td>
                                         <th>유형</th>
                                         <td>
                                             <span class="node ${detailMap.nodeInfoMap.NODE_TYPE }">${detailMap.nodeInfoMap.NODE_TYPE }</span>
