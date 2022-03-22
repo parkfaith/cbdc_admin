@@ -96,7 +96,7 @@ function selectAuthName(authCodeStr){
 	let authHtml = "";
 	
 	cmm.callAjax('/systemMng/selectAuthNameList.json', 'POST', obj, function(data){
-		if(data.selectAuthNameList.length < 1){
+		if(data.selectAuthNameListCnt < 1){
 			$('#authNameList').html("설정된 권한이 없습니다.");
 		}else{
 			$.each(data.selectAuthNameList, function(i,item) {
@@ -104,6 +104,7 @@ function selectAuthName(authCodeStr){
 			});
 			$('#authNameList').empty().html(authHtml);
 		}
+		
 	});
 }
 

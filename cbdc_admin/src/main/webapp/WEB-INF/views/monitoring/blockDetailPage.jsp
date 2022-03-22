@@ -9,7 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(document).ready(function() {
-    	blockDetail('${blockId}');	
+    	//blockDetail('${blockId}');	
     });
     </script>
 </head>
@@ -34,7 +34,32 @@
                         
                         <div class="viewArea">
                             <div class="viewTbl" id="blockDetail">
-                                
+                                 <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>Block Height</th>
+                                        <td>2,520,733</td>
+                                        <th>Block Hash</th>
+                                        <td>Dasf0923knfo293uflwkejo23ue</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tx. Count</th>
+                                        <td>1</td>
+                                        <th>Block Size</th>
+                                        <td>200 Byte</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Creation Node</th>
+                                        <td>&nbsp;</td>
+                                        <th>Timestamp</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                          <div class="viewArea">

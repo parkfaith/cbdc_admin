@@ -9,7 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(document).ready(function() {
-    	txList();	
+    	//txList();	
     }); 
     </script>
 </head>
@@ -101,7 +101,7 @@
                                     <tbody id="txInfoList">
                                         <tr>
                                             <td>
-                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                                <a href="/monitoring/txInfoDetailPage.do">TransactionIDTransactionIDTransactionIDTransactionID</a>
                                             </td>
                                             <td>&nbsp;</td>
                                             <td><span class="hashCode">0x44d827f98430784c8e3401748d8ba92c43df4546</span></td>
@@ -112,7 +112,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                                <a href="/monitoring/txInfoDetailPage.do">TransactionIDTransactionIDTransactionIDTransactionID</a>
                                             </td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
@@ -123,7 +123,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="mnTxView.html">TransactionIDTransactionIDTransactionIDTransactionID</a>
+                                                <a href="/monitoring/txInfoDetailPage.do">TransactionIDTransactionIDTransactionIDTransactionID</a>
                                             </td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>

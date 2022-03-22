@@ -50,10 +50,12 @@
                                     <tr>
                                         <th>권한</th>
                                         <td colspan="3" id="authNameList">
+                                        	<!-- 
                                             <span class="flag auth">관리자조회</span>
                                             <span class="flag auth">개발자</span>
                                             <span class="flag auth">승인/배포</span>
                                             <span class="flag auth">시스템관리</span>
+                                             -->
                                         </td>
                                     </tr>
                                     <tr>

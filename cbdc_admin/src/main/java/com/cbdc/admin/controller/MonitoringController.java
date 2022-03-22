@@ -37,8 +37,6 @@ public class MonitoringController {
 	 */
 	@RequestMapping(value={"/monitoring/nodeInfoPage.do"})
     public String nodeInfoPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-		int test111 = monitoringService.selectTestFirst(paramMap);
-		System.out.println("test11111111================"+test111);
 		String returnJsp = "monitoring/nodeInfoPage";
 		return returnJsp;
 	}
@@ -153,8 +151,6 @@ public class MonitoringController {
 	 */
 	@RequestMapping(value={"/monitoring/txInfoPage.do"})
     public String txInfoPage(@RequestParam HashMap<String,Object> paramMap, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
-		int test = monitoringService.selectTestSecond(paramMap);
-		System.out.println("test22222222================"+test);
 		String returnJsp = "monitoring/txInfoPage";
 		return returnJsp;
 	}

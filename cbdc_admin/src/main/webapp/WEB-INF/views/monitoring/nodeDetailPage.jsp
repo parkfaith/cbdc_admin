@@ -9,8 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(document).ready(function() {
-    	
-    	nodeDetail('${nodeId}');	
+    	//nodeDetail('${nodeId}');	
     });
     </script>
 </head>
@@ -35,7 +34,63 @@
                         
                         <div class="viewArea">
                             <div class="viewTbl" id="nodeDetail">
-                                
+                                <table>
+                                    <colgroup>
+                                        <col>
+                                        <col width="36%">
+                                        <col>
+                                        <col width="36%">
+                                    </colgroup>
+                                    <tr>
+                                        <th>상태</th>
+                                        <td colspan="3">
+                                            <span class="flag active">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>이름</th>
+                                        <td>Node #1</td>
+                                        <th>기관</th>
+                                        <td>한국은행</td>
+                                    </tr>
+                                    <tr>
+                                        <th>System Name</th>
+                                        <td colspan="3">Klaytn/validator-1/vX.X.X/XXXX-XXXX/goX.X.X</td>
+                                    </tr>
+                                    <tr>
+                                        <th>유형</th>
+                                        <td>
+                                            <span class="node cn">CN</span>
+                                        </td>
+                                        <th>Block Height</th>
+                                        <td>00,000,000</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Public Key</th>
+                                        <td colspan="3">
+                                            <div class="chkAccount">
+                                                <p id="walletAdd">C4234293uwdlfkslkdf02392lekjw</p>
+                                                <a href="#" class="button" onclick="copyAdd('walletAdd'); return false;">copy</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>IP</th>
+                                        <td>10.10.10.1</td>
+                                        <th>체인 ID</th>
+                                        <td>1002</td>
+                                    </tr>
+                                    <tr>
+                                        <th>등록일</th>
+                                        <td>2021-00-00 00:00:00</td>
+                                        <th>등록자</th>
+                                        <td>홍길동</td>
+                                    </tr>
+                                    <tr>
+                                        <th>최종수정일시</th>
+                                        <td colspan="3">2021-00-00 00:00:00</td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <div class="viewBtnArea">

@@ -9,7 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(document).ready(function() {
-    	blockList();	
+    	//blockList();	
     }); 
     </script>
 </head>
@@ -85,7 +85,30 @@
                                         </tr>
                                     </thead>
                                     <tbody id="blockInfoList">
-                                        
+                                        <tr>
+                                            <td>
+                                                <a href="/monitoring/blockDetailPage.do">2,520,733</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="/monitoring/blockDetailPage.do">2,520,733</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="/monitoring/blockDetailPage.do">2,520,733</a>
+                                            </td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

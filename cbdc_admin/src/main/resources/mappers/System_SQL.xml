@@ -48,7 +48,7 @@
 	
 	<select id="selectUserTotalCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		<![CDATA[
-	  		/* System_SQL.xml selectUserList 
+	  		/* System_SQL.xml selectUserTotalCount 
 	   		 * 시스템관리 > 사용자 목록(총 건수)
 	   		 */
 	   	]]>

@@ -277,10 +277,19 @@ public class SystemController {
 	public Map<String, Object> selectAuthNameList(@RequestParam HashMap<String, Object> paramMap,
 			HttpServletRequest request, HttpServletResponse response) {
 		LOG.debug("selectAuthNameList paramMap :: " + paramMap.toString());
+		int selectAuthNameListCnt = 0;
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		List<HashMap<String, Object>> selectAuthNameList = systemService.selectAuthNameList(paramMap);
+		if(selectAuthNameList == null) {
+			selectAuthNameListCnt = 0;
+		}else {
+			selectAuthNameListCnt = selectAuthNameList.size();
+		}
+
 		resultMap.put("selectAuthNameList", selectAuthNameList);
+		resultMap.put("selectAuthNameListCnt", selectAuthNameListCnt);
+		//System.out.println("selectAuthNameListCnt==="+selectAuthNameListCnt);
 
 		return resultMap;
 	}

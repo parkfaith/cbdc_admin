@@ -9,7 +9,7 @@
     <jsp:include page="/WEB-INF/views/import/cbdcAdminCommonScript.jsp"/>
     <script>
     $(document).ready(function() {
-    	nodeList();	
+    	//nodeList();	
     });
     </script>
 </head>
@@ -110,7 +110,51 @@
                                         </tr>
                                     </thead>
                                     <tbody id="nodeInfoList">
-                                        
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag active">Active</span>
+                                            </td>
+                                            <td>
+                                                <a href="/monitoring/nodeDetailPage.do">Node #1</a>
+                                            </td>
+                                            <td class="insti">한국은행</td>
+                                            <td class="sts">
+                                                <span class="node cn">CN</span>
+                                            </td>
+                                            <td class="date">000,000</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag active">Active</span>
+                                            </td>
+                                            <td>
+                                                <a href="/monitoring/nodeDetailPage.do">Node #1</a>
+                                            </td>
+                                            <td class="insti">한국은행</td>
+                                            <td class="sts">
+                                                <span class="node pn">PN</span>
+                                            </td>
+                                            <td class="date">000,000</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="num">000</td>
+                                            <td class="sts">
+                                                <span class="flag inactive">Inactive</span>
+                                            </td>
+                                            <td>
+                                                <a href="/monitoring/nodeDetailPage.do">Node #1</a>
+                                            </td>
+                                            <td class="insti">한국은행</td>
+                                            <td class="sts">
+                                                <span class="node en">EN</span>
+                                            </td>
+                                            <td class="date">000,000</td>
+                                            <td class="date">2021-00-00 00:00:00</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

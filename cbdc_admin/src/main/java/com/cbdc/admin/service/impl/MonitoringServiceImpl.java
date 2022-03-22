@@ -164,15 +164,4 @@ public class MonitoringServiceImpl implements MonitoringService{
 		}
 		return blockDataMap;
 	}
-	
-	@Override
-	public int selectTestSecond(HashMap<String, Object> paramMap) {
-		return monitorTxMapper.selectTestSecond(paramMap);
-	}
-	
-	@Override
-	public int selectTestFirst(HashMap<String, Object> paramMap) {
-		return monitorMapper.selectTestFirst(paramMap);
-	}
-	
 }
