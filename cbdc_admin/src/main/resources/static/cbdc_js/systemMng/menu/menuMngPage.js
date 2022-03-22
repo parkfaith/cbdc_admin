@@ -155,7 +155,7 @@ function selectMenu(menu_seq){
 		$('#updDate').text(menuInfo.UPD_DATE);
 		
 		if(menuInfo.MENU_DEPTH ==2 ){
-			$("#upperMenu").empty().append('<option value="1" data-depth="'+ (parseInt(menuInfo.MENU_DEPTH)-1) +'">CBDC Admin</option>');
+			$("#upperMenu").empty().append('<option value="1" data-depth="'+ (parseInt(menuInfo.MENU_DEPTH)-1) +'" data-order="1">CBDC Admin</option>');
 			$('#listBtn').show();
 		}else if(menuInfo.MENU_DEPTH ==3 ){
 			$('#listBtn').hide();
@@ -165,10 +165,10 @@ function selectMenu(menu_seq){
 				if(item.MENU_SEQ==menuInfo.MENU_PCODE){
 					selectedMenu = "selected";
 				}
-				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" '+selectedMenu+'">'+item.MENU_NM+'</option>');	
+				$("#upperMenu").append('<option value="'+item.MENU_SEQ+'" data-order="' + item.MENU_ORDER + '" '+selectedMenu+'>'+item.MENU_NM+'</option>');	
 			});	
 		}else{
-			$("#upperMenu").empty().append('<option value="1">CBDC Admin</option>');	
+			$("#upperMenu").empty().append('<option value="1" data-order="1">CBDC Admin</option>');	
 		}
 		
 		let authhtml = "";
@@ -220,6 +220,7 @@ function menuUpdate(){
 	obj.menuId =$.trim($('#menuId').val());
 	obj.menuDesc =$.trim($('#menuDesc').val());
 	obj.menuUppercode =$.trim($('#upperMenu').val());
+	obj.menuPorder = $('#upperMenu').find("option:selected").data("order");
 	obj.saveType = "U";
 	
 	let chkListAuthLen = $("input[name='chkListAuth']:checked").length;

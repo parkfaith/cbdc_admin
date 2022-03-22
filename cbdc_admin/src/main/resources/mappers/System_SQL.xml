@@ -620,6 +620,7 @@
 	    	, MENU_DESC = #{menuDesc}
 	    	, MENU_AUTH = #{menuAuth}
 	    	, MENU_PCODE = #{menuUppercode}
+	    	, MENU_PORDER = #{menuPorder}
 	    	, UPD_ID = #{logUserId}
 	    	, UPD_DATE = NOW()
 	    	WHERE MENU_SEQ = #{menuSeq}	 
