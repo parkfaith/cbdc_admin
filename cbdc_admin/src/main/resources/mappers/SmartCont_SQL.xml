@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbdc.admin.mapper.master.SmartContMapper">
+
+	<select id="smartContList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml smartContList 
+	   		 * 스마트계약관리 > 스마트계약관리 목록 
+	   		 */
+	   	]]>
+		SELECT SMART_SEQ
+			  , SMART_STATUS
+			  , SMART_CONTNM
+			  , SMART_CONTID
+			  , SMART_VER
+			  , REG_ID
+			  , REG_DATE
+			  , UPD_ID
+			  , UPD_DATE
+		FROM TB_ADM_SMARTCONT
+		WHERE 1=1
+		<if test="searchWord != null and searchWord != ''">
+			AND SMART_CONTNM LIKE CONCAT('%',#{searchWord},'%')
+			<if test="searchType != null and searchType != ''">
+				AND SMART_STATUS = #{searchType}
+			</if>
+		</if>
+		ORDER BY SMART_SEQ DESC
+		LIMIT #{perPage} OFFSET #{currentPage}
+	</select>
+	
+	
+	
+	<select id="smartContListCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml smartContList 
+	   		 * 스마트계약관리 > 스마트계약관리 cnt 
+	   		 */
+	   	]]>
+		SELECT count(*)
+		FROM TB_ADM_SMARTCONT
+		WHERE 1=1
+		<if test="searchWord != null and searchWord != ''">
+			AND SMART_CONTNM LIKE CONCAT('%',#{searchWord},'%')
+			<if test="searchType != null and searchType != ''">
+				AND SMART_STATUS = #{searchType}
+			</if>
+		</if>
+	</select>
+	
+	
+	
+	
+	<select id="selectContInfo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml selectContInfo 
+	   		 * 스마트계약관리 > 스마트계약관리 상세 
+	   		 */
+	   	]]>
+		SELECT SMART_SEQ
+			   , SMART_STATUS
+			   , SMART_CONTNM
+			   , SMART_CONTID
+			   , SMART_VER
+			   , SMART_CONTDESC
+			   , SMART_FROMADDR
+			   , SMART_SOURCE
+			   , SMART_ABI
+			   , SMART_BYTECODE
+			   , SMART_REJECTCOMM
+			   , SMART_CONBTN
+			   , REG_ID
+			   , REG_DATE
+			   , UPD_ID
+			   , UPD_DATE
+		FROM TB_ADM_SMARTCONT
+		WHERE SMART_SEQ = #{contSeq}
+	</select>
+	
+	
+	<insert id="smartContReg" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml smartContReg 
+	   		 * 스마트계약관리 > 스마트계약관리 등록 
+	   		 */
+	   	]]>
+		INSERT INTO TB_ADM_SMARTCONT (
+			SMART_STATUS
+			, SMART_CONTNM
+			, SMART_CONTID
+			, SMART_VER
+			, SMART_CONTDESC
+			, SMART_FROMADDR
+			, SMART_SOURCE
+			, SMART_ABI
+			, SMART_BYTECODE
+			, REG_ID
+			, REG_DATE
+		)
+		VALUES(
+			'등록'
+			, #{contNm}
+			, #{contId}
+			, #{ver}
+			, #{contDesc}
+			, #{fromAddr}
+			, #{editor1}
+			, #{editor2}
+			, #{editor3}
+			, 'test3'
+			, now()
+		)
+	</insert>
+	
+	
+	<update id="updateCont" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml updateCont 
+	   		 * 스마트계약관리 > 스마트계약관리 수정 
+	   		 */
+	   	]]>
+		UPDATE TB_ADM_SMARTCONT
+		SET SMART_CONTNM = #{contNm}
+			, SMART_CONTDESC = #{contDesc}
+			, SMART_FROMADDR = #{fromAddr}
+			, SMART_VER = #{ver}
+			, SMART_CONTID = #{contId}
+			, SMART_SOURCE = #{editor1}
+			, SMART_ABI = #{editor2}
+			, SMART_BYTECODE = #{editor3}
+			, UPD_ID = #{logUserId}
+			, UPD_DATE = now()
+		WHERE SMART_SEQ = #{contSeq}
+	</update>
+	
+	
+	
+	<delete id="deleteCont" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml deleteCont 
+	   		 * 스마트계약관리 > 스마트계약관리 삭제 
+	   		 */
+	   	]]>
+		DELETE FROM TB_ADM_SMARTCONT
+		WHERE SMART_SEQ = #{contSeq}
+	</delete>
+	
+	
+	
+	<update id="updateStatusCont" parameterType="java.util.HashMap">
+		<![CDATA[
+	  		/* SmartCont_SQL.xml updateStatusCont 
+	   		 * 스마트계약관리 > 스마트계약관리 수정(코드점검,승인,반려)
+	   		 */
+	   	]]>
+		UPDATE TB_ADM_SMARTCONT
+		SET SMART_STATUS = #{status}
+			, SMART_CONBTN = #{conBtn}
+			<if test='rejComm != null and rejComm != ""'>
+			, SMART_REJECTCOMM = #{rejComm}
+			</if>
+			, UPD_ID = #{logUserId}
+			, UPD_DATE = NOW()
+		WHERE SMART_SEQ = #{contSeq}
+		   	
+	</update>
+	
+	
+	
+</mapper>
