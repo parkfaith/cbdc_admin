@@ -54,7 +54,7 @@ function userSearch(no){
 				html +='<a href="#" onClick="goDetailPage(\''+item.USER_SEQ+'\')">'+item.USER_ID+'</a>'
 				html +='</td>'
 				html +='<td class="insti">'+item.USER_NM+'</td>'
-				html +='<td class="insti"><span class="flag auth">승인/배포</span></td>'
+				html +='<td class="insti">'+item.authCodeNm+'</td>'
 				html +='<td class="writer">'+item.REG_ID+'</td>'
 				html +='<td class="date">'+item.REG_DATE+'</td>'
     			html +='</tr>';
@@ -89,4 +89,8 @@ function goDetailPage(userSeq){
      
 function fnGoPaging(no) {
 	userSearch(no);
+}
+
+function goTest(data_){
+	console.log("aaaaa");
 }

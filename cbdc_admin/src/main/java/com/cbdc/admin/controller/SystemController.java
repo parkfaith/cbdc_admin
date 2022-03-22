@@ -134,6 +134,31 @@ public class SystemController {
 		try {
 			userList = systemService.selectUserList(paramMap);
 			totalCnt = systemService.selectUserTotalCount(paramMap);
+			//권한 이름 가지고 오려고 이렇게 합니다.
+			if(userList != null) {
+				HashMap<String, Object> authListParamMap = new HashMap<String, Object>();
+				String authCodeStr = "";
+				String authCodeNm = "";
+				for(int i=0; i<userList.size(); i++) {
+					if(userList.get(i).get("AUTH_CODE")==null||"".equals(userList.get(i).get("AUTH_CODE").toString())) {
+						authCodeNm = "기본권한";
+					}else {
+						authCodeStr = userList.get(i).get("AUTH_CODE").toString();
+						authListParamMap.put("authCodeStr", authCodeStr);
+						List<HashMap<String, Object>> selectAuthNameList = systemService.selectAuthNameList(authListParamMap);
+						if(selectAuthNameList == null) {
+							authCodeNm = "기본권한";
+						}else {
+							authCodeNm = "";
+							for(int j=0; j<selectAuthNameList.size(); j++) {
+								authCodeNm = authCodeNm + selectAuthNameList.get(j).get("authName")+", ";
+							}
+						}
+					}
+					userList.get(i).put("authCodeNm", authCodeNm);
+				}
+				
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			LOG.warn(e.getMessage(), e);

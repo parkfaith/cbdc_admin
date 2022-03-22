@@ -97,7 +97,8 @@ function selectAuthName(authCodeStr){
 	
 	cmm.callAjax('/systemMng/selectAuthNameList.json', 'POST', obj, function(data){
 		if(data.selectAuthNameListCnt < 1){
-			$('#authNameList').html("설정된 권한이 없습니다.");
+			authHtml +='<span class="flag auth">기본권한</span>&nbsp;';
+			$('#authNameList').html(authHtml);
 		}else{
 			$.each(data.selectAuthNameList, function(i,item) {
 				authHtml +='<span class="flag auth">'+item.AUTH_NM+'</span>&nbsp;';
