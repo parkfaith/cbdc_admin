@@ -104,7 +104,7 @@
                                         <!-- <tr>
                                             <td colspan="8" class="empty">결과가 없습니다.</td>
                                         </tr> -->
-                                        <tr>
+                                        <!-- <tr>
                                             <td class="num">000</td>
                                             <td class="sts">
                                                 <span class="flag">등록</span>
@@ -159,7 +159,7 @@
                                             <td class="date">2022-00-00 00:00:00</td>
                                             <td class="date">2022-00-00 00:00:00</td>
                                             <td class="writer">홍길동</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

@@ -32,34 +32,37 @@ var editor3 = CodeMirror.fromTextArea(document.getElementById("editor3"), {
 });
 
 function formChk(){
-	var formData = new FormData($("#createForm")[0]);
 	let emptyVal = 0;
-		
-	if(formData.get("contNm") == "") {
+	
+	if($("#contNm").val() == "") {
 		emptyVal++;
 	}
-	if(formData.get("contDesc") == "") {
+	if($("#contDesc").val() == "") {
 		emptyVal++;
 	}
-	if(formData.get("fromAddr") == "") {
+	if($("#fromAddr").val() == "") {
 		emptyVal++;
 	}
-	if(formData.get("ver")== "") {
+	if($("#ver").val() == "") {
 		emptyVal++;
 	}
-	if(formData.get("contId") == "") {
-		emptyVal++;
-	}
-	if(editor1.getValue() == "") {
-		emptyVal++;
-	}
-	if(editor2.getValue() == "") {
-		emptyVal++;
-	}
-	if(editor3.getValue() == "") {
+	if($("#contId").val() == "") {
 		emptyVal++;
 	}
 	
+	var editor1Val = editor1.getValue().replace(/ /gi,'');
+	var editor2Val = editor2.getValue().replace(/ /gi,'');
+	var editor3Val = editor3.getValue().replace(/ /gi,'');
+	
+	if(editor1Val == "") {
+		emptyVal++;
+	}
+	if(editor2Val == "") {
+		emptyVal++;
+	}
+	if(editor3Val == "") {
+		emptyVal++;
+	}
 	
 	if(emptyVal > 0) {
 		alert("유효하지 않은 입력값이 " + emptyVal + "개 있습니다.");

@@ -7,6 +7,7 @@ $(document).ready(function() {
 	});
 	
 	$("#searchBtn").click(function(){
+		$("#perPage").val(10);
 		contractList(1);
 	})
 });

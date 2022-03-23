@@ -113,8 +113,8 @@ public class SmartContController {
 			paginCnt = (perPage * currentPage) - perPage;
 		}
 		
-		paramMap.put("perPage", Integer.parseInt(String.valueOf(perPage)));
-		paramMap.put("currentPage", Integer.parseInt(String.valueOf(paginCnt)));
+		paramMap.put("perPage", Integer.parseInt(String.valueOf(perPage))); //n개씩 보기
+		paramMap.put("startPaginCnt", Integer.parseInt(String.valueOf(paginCnt))); //시작 글번호
 		
 		List<HashMap<String, Object>> smartContList = null;
 		smartContList = smartContService.smartContList(paramMap);
@@ -123,7 +123,7 @@ public class SmartContController {
 		PagingUtil pagingUtil = new PagingUtil(10,perPage,Long.valueOf(totCnt));
 		
 		returnMap.put("list", smartContList);
-		returnMap.put("totCnt", totCnt);
+		returnMap.put("totCnt", totCnt); //글 전체 갯수
 		returnMap.put("paginCnt", totCnt-(currentPage-1)*paginCnt); //목록 글번호 (seq X)
 		returnMap.put("paging", pagingUtil.getFixedBlock(currentPage));
 		

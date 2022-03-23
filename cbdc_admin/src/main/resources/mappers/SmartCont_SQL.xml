@@ -27,8 +27,11 @@
 				AND SMART_STATUS = #{searchType}
 			</if>
 		</if>
+		<if test="searchType != null and searchType != ''">
+			AND SMART_STATUS = #{searchType}
+		</if>
 		ORDER BY SMART_SEQ DESC
-		LIMIT #{perPage} OFFSET #{currentPage}
+		LIMIT #{perPage} OFFSET #{startPaginCnt}
 	</select>
 	
 	
@@ -47,6 +50,9 @@
 			<if test="searchType != null and searchType != ''">
 				AND SMART_STATUS = #{searchType}
 			</if>
+		</if>
+		<if test="searchType != null and searchType != ''">
+			AND SMART_STATUS = #{searchType}
 		</if>
 	</select>
 	
