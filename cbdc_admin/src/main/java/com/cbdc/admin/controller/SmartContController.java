@@ -68,8 +68,6 @@ public class SmartContController {
 			HttpServletResponse response,Model model) throws Exception {
 		String returnJsp = "";
 		
-		System.out.println("DETAIL CONTROLLER PARAM : " + paramMap);
-		
 		HttpSession session = request.getSession();
 		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
 		paramMap.put("logUserId", userInfoMap.get("USER_ID"));
@@ -85,6 +83,7 @@ public class SmartContController {
 		
 		Map<String,Object> detailInfo = smartContService.selectContInfo(paramMap);
 		model.addAttribute("selectDetail", detailInfo);
+		model.addAttribute("logUserId", userInfoMap.get("USER_ID"));
 		
 		return returnJsp;
 	}
@@ -116,8 +115,6 @@ public class SmartContController {
 		
 		paramMap.put("perPage", Integer.parseInt(String.valueOf(perPage)));
 		paramMap.put("currentPage", Integer.parseInt(String.valueOf(paginCnt)));
-		
-		System.out.println("CONTROLLER PARAM : " + paramMap);
 		
 		List<HashMap<String, Object>> smartContList = null;
 		smartContList = smartContService.smartContList(paramMap);

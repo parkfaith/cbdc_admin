@@ -132,10 +132,10 @@
 
                         <div class="viewBtnArea">
                             <a href="/smartCont/smartContMngPage.do" class="button list">목록</a>
-                            
-                            <a href="#" class="button" id="updateCont">수정</a>
-                            <a href="#" class="button rej" id="deleteCont">삭제</a>
-
+                            <c:if test="${logUserId == selectDetail.REG_ID}">
+	                            <a href="#" class="button" id="updateCont">수정</a>
+	                            <a href="#" class="button rej" id="deleteCont">삭제</a>
+							</c:if>
                             <a href="#" class="button app" id="codeChk">코드점검</a>
                         </div>
                     </div>
@@ -150,9 +150,5 @@
 <script src="../js/codemirror/matchbrackets.js"></script>
 <script src="../js/codemirror/python.js"></script>
 <script src="/cbdc_js/smartCont/smartContDetail.js"></script>
-<form name="contForm" id="contForm">
-	<input type="hidden" name="contSeq" id="contSeq" value="${selectDetail.SMART_SEQ}">
-	<input type="hidden" name="type" id="type">
-	<input type="hidden" name="saveType" id="saveType">
-</form>
+<input type="hidden" name="contSeq" id="contSeq" value="${selectDetail.SMART_SEQ}">
 </html>

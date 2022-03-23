@@ -8,7 +8,7 @@ $(window).ready(function(){
 		
 		obj.contSeq = $("#status").data('seq');
 		obj.status = "승인";
-		obj.conBtn= "ACCESS";
+		obj.conBtn= "ACCEPT";
 		obj.saveType= "CC";
 		
 		var c = confirm("스마트계약 등록을 승인하시겠습니까?");

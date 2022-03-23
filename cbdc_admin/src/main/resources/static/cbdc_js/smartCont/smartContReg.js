@@ -53,10 +53,10 @@ function formChk(){
 	if(editor1.getValue() == "") {
 		emptyVal++;
 	}
-	if(editor1.getValue() == "") {
+	if(editor2.getValue() == "") {
 		emptyVal++;
 	}
-	if(editor1.getValue() == "") {
+	if(editor3.getValue() == "") {
 		emptyVal++;
 	}
 	

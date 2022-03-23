@@ -146,7 +146,11 @@
                             </div>
                         </div>
 		<c:if test="${selectDetail.SMART_CONBTN == 'REJECT'}">
-			<div class="viewTbl">
+		<div class="viewArea">
+			<div class="viewTop">
+            	<h2>반려</h2>
+            </div>
+				<div class="viewTbl">
 				<table>
 					<tr>
 						<th>최종변경일시</th>
@@ -160,6 +164,7 @@
 					</tr>
 				</table>
 			</div>
+		</div>	
 		</c:if>
 	
                         <div class="viewBtnArea">
