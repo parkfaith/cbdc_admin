@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cbdc.admin.common.MenuAuthCheck;
 import com.cbdc.admin.common.PagingUtil;
 import com.cbdc.admin.service.NodeService;
 
@@ -60,7 +60,7 @@ public class NodeController {
 		
 		/**
 		 * 버튼 활성여부 체크
-		 
+		*/ 
 		HttpSession session = request.getSession();
 		HashMap<String, Object> userInfoMap = (HashMap<String, Object>) session.getAttribute("USER_INFO");
 		HashMap<String, Object> menuInfoMap = (HashMap<String, Object>) session.getAttribute("MENU_AUTHINFO");
@@ -69,8 +69,8 @@ public class NodeController {
 		String menuAuth = menuInfoMap.get("MENU_AUTH").toString();
 
 		String btnCheck = MenuAuthCheck.authResult(userAuth, menuAuth);
-		*/
-		model.addAttribute("btnCheck", "ACCEPT");
+		
+		model.addAttribute("btnCheck", btnCheck);
 		/**********************************************************************/
 		
 		returnJsp = "nodeMng/nodeMngPage";

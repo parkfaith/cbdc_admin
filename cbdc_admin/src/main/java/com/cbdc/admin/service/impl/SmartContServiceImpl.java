@@ -1,5 +1,7 @@
 package com.cbdc.admin.service.impl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +55,28 @@ public class SmartContServiceImpl implements SmartContService{
 
 	@Override
 	public int updateStatusCont(HashMap<String, Object> paramMap) {
-		return smartContMapper.updateStatusCont(paramMap);
+		/**
+		 * 추가사항 박준형
+		 */
+		int returnInt = 0;
+		Runtime rt = Runtime.getRuntime();
+		Process pc = null;
+		String codeCheckURL = "";
+		try {
+			pc = rt.exec(codeCheckURL);
+			BufferedReader br = new BufferedReader(new InputStreamReader(pc.getInputStream()));
+			String line = null;
+			while((line = br.readLine()) != null){
+		        System.out.println(line);
+		    }
+			returnInt = smartContMapper.updateStatusCont(paramMap);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return returnInt;
+		
+		/********************************/
+		//return smartContMapper.updateStatusCont(paramMap);
 	}
 	
 	
